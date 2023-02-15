@@ -1,8 +1,8 @@
-import type { FC } from 'react';
+import type { FC } from "react";
 
 interface cardProps {}
 
 const card: FC<cardProps> = ({}) => {
-        return (div.);
-}
+  return <div></div>;
+};
 export default card;
