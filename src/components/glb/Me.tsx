@@ -6,8 +6,8 @@ Command: npx gltfjsx@6.1.4 me.glb
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 
-export function Model(props) {
-  const { nodes, materials } = useGLTF("/me.glb");
+export function Model(props: any) {
+  const { nodes, materials } = useGLTF<any>("/me.glb");
   return (
     <group {...props} dispose={null}>
       <primitive object={nodes.Hips} />
