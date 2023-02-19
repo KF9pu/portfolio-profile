@@ -5,9 +5,14 @@ Command: npx gltfjsx@6.1.4 me.glb
 
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
+import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 
+type GLTFResult = GLTF & {
+  nodes: any;
+  materials: any;
+};
 export function Model(props: any) {
-  const { nodes, materials } = useGLTF<any>("/me.glb");
+  const { nodes, materials } = useGLTF("/me.glb") as GLTFResult;
   return (
     <group {...props} dispose={null}>
       <primitive object={nodes.Hips} />
