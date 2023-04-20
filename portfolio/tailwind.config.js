@@ -1,18 +1,98 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    './src/pages/**/*.{js,ts,jsx,tsx}',
-    './src/components/**/*.{js,ts,jsx,tsx}',
-    './src/app/**/*.{js,ts,jsx,tsx}',
-  ],
+  content: ["./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      },
+    },
+    colors: {
+      black: "#000",
+      white: "#eee",
+      "theme-default": {
+        1: "#999999",
+        2: "#808080",
+        3: "#737373",
+        4: "#4d4d4d",
+        5: "#333333",
+        6: "#1a1a1a",
+      },
+      "theme-light-red": {
+        1: "#ffe5e5",
+        2: "#ffcccc",
+        3: "#ffb3b3",
+        4: "#ff9999",
+        5: "#ff8080",
+        6: "#ff6666",
+      },
+      "theme-light-blue": {
+        1: "#e5f2ff",
+        2: "#cce5ff",
+        3: "#b3d9ff",
+        4: "#99ccff",
+        5: "#80bfff",
+        6: "#66b2ff",
+      },
+      "theme-light-green": {
+        1: "#e5fff2",
+        2: "#ccffe5",
+        3: "#b3ffd9",
+        4: "#99ffcc",
+        5: "#80ffbf",
+        6: "#66ffb2",
+      },
+      "theme-light-pink": {
+        1: "#ffe5f2",
+        2: "#ffcce6",
+        3: "#ffb3d9",
+        4: "#ff99cc",
+        5: "#ff66b3",
+        6: "#ff3399",
+      },
+      "theme-dark-red": {
+        1: "#CC0000",
+        2: "#b30000",
+        3: "#990000",
+        4: "#800000",
+        5: "#660000",
+        6: "#4d0000",
+      },
+      "theme-dark-green": {
+        1: "#00e600",
+        2: "#00cc00",
+        3: "#00b300",
+        4: "#009900",
+        5: "#008000",
+        6: "#006600",
+      },
+      "theme-dark-blue": {
+        1: "#6666ff",
+        2: "#3333ff",
+        3: "#0000ff",
+        4: "#0000CC",
+        5: "#000099",
+        6: "#000066",
+      },
+      "theme-dark-pupple": {
+        1: "#990099",
+        2: "#660066",
+        3: "#610561",
+        4: "#5c0a5c",
+        5: "#570f57",
+        6: "#521452",
+      },
+      "theme-dark-gold": {
+        1: "#ffd24d",
+        2: "#cc9900",
+        3: "#b88f14",
+        4: "#a38529",
+        5: "#998033",
+        6: "#8f7a3d",
+        7: "#857547",
       },
     },
   },
   plugins: [],
-}
+};
