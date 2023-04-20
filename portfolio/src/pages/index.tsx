@@ -4,8 +4,6 @@ import { _ThemeCode } from "@/store/default";
 import SetColorButton from "@/theme/SetColorButton";
 import { cls } from "@/libs/common";
 
-const inter = Inter({ subsets: ["latin"] });
-
 export default function Home() {
   const {
     bgColor,
@@ -20,8 +18,16 @@ export default function Home() {
   } = useTheme();
 
   return (
-    <main className={cls("flex flex-col items-center justify-between gap-10", "py-24")}>
-      <div className="flex flex-col gap-2">
+    /* TODO: text, border color 설정 */
+    <main
+      className={cls(
+        "flex flex-col items-center justify-center gap-10",
+        "w-screen h-screen",
+        bgColor,
+        "transition-all"
+      )}
+    >
+      <div className={cls("flex flex-col gap-2")}>
         <SetColorButton ThemeCode="light-red">light red</SetColorButton>
         <SetColorButton ThemeCode="light-green">light green</SetColorButton>
         <SetColorButton ThemeCode="light-blue">light blue</SetColorButton>
@@ -44,7 +50,8 @@ export default function Home() {
           borderHoverColor,
           textClickColor,
           textColor,
-          textHoverColor
+          textHoverColor,
+          "transition-all delay-200"
         )}
       >
         ThemeTest
