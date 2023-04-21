@@ -11,7 +11,7 @@ export type ThemeCodeType =
   | "dark-gold";
 export interface IReturnThemeColors {
   bgColor: string;
-  bgHoverCColor: string;
+  bgHoverColor: string;
   bgClickColor: string;
   textColor: string;
   textHoverColor: string;

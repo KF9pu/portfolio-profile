@@ -8,7 +8,7 @@ export default function Home() {
   const {
     bgColor,
     bgClickColor,
-    bgHoverCColor,
+    bgHoverColor,
     borderClickColor,
     borderColor,
     borderHoverColor,
@@ -42,9 +42,10 @@ export default function Home() {
       <div
         className={cls(
           "p-[200px]",
+          "text--",
           bgColor,
           bgClickColor,
-          bgHoverCColor,
+          bgHoverColor,
           borderClickColor,
           borderColor,
           borderHoverColor,

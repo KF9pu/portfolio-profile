@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { getColorCodesByTheme } from "./modules";
-import { IReturnThemeColors, ThemeCodeType } from "./interfaces";
+import { IReturnThemeColors } from "./interfaces";
 import { defaultThemeColors } from "./constant";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 import { _ThemeCode } from "@/store/default";
 
 const useTheme = (): IReturnThemeColors => {

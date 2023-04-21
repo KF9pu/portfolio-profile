@@ -1,6 +1,6 @@
 export const defaultThemeColors = {
   bgColor: "",
-  bgHoverCColor: "",
+  bgHoverColor: "",
   bgClickColor: "",
   textColor: "",
   textHoverColor: "",
