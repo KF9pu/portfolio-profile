@@ -1,21 +1,19 @@
-import { Inter } from "next/font/google";
 import useTheme from "@/theme/useTheme";
 import { _ThemeCode } from "@/store/default";
-import SetColorButton from "@/theme/SetColorButton";
 import { cls } from "@/libs/common";
+import ColorChangeButtonLlist from "@/groups/home/ColorChangeButtonLlist";
+import { useEffect } from "react";
 
 export default function Home() {
   const {
-    bgColor,
-    bgClickColor,
-    bgHoverColor,
-    borderClickColor,
-    borderColor,
-    borderHoverColor,
-    textClickColor,
-    textColor,
-    textHoverColor,
+    default: { bg, text, border, shadow },
+    hover: { bgHover, borderHover, shadowHover, textHover },
+    active: { bgActive, borderActive, shadowctive, textActive },
   } = useTheme();
+
+  useEffect(() => {
+    console.log("bgbgbgbg : ", bg);
+  }, [bg]);
 
   return (
     /* TODO: text, border color 설정 */
@@ -23,40 +21,12 @@ export default function Home() {
       className={cls(
         "flex flex-col items-center justify-center gap-10",
         "w-screen h-screen",
-        bgColor,
+        bg.primary,
         "transition-all"
       )}
     >
-      <div className={cls("flex flex-col gap-2")}>
-        <SetColorButton ThemeCode="light-red">light red</SetColorButton>
-        <SetColorButton ThemeCode="light-green">light green</SetColorButton>
-        <SetColorButton ThemeCode="light-blue">light blue</SetColorButton>
-        <SetColorButton ThemeCode="light-pink">light pink</SetColorButton>
-        <SetColorButton ThemeCode="dark-red">dark red</SetColorButton>
-        <SetColorButton ThemeCode="dark-blue">dark blue</SetColorButton>
-        <SetColorButton ThemeCode="dark-green">dark green</SetColorButton>
-        <SetColorButton ThemeCode="dark-pupple">dark pupple</SetColorButton>
-        <SetColorButton ThemeCode="dark-gold">dark gold</SetColorButton>
-      </div>
-      {/* TODO: 프로젝트 소개/설명? */}
-      <div
-        className={cls(
-          "p-[200px]",
-          "text--",
-          bgColor,
-          bgClickColor,
-          bgHoverColor,
-          borderClickColor,
-          borderColor,
-          borderHoverColor,
-          textClickColor,
-          textColor,
-          textHoverColor,
-          "transition-all delay-200"
-        )}
-      >
-        ThemeTest
-      </div>
+      <h1 className={cls(text.primary, "")}>Choose Theme Color</h1>
+      <ColorChangeButtonLlist />
     </main>
   );
 }
