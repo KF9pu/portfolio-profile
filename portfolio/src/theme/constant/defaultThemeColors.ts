@@ -1,59 +1,27 @@
 import { IReturnThemeColors } from "../interfaces";
 
 const defaultThemeColors: IReturnThemeColors = {
-  default: {
-    bg: {
+  bg: {
+    primary: "",
+    secondary: "",
+    tertiary: "",
+    quaternary: "",
+    quinary: "",
+    hover: {
       primary: "",
       secondary: "",
       tertiary: "",
       quaternary: "",
       quinary: "",
     },
-    text: {
+    active: {
       primary: "",
       secondary: "",
       tertiary: "",
       quaternary: "",
       quinary: "",
     },
-    border: {
-      primary: "",
-      secondary: "",
-      tertiary: "",
-      quaternary: "",
-      quinary: "",
-    },
-    shadow: {
-      primary: "",
-      secondary: "",
-      tertiary: "",
-      quaternary: "",
-      quinary: "",
-    },
-  },
-  hover: {
-    bg: {
-      primary: "",
-      secondary: "",
-      tertiary: "",
-      quaternary: "",
-      quinary: "",
-    },
-    text: {
-      primary: "",
-      secondary: "",
-      tertiary: "",
-      quaternary: "",
-      quinary: "",
-    },
-    border: {
-      primary: "",
-      secondary: "",
-      tertiary: "",
-      quaternary: "",
-      quinary: "",
-    },
-    shadow: {
+    focus: {
       primary: "",
       secondary: "",
       tertiary: "",
@@ -61,29 +29,83 @@ const defaultThemeColors: IReturnThemeColors = {
       quinary: "",
     },
   },
-  active: {
-    bg: {
+  text: {
+    primary: "",
+    secondary: "",
+    tertiary: "",
+    quaternary: "",
+    quinary: "",
+    hover: {
       primary: "",
       secondary: "",
       tertiary: "",
       quaternary: "",
       quinary: "",
     },
-    text: {
+    active: {
       primary: "",
       secondary: "",
       tertiary: "",
       quaternary: "",
       quinary: "",
     },
-    border: {
+    focus: {
       primary: "",
       secondary: "",
       tertiary: "",
       quaternary: "",
       quinary: "",
     },
-    shadow: {
+  },
+  border: {
+    primary: "",
+    secondary: "",
+    tertiary: "",
+    quaternary: "",
+    quinary: "",
+    hover: {
+      primary: "",
+      secondary: "",
+      tertiary: "",
+      quaternary: "",
+      quinary: "",
+    },
+    active: {
+      primary: "",
+      secondary: "",
+      tertiary: "",
+      quaternary: "",
+      quinary: "",
+    },
+    focus: {
+      primary: "",
+      secondary: "",
+      tertiary: "",
+      quaternary: "",
+      quinary: "",
+    },
+  },
+  shadow: {
+    primary: "",
+    secondary: "",
+    tertiary: "",
+    quaternary: "",
+    quinary: "",
+    hover: {
+      primary: "",
+      secondary: "",
+      tertiary: "",
+      quaternary: "",
+      quinary: "",
+    },
+    active: {
+      primary: "",
+      secondary: "",
+      tertiary: "",
+      quaternary: "",
+      quinary: "",
+    },
+    focus: {
       primary: "",
       secondary: "",
       tertiary: "",

@@ -13,19 +13,7 @@ const useTheme = () => {
     setReturnThemeColors(getColorCodesByTheme(ThemeCode));
   }, [ThemeCode]);
   return {
-    default: { ...ReturnThemeColors.default },
-    hover: {
-      bgHover: ReturnThemeColors.hover.bg,
-      textHover: ReturnThemeColors.hover.text,
-      borderHover: ReturnThemeColors.hover.border,
-      shadowHover: ReturnThemeColors.hover.shadow,
-    },
-    active: {
-      bgActive: ReturnThemeColors.active.bg,
-      textActive: ReturnThemeColors.active.text,
-      borderActive: ReturnThemeColors.active.border,
-      shadowctive: ReturnThemeColors.active.shadow,
-    },
+    ...ReturnThemeColors,
   };
 };
 

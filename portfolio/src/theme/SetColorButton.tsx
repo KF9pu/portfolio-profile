@@ -6,17 +6,13 @@ import { _ThemeCode } from "@/store/default";
 import useTheme from "./useTheme";
 
 interface SetColorButtonProps {
-  ThemeCode: typeof ThemeCodeKeys[number];
+  ThemeCode: (typeof ThemeCodeKeys)[number];
   children: React.ReactNode;
 }
 const SetColorButton: FC<SetColorButtonProps> = ({ ThemeCode, children }) => {
-  const [themeCode, setThemeCode] = useRecoilState<typeof ThemeCodeKeys[number]>(_ThemeCode);
+  const [themeCode, setThemeCode] = useRecoilState<(typeof ThemeCodeKeys)[number]>(_ThemeCode);
 
-  const {
-    default: { bg, text, border, shadow },
-    hover: { bgHover, textHover, borderHover, shadowHover },
-    active: { bgActive, borderActive, shadowctive, textActive },
-  } = useTheme();
+  const { bg, text, border, shadow } = useTheme();
 
   return (
     <button
@@ -24,9 +20,9 @@ const SetColorButton: FC<SetColorButtonProps> = ({ ThemeCode, children }) => {
         "min-w-[200px]",
         "rounded-lg",
         "py-[10px]",
-        `${bg.secondary} ${bgHover.quinary} ${bgActive.primary}`,
-        `${text.quinary} ${textHover.primary}`,
-        `shadow-lg ${shadow.tertiary} ${shadowHover.quaternary}`,
+        `${bg.secondary} ${bg.hover.quinary} ${bg.active.primary}`,
+        `${text.quinary} ${text.hover.primary}`,
+        `shadow-lg ${shadow.tertiary} ${shadow.hover.quaternary}`,
         themeCode === ThemeCode ? `border ${border.quinary}` : ""
       )}
       onClick={() => setThemeCode(ThemeCode)}

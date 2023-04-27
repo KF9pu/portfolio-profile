@@ -5,11 +5,7 @@ import ColorChangeButtonLlist from "@/groups/home/ColorChangeButtonLlist";
 import { useEffect } from "react";
 
 export default function Home() {
-  const {
-    default: { bg, text, border, shadow },
-    hover: { bgHover, borderHover, shadowHover, textHover },
-    active: { bgActive, borderActive, shadowctive, textActive },
-  } = useTheme();
+  const { bg, text } = useTheme();
 
   useEffect(() => {
     console.log("bgbgbgbg : ", bg);

@@ -1,5 +1,5 @@
 export const ThemeCodeKeys = [
-  "",
+  "default",
   "light-red",
   "light-blue",
   "light-green",
@@ -11,7 +11,9 @@ export const ThemeCodeKeys = [
   "dark-gold",
 ] as const;
 
-export const colorKeys = ["primary", "secondary", "tertiary", "quaternary", "quinary"] as const;
+export type ThemeCodeType = {
+  [key in (typeof ThemeCodeKeys)[number]]: ColorType;
+};
 
 export const ApplyColorKeys = [
   "bg",
@@ -26,20 +28,25 @@ export const ApplyColorKeys = [
   "active:border",
 ] as const;
 
-export type ColorType = {
-  [key in typeof colorKeys[number]]: string;
-};
+export type ColorInterfaceKeys =
+  | "primary"
+  | "secondary"
+  | "tertiary"
+  | "quaternary"
+  | "quinary"
+  | "hover"
+  | "active"
+  | "focus";
 
-export type ThemeCodeType<T = ColorType> = {
-  [key in typeof ThemeCodeKeys[number]]: T;
-};
+type ColorMap<T> = T extends "primary" | "secondary" | "tertiary" | "quaternary" | "quinary"
+  ? string
+  : { [key in Extract<ColorInterfaceKeys, "primary" | "secondary" | "tertiary" | "quaternary" | "quinary">]: string };
 
-export type ApplyColorType<T = ColorType> = {
-  [key in Extract<typeof ApplyColorKeys[number], "bg" | "text" | "border" | "shadow">]: T;
-};
+export type ColorType = { [P in ColorInterfaceKeys]: ColorMap<P> };
 
 export interface IReturnThemeColors<T = ColorType> {
-  default: ApplyColorType<T>;
-  hover: ApplyColorType<T>;
-  active: ApplyColorType<T>;
+  bg: T;
+  text: T;
+  border: T;
+  shadow: T;
 }
