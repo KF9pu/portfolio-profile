@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { getColorCodesByTheme } from "./modules";
-import { defaultThemeColors } from "./constant";
+import getColorCodesByTheme from "../modules/getColorCodesByTheme";
+import { defaultThemeColors } from "../constant";
 import { useRecoilValue } from "recoil";
 import { _ThemeCode } from "@/store/default";
-import { IReturnThemeColors } from "./interfaces";
+import { IReturnThemeColors } from "../interfaces";
 
 const useTheme = () => {
   const [ReturnThemeColors, setReturnThemeColors] = useState<IReturnThemeColors>(defaultThemeColors);

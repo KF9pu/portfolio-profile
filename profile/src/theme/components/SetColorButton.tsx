@@ -1,9 +1,9 @@
 import { cls } from "@/libs/common";
 import { FC } from "react";
-import { ThemeCodeKeys, ThemeCodeType } from "./interfaces";
+import { ThemeCodeKeys, ThemeCodeType } from "../interfaces";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { _ThemeCode } from "@/store/default";
-import useTheme from "./useTheme";
+import useTheme from "../hooks/useTheme";
 
 interface SetColorButtonProps {
   ThemeCode: (typeof ThemeCodeKeys)[number];
@@ -20,6 +20,7 @@ const SetColorButton: FC<SetColorButtonProps> = ({ ThemeCode, children }) => {
         "min-w-[200px]",
         "rounded-lg",
         "py-[10px]",
+        "select-none",
         `${bg.secondary} ${bg.hover.quinary} ${bg.active.primary}`,
         `${text.quinary} ${text.hover.primary}`,
         `shadow-lg ${shadow.tertiary} ${shadow.hover.quaternary}`,

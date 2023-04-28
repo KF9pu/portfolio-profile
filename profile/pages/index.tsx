@@ -1,4 +1,4 @@
-import useTheme from "@/theme/useTheme";
+import useTheme from "@/theme/hooks/useTheme";
 import { _ThemeCode } from "@/store/default";
 import { cls } from "@/libs/common";
 import ColorChangeButtonLlist from "@/groups/home/ColorChangeButtonLlist";
@@ -21,7 +21,7 @@ export default function Home() {
         "transition-all"
       )}
     >
-      <h1 className={cls(text.primary, "")}>Choose Theme Color</h1>
+      <h1 className={cls(text.quinary, "")}>Choose Theme Color</h1>
       <ColorChangeButtonLlist />
     </main>
   );
