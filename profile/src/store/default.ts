@@ -5,3 +5,8 @@ export const _ThemeCode = atom<(typeof ThemeCodeKeys)[number]>({
   key: `ThemeCode${Math.random()}`, // unique ID (with respect to other atoms/selectors)
   default: "default", // default value (aka initial value)
 });
+
+export const _isDropDown = atom<boolean>({
+  key: `isDropDown${Math.random()}`, // unique ID (with respect to other atoms/selectors)
+  default: false, // default value (aka initial value)
+});

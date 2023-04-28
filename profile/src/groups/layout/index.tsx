@@ -1,19 +1,19 @@
 import Head from "next/head";
 
-import Footer from "./Footer";
-import Header from "./Header";
+import Header from "../header";
+import Footer from "../footer";
 
 interface LayoutProps {
   children: React.ReactNode;
   title?: string;
-  hasHeader?: boolean;
-  hasFooter?: boolean;
+  hasHeader?: true;
+  hasFooter?: true;
 }
 const Layout = ({ children, title, hasHeader, hasFooter }: LayoutProps) => {
   return (
     <>
       <Head>
-        <title>{`${title} | Clarins`}</title>
+        <title>{`Profile | ${title}`}</title>
       </Head>
 
       {hasHeader ? <Header /> : null}

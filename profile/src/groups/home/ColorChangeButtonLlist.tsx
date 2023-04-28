@@ -6,7 +6,7 @@ interface ColorChangeButtonLlistProps {}
 
 const ColorChangeButtonLlist: FC<ColorChangeButtonLlistProps> = ({}) => {
   return (
-    <div className={cls("flex flex-col gap-2")}>
+    <div className={cls("h-0 group-hover:animate-open", "flex flex-col gap-2")}>
       <SetColorButton ThemeCode="default">default</SetColorButton>
       <SetColorButton ThemeCode="light-red">light red</SetColorButton>
       <SetColorButton ThemeCode="light-green">light green</SetColorButton>
