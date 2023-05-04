@@ -9,6 +9,7 @@ module.exports = {
       },
     },
     colors: {
+      transparent: "transparent",
       black: "#000",
       white: "#eee",
       grayscale: { 1: "#f7fafc", 2: "#edf2f7", 3: "#e2e8f0", 4: "#cbd5e0", 5: "#a0aec0", 6: "#718096", 7: "#4a5568" },
@@ -91,7 +92,7 @@ module.exports = {
           height: "0",
         },
         "100%": {
-          height: "300px",
+          height: "80vh",
         },
       },
       fadeIn: {
@@ -102,7 +103,7 @@ module.exports = {
           display: "none",
         },
         "100%": {
-          display: "block",
+          display: "flex",
         },
       },
     },

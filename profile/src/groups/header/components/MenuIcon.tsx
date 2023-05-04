@@ -1,8 +1,8 @@
 import type { FC } from "react";
 
-interface BarsArrowDownProps {}
+interface MenuIconProps {}
 
-const BarsArrowDown: FC<BarsArrowDownProps> = () => {
+const MenuIcon: FC<MenuIconProps> = () => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
       <path
@@ -13,4 +13,4 @@ const BarsArrowDown: FC<BarsArrowDownProps> = () => {
     </svg>
   );
 };
-export default BarsArrowDown;
+export default MenuIcon;

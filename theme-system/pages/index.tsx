@@ -2,14 +2,9 @@ import useTheme from "@/theme/hooks/useTheme";
 import { _ThemeCode } from "@/store/default";
 import { cls } from "@/libs/common";
 import ColorChangeButtonLlist from "@/groups/home/ColorChangeButtonLlist";
-import { useEffect } from "react";
 
 export default function Home() {
   const { bg, text } = useTheme();
-
-  useEffect(() => {
-    console.log("bgbgbgbg : ", bg);
-  }, [bg]);
 
   return (
     /* TODO: text, border color 설정 */

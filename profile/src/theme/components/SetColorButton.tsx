@@ -17,14 +17,16 @@ const SetColorButton: FC<SetColorButtonProps> = ({ ThemeCode, children }) => {
   return (
     <button
       className={cls(
-        "min-w-[200px]",
+        "w-[80%]",
         "rounded-lg",
         "py-[10px]",
         "select-none",
-        `${bg.secondary} ${bg.hover.quinary} ${bg.active.primary}`,
-        `${text.quinary} ${text.hover.primary}`,
-        `shadow-lg ${shadow.tertiary} ${shadow.hover.quaternary}`,
-        themeCode === ThemeCode ? `border ${border.quinary}` : ""
+        "border",
+        bg.secondary,
+        text.hover.primary,
+        themeCode === ThemeCode
+          ? cls(border.primary, text.primary)
+          : cls("border-transparent", bg.hover.quinary, bg.active.quaternary)
       )}
       onClick={() => setThemeCode(ThemeCode)}
       disabled={themeCode === ThemeCode}
