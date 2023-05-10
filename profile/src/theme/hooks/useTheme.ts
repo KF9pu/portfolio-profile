@@ -1,19 +1,25 @@
 import { useEffect, useState } from "react";
-import getColorCodesByTheme from "../modules/getColorCodesByTheme";
-import { defaultThemeColors } from "../constant";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { _ThemeCode } from "@/store/default";
-import { IReturnThemeColors } from "../interfaces";
+import { ColorCodeType, LightOrDarkType, ThemeCodeType } from "../interfaces";
+import getThemeCode from "../modules/getThemeCode";
 
-const useTheme = () => {
-  const [ReturnThemeColors, setReturnThemeColors] = useState<IReturnThemeColors>(defaultThemeColors);
-  const ThemeCode = useRecoilValue(_ThemeCode);
+const useTheme = (colorCode?: ColorCodeType) => {
+  const [ThemeCode, setThemeCode] = useRecoilState<ThemeCodeType>(_ThemeCode);
+  const [LightOrDark, setLightOrDark] = useState<LightOrDarkType>("light");
 
   useEffect(() => {
-    setReturnThemeColors(getColorCodesByTheme(ThemeCode));
-  }, [ThemeCode]);
+    const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+    if (prefersDarkScheme.matches) setLightOrDark("dark");
+  }, []);
+
   return {
-    ...ReturnThemeColors,
+    ThemeCode,
+    LightOrDark,
+    setThemeCode: () => {
+      if (!colorCode) return;
+      setThemeCode(getThemeCode(colorCode, LightOrDark));
+    },
   };
 };
 

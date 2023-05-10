@@ -10,12 +10,8 @@ interface TabProps {
 }
 
 const Tab: FC<TabProps> = ({ children, propsTabStatus }) => {
-  const { bg, text, border } = useTheme();
   const [tabStatus, setTabStatus] = useRecoilState(_sidevarTabStatus);
 
-  useEffect(() => {
-    console.log("dksldklsdklskdlsk : ", text.primary);
-  }, []);
   return (
     <div
       className={cls(
@@ -23,11 +19,8 @@ const Tab: FC<TabProps> = ({ children, propsTabStatus }) => {
         "text-center",
         "py-[8px]",
         "cursor-pointer",
-        "border-t",
         "z-[5]",
-        propsTabStatus === 0 ? "border-l rounded-tl-md" : "border-r rounded-tr-md",
-        tabStatus === propsTabStatus ? cls(text.quinary) : cls(text.quinary, text.hover.primary),
-        border.quinary
+        tabStatus === propsTabStatus ? cls("text-quinary") : cls("text-quinary", "hover:text-primary")
       )}
       onClick={() => setTabStatus(propsTabStatus)}
     >

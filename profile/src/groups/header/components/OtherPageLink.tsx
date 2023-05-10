@@ -10,7 +10,6 @@ interface OtherPageLinkProps {
 }
 
 const OtherPageLink: FC<OtherPageLinkProps> = ({ children, url }) => {
-  const { border, text } = useTheme();
   const { pathname } = useRouter();
 
   return (
@@ -22,7 +21,7 @@ const OtherPageLink: FC<OtherPageLinkProps> = ({ children, url }) => {
         "py-[8px]",
         "text-center",
         "border",
-        pathname === url ? cls(border.primary, text.primary) : cls(border.tertiary, "border-transparent")
+        pathname === url ? cls("border-primary", "text-primary") : cls("border-tertiary", "border-transparent")
       )}
     >
       {children}

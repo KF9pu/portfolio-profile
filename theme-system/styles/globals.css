@@ -2,26 +2,80 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --default-primary: #212529;
+    --default-secondary: #495057;
+    --default-tertiary: #adb5bd;
+    --default-quaternary: #dee2e6;
+    --default-quinary: #f8f9fa;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.theme-light-red {
+  --color-primary: #e01e37;
+  --color-secondary: #da1e37;
+  --color-tertiary: #c71f37;
+  --color-quaternary: #bd1f36;
+  --color-quinary: #b21e35;
+}
+
+.theme-light-blue {
+  --color-primary: #add7f6;
+  --color-secondary: #87bfff;
+  --color-tertiary: #3f8efc;
+  --color-quaternary: #2667ff;
+  --color-quinary: #3b28cc;
+}
+
+.theme-light-green {
+  --color-primary: #dddf00;
+  --color-secondary: #d4d700;
+  --color-tertiary: #bfd200;
+  --color-quaternary: #aacc00;
+  --color-quinary: #80b918;
+}
+
+.theme-light-pink {
+  --color-primary: #fff0f3;
+  --color-secondary: #ffb3c1;
+  --color-tertiary: #ff8fa3;
+  --color-quaternary: #ff758f;
+  --color-quinary: #ff4d6d;
+}
+
+.theme-dark-red {
+  --color-primary: #a71e34;
+  --color-secondary: #a11d33;
+  --color-tertiary: #85182a;
+  --color-quaternary: #6e1423;
+  --color-quinary: #641220;
+}
+.theme-dark-green {
+  --color-primary: #cfe1b9;
+  --color-secondary: #b5c99a;
+  --color-tertiary: #97a97c;
+  --color-quaternary: #87986a;
+  --color-quinary: #718355;
+}
+.theme-dark-blue {
+  --color-primary: #0466c8;
+  --color-secondary: #0353a4;
+  --color-tertiary: #023e7d;
+  --color-quaternary: #002855;
+  --color-quinary: #011845;
+}
+.theme-dark-pupple {
+  --color-primary: #e0b1cb;
+  --color-secondary: #be96c4;
+  --color-tertiary: #9f86c0;
+  --color-quaternary: #5e548e;
+  --color-quinary: #231942;
+}
+.theme-dark-gold {
+  --color-primary: #9d8a34;
+  --color-secondary: #958332;
+  --color-tertiary: #8e7b2f;
+  --color-quaternary: #7a6729;
+  --color-quinary: #6b5824;
 }

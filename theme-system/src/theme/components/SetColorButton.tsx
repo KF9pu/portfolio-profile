@@ -1,9 +1,8 @@
 import { cls } from "@/libs/common";
 import { FC } from "react";
-import { ThemeCodeKeys, ThemeCodeType } from "../interfaces";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { ThemeCodeKeys } from "../interfaces";
+import { useRecoilState } from "recoil";
 import { _ThemeCode } from "@/store/default";
-import useTheme from "../hooks/useTheme";
 
 interface SetColorButtonProps {
   ThemeCode: (typeof ThemeCodeKeys)[number];
@@ -12,8 +11,6 @@ interface SetColorButtonProps {
 const SetColorButton: FC<SetColorButtonProps> = ({ ThemeCode, children }) => {
   const [themeCode, setThemeCode] = useRecoilState<(typeof ThemeCodeKeys)[number]>(_ThemeCode);
 
-  const { bg, text, border, shadow } = useTheme();
-
   return (
     <button
       className={cls(
@@ -21,10 +18,10 @@ const SetColorButton: FC<SetColorButtonProps> = ({ ThemeCode, children }) => {
         "rounded-lg",
         "py-[10px]",
         "select-none",
-        `${bg.secondary} ${bg.hover.quinary} ${bg.active.primary}`,
-        `${text.quinary} ${text.hover.primary}`,
-        `shadow-lg ${shadow.tertiary} ${shadow.hover.quaternary}`,
-        themeCode === ThemeCode ? `border ${border.quinary}` : ""
+        "bg-tertiary",
+        "shadow-lg shadow-tertiary",
+        themeCode === ThemeCode ? "border border-quaternary" : "",
+        `theme-${themeCode}`
       )}
       onClick={() => setThemeCode(ThemeCode)}
       disabled={themeCode === ThemeCode}

@@ -1,18 +1,16 @@
 import { cls } from "@/libs/common";
 import { FC } from "react";
-import { ThemeCodeKeys, ThemeCodeType } from "../interfaces";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { ColorCodeType } from "../interfaces";
 import { _ThemeCode } from "@/store/default";
 import useTheme from "../hooks/useTheme";
+import getThemeCode from "../modules/getThemeCode";
 
 interface SetColorButtonProps {
-  ThemeCode: (typeof ThemeCodeKeys)[number];
+  colorCode: ColorCodeType;
   children: React.ReactNode;
 }
-const SetColorButton: FC<SetColorButtonProps> = ({ ThemeCode, children }) => {
-  const [themeCode, setThemeCode] = useRecoilState<(typeof ThemeCodeKeys)[number]>(_ThemeCode);
-
-  const { bg, text, border, shadow } = useTheme();
+const SetColorButton: FC<SetColorButtonProps> = ({ colorCode, children }) => {
+  const { ThemeCode, LightOrDark, setThemeCode } = useTheme(colorCode);
 
   return (
     <button
@@ -22,14 +20,15 @@ const SetColorButton: FC<SetColorButtonProps> = ({ ThemeCode, children }) => {
         "py-[10px]",
         "select-none",
         "border",
-        bg.secondary,
-        text.hover.primary,
-        themeCode === ThemeCode
-          ? cls(border.primary, text.primary)
-          : cls("border-transparent", bg.hover.quinary, bg.active.quaternary)
+        "bg-secondary",
+        "hover:text-primary",
+        getThemeCode(colorCode, LightOrDark) === ThemeCode
+          ? cls("border-primary", "text-tertiary")
+          : cls("border-transparent", "hover:bg-quinary", "active:bg-quaternary"),
+        `theme-${ThemeCode}`
       )}
-      onClick={() => setThemeCode(ThemeCode)}
-      disabled={themeCode === ThemeCode}
+      onClick={() => setThemeCode()}
+      disabled={getThemeCode(colorCode, LightOrDark) === ThemeCode}
     >
       {children}
     </button>

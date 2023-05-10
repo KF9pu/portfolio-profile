@@ -7,7 +7,6 @@ import { useRecoilValue } from "recoil";
 interface MoveBoxInTabProps {}
 
 const MoveBoxInTab: FC<MoveBoxInTabProps> = ({}) => {
-  const { bg } = useTheme();
   const tabStatus = useRecoilValue(_sidevarTabStatus);
   return (
     <div
@@ -19,7 +18,7 @@ const MoveBoxInTab: FC<MoveBoxInTabProps> = ({}) => {
         "m-[4px]",
         "z-[3]",
         "opacity-50",
-        bg.primary,
+        "bg-primary",
         tabStatus === 0 ? "left-[0%]" : "left-[calc(50%-4px)]"
       )}
     />

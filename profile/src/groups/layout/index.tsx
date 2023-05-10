@@ -13,7 +13,7 @@ const Layout = ({ children, title, hasHeader, hasFooter }: LayoutProps) => {
   return (
     <>
       <Head>
-        <title>{`Profile | ${title}`}</title>
+        <title>{`PROFILE | ${title}`}</title>
       </Head>
 
       {hasHeader ? <Header /> : null}
@@ -21,7 +21,6 @@ const Layout = ({ children, title, hasHeader, hasFooter }: LayoutProps) => {
         {children}
         {hasFooter ? <Footer /> : null}
       </main>
-      <div id="root-modal"></div>
     </>
   );
 };

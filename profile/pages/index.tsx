@@ -4,19 +4,20 @@ import { cls } from "@/libs/common";
 import Layout from "@/groups/layout";
 
 export default function Home() {
-  const { bg, text } = useTheme();
+  const { ThemeCode } = useTheme();
 
   return (
-    <Layout title="Home" hasHeader>
+    <Layout title="소개" hasHeader>
       <main
         className={cls(
           "flex flex-col items-center justify-center gap-10",
           "w-screen h-screen",
-          bg.primary,
-          "transition-all"
+          "transition-all",
+          "bg-primary",
+          `theme-${ThemeCode}`
         )}
       >
-        <h1 className={cls(text.quinary, "")}>Choose Theme Color</h1>
+        <h1 className={cls("")}>Choose Theme Color</h1>
       </main>
     </Layout>
   );
