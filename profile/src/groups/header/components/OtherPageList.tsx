@@ -8,7 +8,7 @@ const OtherPageList: FC<OtherPageListProps> = ({}) => {
   return (
     <div className={cls("flex flex-col items-center", "w-full")}>
       <OtherPageLink url="/">소개</OtherPageLink>
-      <OtherPageLink url="/3D">3D Home</OtherPageLink>
+      <OtherPageLink url="/three">3D Home</OtherPageLink>
       <OtherPageLink url="/3">방명록</OtherPageLink>
       <OtherPageLink url="/3">3</OtherPageLink>
     </div>
