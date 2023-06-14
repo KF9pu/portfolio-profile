@@ -1,4 +1,4 @@
-import ScrollCanvas from "@/groups/threeCanvas/ScrollCanvas";
+import ScrollCanvas from "@/groups/scroll/components/ScrollCanvas";
 import type { NextPage } from "next";
 
 const Scroll: NextPage = () => {

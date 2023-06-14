@@ -1,13 +1,13 @@
 import { cls } from "@/libs/common";
-import ThreeDomino from "@/libs/three/main/Domino";
+import ThreeDomino from "@/groups/domino/lib";
 import { FC, useEffect } from "react";
 
-interface ThreeCanvasProps {}
+interface DominoCanvasProps {}
 
-const ThreeCanvas: FC<ThreeCanvasProps> = ({}) => {
+const DominoCanvas: FC<DominoCanvasProps> = ({}) => {
   useEffect(() => {
     ThreeDomino();
   }, []);
   return <canvas id="three-canvas" className={cls("fixed", "w-screen h-screen")}></canvas>;
 };
-export default ThreeCanvas;
+export default DominoCanvas;

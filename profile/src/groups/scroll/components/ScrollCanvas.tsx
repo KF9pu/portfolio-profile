@@ -1,5 +1,5 @@
 import { FC, useEffect } from "react";
-import Title from "./scrollcanvas/Title";
+import Title from "./Title";
 import { cls } from "@/libs/common";
 
 interface ScrollCanvasProps {}

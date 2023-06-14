@@ -2,8 +2,8 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import * as CANNON from "cannon-es";
-import { Domino } from "../mash/Domino";
-import { PreventDragClick } from "../utils/PreventDragClick";
+import { Domino } from "../class/Domino";
+import { PreventDragClick } from "../../../libs/PreventDragClick";
 
 /**
  * 0. 캔버스 지정
@@ -17,10 +17,10 @@ import { PreventDragClick } from "../utils/PreventDragClick";
  * 8. draw 캔버스에 그리기
  */
 
-export default () => {
+const ThreeDominoMain = () => {
   const canvas = document.querySelector("#three-canvas");
   // console.log("캔버스", canvas);
-  console.log("*** 캔버스 생성 시작");
+  console.log("*** ThreeDomino 시작");
   if (!canvas) return;
 
   // Renderer
@@ -95,18 +95,18 @@ export default () => {
   scene.add(floorMesh);
 
   // 도미노 생성
-  // const dominos: Domino[] = [];
-  // let domino;
-  // for (let i = -3; i < 17; i++) {
-  //   domino = new Domino({
-  //     index: i,
-  //     scene,
-  //     cannonWorld,
-  //     gltfLoader,
-  //     z: -i * 0.8,
-  //   });
-  //   dominos.push(domino);
-  // }
+  const dominos: Domino[] = [];
+  let domino;
+  for (let i = -3; i < 17; i++) {
+    domino = new Domino({
+      index: i,
+      scene,
+      cannonWorld,
+      gltfLoader,
+      z: -i * 0.8,
+    });
+    dominos.push(domino);
+  }
 
   // 그리기
   const clock = new THREE.Clock();
@@ -115,16 +115,16 @@ export default () => {
     const delta = clock.getDelta();
 
     // 도미노 생성
-    // dominos.forEach(item => {
-    //   if (item.cannonBody && item.modelMesh) {
-    //     item.modelMesh.position.copy(
-    //       new THREE.Vector3(item.cannonBody.position.x, item.cannonBody.position.y, item.cannonBody.position.z)
-    //     );
-    //     item.modelMesh.quaternion.copy(
-    //       new THREE.Quaternion(item.cannonBody.quaternion.x, item.cannonBody.quaternion.y, item.cannonBody.quaternion.z)
-    //     );
-    //   }
-    // });
+    dominos.forEach(item => {
+      if (item.cannonBody && item.modelMesh) {
+        item.modelMesh.position.copy(
+          new THREE.Vector3(item.cannonBody.position.x, item.cannonBody.position.y, item.cannonBody.position.z)
+        );
+        item.modelMesh.quaternion.copy(
+          new THREE.Quaternion(item.cannonBody.quaternion.x, item.cannonBody.quaternion.y, item.cannonBody.quaternion.z)
+        );
+      }
+    });
     cannonWorld.step(1 / 60, delta, 3);
 
     renderer.render(scene, camera);
@@ -170,3 +170,5 @@ export default () => {
 
   draw();
 };
+
+export default ThreeDominoMain;
