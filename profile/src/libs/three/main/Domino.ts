@@ -2,8 +2,8 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import * as CANNON from "cannon-es";
-import { Domino } from "./Domino";
-import { PreventDragClick } from "./PreventDragClick";
+import { Domino } from "../mash/Domino";
+import { PreventDragClick } from "../utils/PreventDragClick";
 
 /**
  * 0. 캔버스 지정
@@ -33,6 +33,7 @@ export default () => {
 
   // Scene
   const scene = new THREE.Scene();
+  scene.background = new THREE.Color("white");
 
   // Camera
   const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -94,18 +95,18 @@ export default () => {
   scene.add(floorMesh);
 
   // 도미노 생성
-  const dominos: Domino[] = [];
-  let domino;
-  for (let i = -3; i < 17; i++) {
-    domino = new Domino({
-      index: i,
-      scene,
-      cannonWorld,
-      gltfLoader,
-      z: -i * 0.8,
-    });
-    dominos.push(domino);
-  }
+  // const dominos: Domino[] = [];
+  // let domino;
+  // for (let i = -3; i < 17; i++) {
+  //   domino = new Domino({
+  //     index: i,
+  //     scene,
+  //     cannonWorld,
+  //     gltfLoader,
+  //     z: -i * 0.8,
+  //   });
+  //   dominos.push(domino);
+  // }
 
   // 그리기
   const clock = new THREE.Clock();
@@ -113,16 +114,17 @@ export default () => {
   function draw() {
     const delta = clock.getDelta();
 
-    dominos.forEach(item => {
-      if (item.cannonBody && item.modelMesh) {
-        item.modelMesh.position.copy(
-          new THREE.Vector3(item.cannonBody.position.x, item.cannonBody.position.y, item.cannonBody.position.z)
-        );
-        item.modelMesh.quaternion.copy(
-          new THREE.Quaternion(item.cannonBody.quaternion.x, item.cannonBody.quaternion.y, item.cannonBody.quaternion.z)
-        );
-      }
-    });
+    // 도미노 생성
+    // dominos.forEach(item => {
+    //   if (item.cannonBody && item.modelMesh) {
+    //     item.modelMesh.position.copy(
+    //       new THREE.Vector3(item.cannonBody.position.x, item.cannonBody.position.y, item.cannonBody.position.z)
+    //     );
+    //     item.modelMesh.quaternion.copy(
+    //       new THREE.Quaternion(item.cannonBody.quaternion.x, item.cannonBody.quaternion.y, item.cannonBody.quaternion.z)
+    //     );
+    //   }
+    // });
     cannonWorld.step(1 / 60, delta, 3);
 
     renderer.render(scene, camera);
