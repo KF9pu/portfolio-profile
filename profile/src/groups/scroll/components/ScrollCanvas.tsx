@@ -1,11 +1,14 @@
 import { FC, useEffect } from "react";
 import Title from "./Title";
 import { cls } from "@/libs/common";
+import ThreeScroll from "../lib";
 
 interface ScrollCanvasProps {}
 
 const ScrollCanvas: FC<ScrollCanvasProps> = ({}) => {
-  useEffect(() => {}, []);
+  useEffect(() => {
+    ThreeScroll();
+  }, []);
   return (
     <>
       <canvas id="three-canvas" className={cls("fixed", "w-screen h-screen")}></canvas>

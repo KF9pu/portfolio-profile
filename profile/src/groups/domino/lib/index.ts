@@ -19,7 +19,6 @@ import { PreventDragClick } from "../../../libs/PreventDragClick";
 
 const ThreeDominoMain = () => {
   const canvas = document.querySelector("#three-canvas");
-  // console.log("캔버스", canvas);
   console.log("*** ThreeDomino 시작");
   if (!canvas) return;
 
