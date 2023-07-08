@@ -30,7 +30,7 @@ const ThreeScroll = () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(window.devicePixelRatio > 1 ? 2 : 1);
   renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap; // 그림자를 부드럽게 만들어줌
 
   // 2. Scene set
   const scene = new THREE.Scene();
@@ -86,7 +86,7 @@ const ThreeScroll = () => {
   let currentSection = 0;
   function setSection() {
     // window.pageYOffset
-    const newSection = Math.round(window.scrollY / window.innerHeight);
+    const newSection = Math.round(window.scrollY / window.innerHeight); // 0 ~ 4
 
     if (currentSection !== newSection) {
       console.log("animation!!");
