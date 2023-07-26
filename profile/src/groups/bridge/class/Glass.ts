@@ -1,7 +1,7 @@
 import { cm1, geo, mat } from "../lib/common";
 import { BoxGeometry, Mesh, MeshPhongMaterial } from "three";
 import { Stuff } from "./Stuff";
-import { StuffProps } from "../interface";
+import { StuffProps, soundsType } from "../interface";
 
 interface CustomMesh extends Mesh {
   step?: number | undefined;
@@ -15,11 +15,15 @@ export class Glass extends Stuff {
   type?: "strong" | "normal";
   step?: number;
   cannonBody: any;
+  sound?: HTMLAudioElement;
+
   constructor(info: StuffProps) {
     super(info);
+
     if (!info.type) return;
     this.type = info.type;
     this.step = info.step;
+    if (info.sounds) this.sound = info.sounds[this.type];
 
     this.geometry = geo.glass;
 
@@ -48,5 +52,17 @@ export class Glass extends Stuff {
     cm1.scene.add(this.mesh);
 
     this.setCannonBody();
+    this.cannonBody.addEventListener("collide", (e: any) => playSound(e, this.sound));
+
+    function playSound(e: any, sound: HTMLAudioElement | undefined) {
+      // console.log("*** playSound start");
+      if (!sound) return;
+      const strength = e.contact.getImpactVelocityAlongNormal();
+      if (strength > 5) {
+        sound.currentTime = 0;
+        sound.play();
+        // console.log(strength);
+      }
+    }
   }
 }
