@@ -1,5 +1,5 @@
-import SetColorButton from "@/groups/header/components/SetColorButton";
 import type { FC } from "react";
+import SetColorButton from "./SetColorButton";
 
 interface ColorChangeButtonLlistProps {}
 
