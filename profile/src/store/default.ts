@@ -1,4 +1,4 @@
-import { ThemeCodeType, ColorCodeType, LightOrDarkType } from "@/theme/interfaces";
+import { ThemeCodeType, ColorCodeType, LightOrDarkType } from "@/groups/theme/Interfaces";
 import { atom } from "recoil";
 
 export const _ThemeCode = atom<ThemeCodeType>({

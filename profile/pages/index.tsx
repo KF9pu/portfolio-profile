@@ -1,4 +1,4 @@
-import useTheme from "@/theme/hooks/useTheme";
+import useTheme from "@/groups/theme/useTheme";
 import { _ThemeCode } from "@/store/default";
 import { cls } from "@/libs/common";
 import Layout from "@/groups/layout";

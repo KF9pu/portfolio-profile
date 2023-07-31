@@ -1,6 +1,6 @@
 import { cls } from "@/libs/common";
 import { _sidevarTabStatus } from "@/store/default";
-import useTheme from "@/theme/hooks/useTheme";
+import useTheme from "@/groups/theme/useTheme";
 import { FC, useEffect } from "react";
 import { useRecoilState } from "recoil";
 

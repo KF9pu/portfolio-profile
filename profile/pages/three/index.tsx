@@ -1,7 +1,7 @@
 import OtherPageLink from "@/groups/header/components/OtherPageLink";
 import Layout from "@/groups/layout";
 import { cls } from "@/libs/common";
-import useTheme from "@/theme/hooks/useTheme";
+import useTheme from "@/groups/theme/useTheme";
 import type { NextPage } from "next";
 const Index: NextPage = () => {
   const { ThemeCode } = useTheme();

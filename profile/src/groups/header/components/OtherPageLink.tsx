@@ -1,5 +1,5 @@
 import { cls } from "@/libs/common";
-import useTheme from "@/theme/hooks/useTheme";
+import useTheme from "@/groups/theme/useTheme";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { FC, useEffect } from "react";

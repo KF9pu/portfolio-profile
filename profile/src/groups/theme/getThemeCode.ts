@@ -1,4 +1,4 @@
-import { ThemeCodeType, ColorCodeType, LightOrDarkType } from "../interfaces";
+import { ThemeCodeType, ColorCodeType, LightOrDarkType } from "./Interfaces";
 
 const getThemeCode = (colorCode: ColorCodeType, LightOrDark: LightOrDarkType): ThemeCodeType => {
   return colorCode.includes("default")

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { _ThemeCode } from "@/store/default";
-import { ColorCodeType, LightOrDarkType, ThemeCodeType } from "../interfaces";
-import getThemeCode from "../modules/getThemeCode";
+import { ColorCodeType, LightOrDarkType, ThemeCodeType } from "./Interfaces";
+import getThemeCode from "./getThemeCode";
 
 const useTheme = (colorCode?: ColorCodeType) => {
   const [ThemeCode, setThemeCode] = useRecoilState<ThemeCodeType>(_ThemeCode);

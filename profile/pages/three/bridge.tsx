@@ -1,4 +1,4 @@
-import MainCanvas from "@/components/MainCanvas";
+import MainCanvas from "@/groups/common/MainCanvas";
 import { Main } from "@/groups/bridge/lib/main";
 import type { NextPage } from "next";
 import { useEffect, useRef, useState } from "react";

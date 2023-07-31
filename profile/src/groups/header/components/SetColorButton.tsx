@@ -1,9 +1,9 @@
 import { cls } from "@/libs/common";
 import { FC } from "react";
-import { ColorCodeType } from "../../../theme/interfaces";
+import { ColorCodeType } from "../../theme/Interfaces";
 import { _ThemeCode } from "@/store/default";
-import useTheme from "../../../theme/hooks/useTheme";
-import getThemeCode from "../../../theme/modules/getThemeCode";
+import useTheme from "../../theme/useTheme";
+import getThemeCode from "../../theme/getThemeCode";
 
 interface SetColorButtonProps {
   colorCode: ColorCodeType;
