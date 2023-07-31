@@ -1,7 +1,6 @@
 import ColorChangeButtonLlist from "@/groups/home/ColorChangeButtonLlist";
 import { cls } from "@/libs/common";
 import { _ThemeCode, _isDropDown, _sidevarTabStatus } from "@/store/default";
-import useTheme from "@/theme/hooks/useTheme";
 import { FC, useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import Tab from "./Tab";
@@ -15,7 +14,6 @@ const DropBox: FC<DropBoxProps> = ({}) => {
   const [isDropDownDelay, setIsDropDownDelay] = useState(false);
   const tabStatus = useRecoilValue(_sidevarTabStatus);
   const isDropDown = useRecoilValue(_isDropDown);
-  const ThemeCode = useRecoilValue(_ThemeCode);
 
   useEffect(() => {
     if (isDropDown)

@@ -256,6 +256,7 @@ export class Main {
         if (delta < 0.012) cannonStepTime = 1 / 120;
         cm1.world.step(cannonStepTime, delta, 3);
 
+        // 담아준 Mesh들을 cannonbody와 같이 맞추어 준다.
         this.objects.forEach(item => {
           if (item.cannonBody) {
             if (item.name === "player") {
@@ -304,6 +305,7 @@ export class Main {
         mouse.y = -((e.clientY / canvas.clientHeight) * 2 - 1);
         checkIntersects();
       });
+
       Draw();
     } catch (error) {
       console.log("Error :", error);

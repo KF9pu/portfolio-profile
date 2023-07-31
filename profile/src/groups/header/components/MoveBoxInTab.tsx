@@ -8,6 +8,7 @@ interface MoveBoxInTabProps {}
 
 const MoveBoxInTab: FC<MoveBoxInTabProps> = ({}) => {
   const tabStatus = useRecoilValue(_sidevarTabStatus);
+  const { ThemeCode } = useTheme();
   return (
     <div
       className={cls(
@@ -17,8 +18,9 @@ const MoveBoxInTab: FC<MoveBoxInTabProps> = ({}) => {
         "rounded-md",
         "m-[4px]",
         "z-[3]",
-        "opacity-50",
-        "bg-primary",
+        // "opacity-50",
+        "bg-secondary",
+        `theme-${ThemeCode}`,
         tabStatus === 0 ? "left-[0%]" : "left-[calc(50%-4px)]"
       )}
     />
