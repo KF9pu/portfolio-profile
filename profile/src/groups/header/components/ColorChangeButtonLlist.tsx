@@ -1,5 +1,4 @@
-import { cls } from "@/libs/common";
-import SetColorButton from "@/theme/components/SetColorButton";
+import SetColorButton from "@/groups/header/components/SetColorButton";
 import type { FC } from "react";
 
 interface ColorChangeButtonLlistProps {}
