@@ -1,8 +1,9 @@
 import { cls } from "@/libs/common";
-import useTheme from "@/groups/theme/useTheme";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { FC, useEffect } from "react";
+import { FC } from "react";
+import { useSetRecoilState } from "recoil";
+import { _isDropDown } from "@/store/default";
 
 interface OtherPageLinkProps {
   children: React.ReactNode;
@@ -10,7 +11,8 @@ interface OtherPageLinkProps {
 }
 
 const OtherPageLink: FC<OtherPageLinkProps> = ({ children, url }) => {
-  const { pathname } = useRouter();
+  const router = useRouter();
+  const setIsDropDown = useSetRecoilState(_isDropDown);
 
   return (
     <Link
@@ -21,8 +23,9 @@ const OtherPageLink: FC<OtherPageLinkProps> = ({ children, url }) => {
         "py-[8px]",
         "text-center",
         "border",
-        pathname === url ? cls("border-primary", "text-primary") : cls("border-tertiary", "border-transparent")
+        router.pathname === url ? cls("border-primary", "text-primary") : cls("border-tertiary", "border-transparent")
       )}
+      onClick={() => setIsDropDown(false)}
     >
       {children}
     </Link>

@@ -1,4 +1,3 @@
-import OtherPageLink from "@/groups/header/components/OtherPageLink";
 import Layout from "@/groups/layout";
 import { cls } from "@/libs/common";
 import useTheme from "@/groups/theme/useTheme";
@@ -7,7 +6,7 @@ const Index: NextPage = () => {
   const { ThemeCode } = useTheme();
 
   return (
-    <Layout hasHeader>
+    <Layout hasHeader title="Three">
       <div
         className={cls(
           "flex flex-col items-center justify-center gap-10",
@@ -18,7 +17,6 @@ const Index: NextPage = () => {
         )}
       >
         <h1>three main</h1>
-        <OtherPageLink url="/three/clone">3D Clone Page List</OtherPageLink>
       </div>
     </Layout>
   );

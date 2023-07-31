@@ -7,7 +7,7 @@ interface OtherPageListProps {}
 const OtherPageList: FC<OtherPageListProps> = ({}) => {
   return (
     <div className={cls("flex flex-col items-center", "w-full")}>
-      <OtherPageLink url="/">소개</OtherPageLink>
+      <OtherPageLink url="/">Home</OtherPageLink>
       <OtherPageLink url="/three">3D Home</OtherPageLink>
     </div>
   );

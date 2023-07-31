@@ -1,9 +1,9 @@
 import { cls } from "@/libs/common";
 import { FC } from "react";
-import { ColorCodeType } from "../../theme/Interfaces";
 import { _ThemeCode } from "@/store/default";
-import useTheme from "../../theme/useTheme";
-import getThemeCode from "../../theme/getThemeCode";
+import { ColorCodeType } from "@/groups/theme/Interfaces";
+import useTheme from "@/groups/theme/useTheme";
+import getThemeCode from "@/groups/theme/getThemeCode";
 
 interface SetColorButtonProps {
   colorCode: ColorCodeType;
@@ -15,7 +15,7 @@ const SetColorButton: FC<SetColorButtonProps> = ({ colorCode, children }) => {
   return (
     <button
       className={cls(
-        "w-[80%]",
+        "w-full",
         "rounded-lg",
         "py-[10px]",
         "select-none",

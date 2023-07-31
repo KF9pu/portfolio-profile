@@ -1,6 +1,6 @@
 import { cls } from "@/libs/common";
 import { FC } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { _ThemeCode, _isDropDown } from "@/store/default";
 import useDropDownCloseByOutSide from "./hooks/useDropDownCloseByOutSide";
 import MenuIcon from "./components/MenuIcon";
@@ -9,7 +9,6 @@ import DropBox from "./components/DropBox";
 interface HeaderProps {}
 
 const Header: FC<HeaderProps> = ({}) => {
-  const [isDropDown, setIsDropDown] = useRecoilState(_isDropDown);
   const { outside } = useDropDownCloseByOutSide();
 
   const ThemeCode = useRecoilState(_ThemeCode);
@@ -18,10 +17,9 @@ const Header: FC<HeaderProps> = ({}) => {
       <div
         ref={outside}
         className={cls("relative", "flex flex-col justify-center items-center", "h-full", "p-[20px]", "cursor-pointer")}
-        onClick={() => setIsDropDown(prev => !prev)}
       >
         <MenuIcon />
-        {isDropDown ? <DropBox /> : null}
+        <DropBox />
       </div>
     </nav>
   );

@@ -2,75 +2,63 @@ import ColorChangeButtonLlist from "@/groups/layout/header/components/ColorChang
 import { cls } from "@/libs/common";
 import { _ThemeCode, _isDropDown, _sidevarTabStatus } from "@/store/default";
 import { FC, useEffect, useState } from "react";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import Tab from "./Tab";
 import OtherPageList from "./OtherPageList";
 import MoveBoxInTab from "./MoveBoxInTab";
-import InnerBorder from "./InnerBorder";
+import useTheme from "@/groups/theme/useTheme";
 
 interface DropBoxProps {}
 
 const DropBox: FC<DropBoxProps> = ({}) => {
-  const [isDropDownDelay, setIsDropDownDelay] = useState(false);
   const tabStatus = useRecoilValue(_sidevarTabStatus);
-  const isDropDown = useRecoilValue(_isDropDown);
+  const [isDropDown, setIsDropDown] = useRecoilState(_isDropDown);
+  const [repeat, setRepeat] = useState<NodeJS.Timeout>();
+  const { ThemeCode } = useTheme();
 
   useEffect(() => {
-    if (isDropDown)
-      setTimeout(() => {
-        setIsDropDownDelay(true);
-      }, 200);
+    if (isDropDown) {
+      clearTimeout(repeat);
+      setIsDropDown(true);
+    } else {
+      setRepeat(
+        setTimeout(() => {
+          setIsDropDown(false);
+        }, 400)
+      );
+    }
   }, [isDropDown]);
 
   return (
     <div
       className={cls(
-        "flex",
-        "absolute top-full right-0",
-        "flex-col items-center justify-center",
-        "w-[calc(100vw-8px)] h-0",
-        "py-[8px] px-[8px]",
-        "transition-all",
+        isDropDown ? "flex flex-col items-center justify-center slide-fade-in-dropdown" : " slide-fade-out-dropdown",
+        "absolute",
+        "w-[calc(100vw)] md:max-w-[300px]",
+        "h-[calc(100vh-100px) md:max-h-full]",
         "cursor-default",
         "rounded-md",
-        "mx-[4px]",
+        "top-full right-0",
+        "transition-all",
         "bg-tertiary",
-        isDropDown ? "animate-open" : "",
-        "md:max-w-[300px]"
+        "border border-primary",
+        "divide-y divide-primary",
+        "bg-primary",
+        `theme-${ThemeCode}`
       )}
       onClick={e => e.stopPropagation()}
     >
-      {isDropDownDelay ? (
-        <div className={cls("flex flex-col", "relative", "w-full h-full", "animate-fadeIn")}>
-          <InnerBorder>
-            <div
-              className={cls(
-                "w-full",
-                "flex flex-col justify-between",
-                "pb-[4px] border-b border-quaternary mb-[8px]",
-                "sticky"
-              )}
-            >
-              <div className={cls("flex justify-between items-center", "relative", "w-full")}>
-                <Tab propsTabStatus={0}>Theme</Tab>
-                <Tab propsTabStatus={1}>Other Pages</Tab>
-                <MoveBoxInTab />
-              </div>
-            </div>
-            <div
-              className={cls(
-                "h-full",
-                "flex flex-col items-center justify-between gap-[4px]",
-                "py-[8px]",
-                "overflow-y-scroll"
-              )}
-            >
-              {tabStatus === 0 ? <ColorChangeButtonLlist /> : null}
-              {tabStatus === 1 ? <OtherPageList /> : null}
-            </div>
-          </InnerBorder>
+      <div className={cls("w-full", "flex flex-col justify-between", "p-[4px]")}>
+        <div className={cls("relative", "flex justify-between items-center", "w-full")}>
+          <Tab propsTabStatus={0}>Theme</Tab>
+          <Tab propsTabStatus={1}>Other Pages</Tab>
+          <MoveBoxInTab />
         </div>
-      ) : null}
+      </div>
+      <div className={cls("w-full h-full", "flex flex-col items-center justify-between gap-[8px]", "p-[8px]")}>
+        {tabStatus === 0 ? <ColorChangeButtonLlist /> : null}
+        {tabStatus === 1 ? <OtherPageList /> : null}
+      </div>
     </div>
   );
 };

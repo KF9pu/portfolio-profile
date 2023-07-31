@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @layer base {
   :root {
     --default-primary: #212529;
@@ -132,4 +128,35 @@
 *::-webkit-scrollbar-track-piece:start {
   background: transparent;
   margin-top: 12px;
+}
+
+@keyframes slide-fade-in-dropdown-animation {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-fade-out-dropdown-animation {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.slide-fade-in-dropdown {
+  animation: slide-fade-in-dropdown-animation 0.4s ease;
+}
+
+.slide-fade-out-dropdown {
+  animation: slide-fade-out-dropdown-animation 0.4s ease;
+  animation-fill-mode: forwards;
 }

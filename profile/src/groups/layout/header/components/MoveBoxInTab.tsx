@@ -13,15 +13,12 @@ const MoveBoxInTab: FC<MoveBoxInTabProps> = ({}) => {
     <div
       className={cls(
         "transition-all duration-300",
-        "absolute top-0",
-        "w-[calc(50%-4px)] h-[calc(100%-4px)]",
+        "absolute",
+        "w-[calc(50%)] h-[calc(100%)]",
         "rounded-md",
-        "m-[4px]",
-        "z-[3]",
-        // "opacity-50",
-        "bg-secondary",
+        "bg-primary",
         `theme-${ThemeCode}`,
-        tabStatus === 0 ? "left-[0%]" : "left-[calc(50%-4px)]"
+        tabStatus === 0 ? "left-[0%]" : "left-[calc(50%)]"
       )}
     />
   );

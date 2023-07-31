@@ -7,7 +7,7 @@ export default function Home() {
   const { ThemeCode } = useTheme();
 
   return (
-    <Layout title="소개" hasHeader>
+    <Layout title="Home" hasHeader>
       <main
         className={cls(
           "flex flex-col items-center justify-center gap-10",
