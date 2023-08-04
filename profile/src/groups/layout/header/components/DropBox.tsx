@@ -21,18 +21,19 @@ const DropBox: FC<DropBoxProps> = ({}) => {
       clearTimeout(repeat);
       setIsDropDown(true);
     } else {
-      setRepeat(
-        setTimeout(() => {
-          setIsDropDown(false);
-        }, 400)
-      );
+      if (!(isDropDown === undefined))
+        setRepeat(
+          setTimeout(() => {
+            setIsDropDown(false);
+          }, 400)
+        );
     }
   }, [isDropDown]);
 
   return (
     <div
       className={cls(
-        isDropDown ? "flex flex-col items-center justify-center slide-fade-in-dropdown" : " slide-fade-out-dropdown",
+        isDropDown ? "slide-fade-in-dropdown" : isDropDown === false ? "slide-fade-out-dropdown" : "translate-x-[100%]",
         "absolute",
         "w-[calc(100vw)] md:max-w-[300px]",
         "h-[calc(100vh-100px) md:max-h-full]",

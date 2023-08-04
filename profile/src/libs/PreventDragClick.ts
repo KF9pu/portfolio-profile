@@ -1,4 +1,6 @@
 // 클릭과, 드래그 이벤트 감지
+
+// 드래그 후 클릭 되지 않도록
 export class PreventDragClick {
   mouseMoved: boolean = true;
   constructor(elem: Element) {

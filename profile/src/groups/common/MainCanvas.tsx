@@ -6,6 +6,6 @@ interface MainCanvasProps {
 }
 
 const MainCanvas: FC<MainCanvasProps> = ({ canvasRef }) => {
-  return <canvas ref={canvasRef} className={cls("fixed", "w-screen h-screen")}></canvas>;
+  return <canvas ref={canvasRef} className={cls("fixed", "w-screen h-screen", "mt-[64px]")}></canvas>;
 };
 export default MainCanvas;

@@ -2,6 +2,7 @@ import { cm1, geo, mat } from "../lib/common";
 import { BoxGeometry, Mesh, MeshPhongMaterial } from "three";
 import { Stuff } from "./Stuff";
 import { StuffProps, soundsType } from "../interface";
+import { Body } from "cannon-es";
 
 interface CustomMesh extends Mesh {
   step?: number | undefined;
@@ -14,7 +15,7 @@ export class Glass extends Stuff {
   mesh?: CustomMesh;
   type?: "strong" | "normal";
   step?: number;
-  cannonBody: any;
+  cannonBody?: Body;
   sound?: HTMLAudioElement;
 
   constructor(info: StuffProps) {
@@ -52,17 +53,18 @@ export class Glass extends Stuff {
     cm1.scene.add(this.mesh);
 
     this.setCannonBody();
-    this.cannonBody.addEventListener("collide", (e: any) => playSound(e, this.sound));
 
-    function playSound(e: any, sound: HTMLAudioElement | undefined) {
-      // console.log("*** playSound start");
-      if (!sound) return;
-      const strength = e.contact.getImpactVelocityAlongNormal();
-      if (strength > 5) {
-        sound.currentTime = 0;
-        sound.play();
-        // console.log(strength);
-      }
+    if (this.cannonBody) this.cannonBody.addEventListener("collide", this.playSound.bind(this));
+  }
+
+  private playSound(e: any) {
+    // console.log("*** playSound start");
+    if (!this.sound) return;
+    const strength = e.contact.getImpactVelocityAlongNormal();
+    console.log(strength);
+    if (strength > 5) {
+      this.sound.currentTime = 0;
+      this.sound.play();
     }
   }
 }

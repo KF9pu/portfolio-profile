@@ -8,7 +8,7 @@ export const _ThemeCode = atom<ThemeCodeType>({
 
 export const _isDropDown = atom<boolean>({
   key: `isDropDown${Math.random()}`,
-  default: false,
+  default: undefined,
 });
 
 export const _sidevarTabStatus = atom<number>({

@@ -8,7 +8,7 @@ import SetCamera from "./methods/SetCamera";
 import SetControls from "./methods/SetControls";
 import SetPhysicalEngine from "./methods/SetPhysicalEngine";
 import SetRaycaster from "./methods/SetRaycaster";
-import { Clock } from "three";
+import { AmbientLight, Clock, Color, PerspectiveCamera, SpotLight } from "three";
 import { cm1, cm2 } from "./common";
 import { SetRenderer } from "./methods/SetRenderer";
 import { PreventDragClick } from "@/libs/PreventDragClick";
@@ -49,12 +49,36 @@ export class Main {
       const renderer = SetRenderer(canvas);
       if (!renderer) throw new NoneRendererErr();
 
-      const { camera, camera2 } = SetCamera();
-      if (!camera) throw new NoneCameraErr();
+      const camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      const camera2 = camera.clone();
 
-      SetLight();
+      camera.position.x = -4;
+      camera.position.y = 19;
+      camera.position.z = 14;
 
-      SetSceneBackgroundColor();
+      camera2.position.y = 0;
+      camera2.lookAt(0, 1, 0);
+
+      cm1.scene.add(camera, camera2);
+
+      const ambientLight = new AmbientLight(cm2.lightColor, 0.8);
+      cm1.scene.add(ambientLight);
+
+      const spotLightDistance = 50;
+      const spotLight1 = new SpotLight(cm2.lightColor, 1);
+      spotLight1.castShadow = true;
+      spotLight1.shadow.mapSize.width = 2048;
+      spotLight1.shadow.mapSize.height = 2048;
+      const spotLight2 = spotLight1.clone();
+      const spotLight3 = spotLight1.clone();
+      const spotLight4 = spotLight1.clone();
+      spotLight1.position.set(-spotLightDistance, spotLightDistance, spotLightDistance);
+      spotLight2.position.set(spotLightDistance, spotLightDistance, spotLightDistance);
+      spotLight3.position.set(-spotLightDistance, spotLightDistance, -spotLightDistance);
+      spotLight4.position.set(spotLightDistance, spotLightDistance, -spotLightDistance);
+      cm1.scene.add(spotLight1, spotLight2, spotLight3, spotLight4);
+
+      cm1.scene.background = new Color(cm2.backgroundColor);
 
       const controls = SetControls({ camera, renderer });
 
