@@ -1,141 +1,36 @@
-import * as THREE from "three";
+import { Clock, Raycaster, Scene, Vector2, Vector3 } from "three";
 import { MainProps } from "./interfaces";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import Methods from "./Methods";
 
 class Main {
-  constructor({ canvas, ThemeCode }: MainProps) {
+  constructor({ canvas, ThemeCode, setPageNum }: MainProps) {
     console.log("*** Home Main.ts Start", ThemeCode);
+    const { MeshShowHide, SetRenderer, SetCamera, SetLight, CreateMeshes } = new Methods();
 
     try {
       if (!canvas) return;
+      const renderer = SetRenderer(canvas);
 
-      // renderer 설정
-      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-      renderer.setSize(innerWidth, innerHeight);
-      renderer.setPixelRatio(devicePixelRatio > 1 ? 2 : 1);
-      // renderer shadow set
-      renderer.shadowMap.enabled = true;
-      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      const scene = new Scene();
 
-      // Scene
-      const scene = new THREE.Scene();
+      const { camera, cameraPosition } = SetCamera(scene);
 
-      // Camera
-      // 카메라의위치에 따라 동일한 크기를 보여주는 카메라
-      const camera = new THREE.OrthographicCamera(
-        -(window.innerWidth / window.innerHeight), // left
-        window.innerWidth / window.innerHeight, // right,
-        1, // top
-        -1, // bottom
-        -1000,
-        1000
-      );
+      const { ambientLight, directionalLight } = SetLight(scene);
 
-      const cameraPosition = new THREE.Vector3(0, 0, 0);
-      camera.position.x = cameraPosition.x;
-      camera.position.y = cameraPosition.y;
-      camera.position.z = cameraPosition.z;
-      camera.zoom = 0.2; // 카메라 원근 조절
-      camera.updateProjectionMatrix(); // 카메라 투영 매트릭스를 업데이트합니다. 파라미터 변경 후에 반드시 호출해야합니다.
-      scene.add(camera);
+      const { Me, MeSpot, house, houseSpot, player, pointerMesh, meshes } = CreateMeshes(scene);
 
-      // Light
-      const ambientLight = new THREE.AmbientLight("white", 0.7);
-      scene.add(ambientLight);
-
-      const directionalLight = new THREE.DirectionalLight("white", 0.5);
-      const directionalLightOriginPosition = new THREE.Vector3(1, 1, 1);
-      directionalLight.position.x = directionalLightOriginPosition.x;
-      directionalLight.position.y = directionalLightOriginPosition.y;
-      directionalLight.position.z = directionalLightOriginPosition.z;
-      directionalLight.castShadow = true;
-
-      // mapSize 세팅으로 그림자 퀄리티 설정
-      directionalLight.shadow.mapSize.width = 2048;
-      directionalLight.shadow.mapSize.height = 2048;
-      // 그림자 범위
-      directionalLight.shadow.camera.left = -100;
-      directionalLight.shadow.camera.right = 100;
-      directionalLight.shadow.camera.top = 100;
-      directionalLight.shadow.camera.bottom = -100;
-      directionalLight.shadow.camera.near = -100;
-      directionalLight.shadow.camera.far = 100;
-      scene.add(directionalLight);
-
-      // Texture
-      const textureLoader = new THREE.TextureLoader();
-      const floorTexture = textureLoader.load("/images/grid.png");
-      floorTexture.wrapS = THREE.RepeatWrapping;
-      floorTexture.wrapT = THREE.RepeatWrapping;
-      floorTexture.repeat.x = 10;
-      floorTexture.repeat.y = 10;
-
-      // Mesh
-      const meshes: THREE.Mesh[] = [];
-      const floorMesh = new THREE.Mesh(
-        new THREE.PlaneGeometry(100, 100),
-        new THREE.MeshStandardMaterial({
-          map: floorTexture,
-        })
-      );
-      scene.add(floorMesh);
-      meshes.push(floorMesh);
-
-      const pointerMesh = new THREE.Mesh(
-        new THREE.PlaneGeometry(1, 1),
-        new THREE.MeshBasicMaterial({
-          color: "crimson",
-          transparent: true,
-          opacity: 0.5,
-        })
-      );
-      pointerMesh.rotation.x = -Math.PI / 2;
-      pointerMesh.position.y = 0.01;
-      pointerMesh.receiveShadow = true;
-      scene.add(pointerMesh);
-
-      const spotMesh = new THREE.Mesh(
-        new THREE.PlaneGeometry(3, 3),
-        new THREE.MeshStandardMaterial({
-          color: "yellow",
-          transparent: true,
-          opacity: 0.5,
-        })
-      );
-      spotMesh.position.set(5, 0.005, 5);
-      spotMesh.rotation.x = -Math.PI / 2;
-      spotMesh.receiveShadow = true;
-      scene.add(spotMesh);
-
-      const gltfLoader = new GLTFLoader();
-
-      const house = new House({
-        gltfLoader,
-        scene,
-        modelSrc: "/models/house.glb",
-        x: 5,
-        y: -1.3,
-        z: 2,
-      });
-
-      const player = new Player({
-        scene,
-        meshes,
-        gltfLoader,
-        modelSrc: "/models/ilbuni.glb",
-      });
-
-      const raycaster = new THREE.Raycaster();
-      let mouse = new THREE.Vector2();
-      let destinationPoint = new THREE.Vector3();
+      const raycaster = new Raycaster();
+      let mouse = new Vector2();
+      let destinationPoint = new Vector3();
       let angle = 0;
       let isPressed = false; // 마우스를 누르고 있는 상태
 
       // 그리기
-      const clock = new THREE.Clock();
+      const clock = new Clock();
 
-      function draw() {
+      const draw = () => {
+        // console.log("🚀 ~ file: Main.ts:222 ~ Main ~ draw ~ draw:");
+
         const delta = clock.getDelta();
 
         if (player.mixer) player.mixer.update(delta);
@@ -161,8 +56,10 @@ class Main {
             camera.position.x = cameraPosition.x + player.modelMesh.position.x;
             camera.position.z = cameraPosition.z + player.modelMesh.position.z;
 
-            player.actions[0].stop();
-            player.actions[1].play();
+            if (player.actions) {
+              player.actions[0].stop();
+              player.actions[1].play();
+            }
 
             if (
               Math.abs(destinationPoint.x - player.modelMesh.position.x) < 0.03 &&
@@ -172,49 +69,116 @@ class Main {
               console.log("멈춤");
             }
 
-            if (
-              Math.abs(spotMesh.position.x - player.modelMesh.position.x) < 1.5 &&
-              Math.abs(spotMesh.position.z - player.modelMesh.position.z) < 1.5
-            ) {
-              if (!house.visible) {
-                console.log("나와");
-                house.visible = true;
-                spotMesh.material.color.set("seagreen");
-                gsap.to(house.modelMesh.position, {
-                  duration: 1,
-                  y: 1,
-                  ease: "Bounce.easeOut",
-                });
-                gsap.to(camera.position, {
-                  duration: 1,
-                  y: 3,
-                });
-              }
-            } else if (house.visible) {
-              console.log("들어가");
-              house.visible = false;
-              spotMesh.material.color.set("yellow");
-              gsap.to(house.modelMesh.position, {
-                duration: 0.5,
-                y: -1.3,
-              });
-              gsap.to(camera.position, {
-                duration: 1,
-                y: 5,
-              });
-            }
+            MeshShowHide({
+              mesh: house,
+              spotMesh: houseSpot.mesh,
+              player,
+              camera,
+              meshShowPositionY: 1,
+              spotEvent: setPageNum,
+              spotNum: 1,
+            });
+
+            MeshShowHide({
+              mesh: Me,
+              spotMesh: MeSpot.mesh,
+              player,
+              camera,
+              meshShowPositionY: 0.1,
+              spotEvent: setPageNum,
+              spotNum: 2,
+            });
           } else {
             // 서 있는 상태
-            player.actions[1].stop();
-            player.actions[0].play();
+
+            if (player.actions) {
+              player.actions[1].stop();
+              player.actions[0].play();
+            }
           }
         }
 
         renderer.render(scene, camera);
         renderer.setAnimationLoop(draw);
-      }
+      };
+
+      const checkIntersects = () => {
+        // raycaster.setFromCamera(mouse, camera);
+        const intersects = raycaster.intersectObjects(meshes);
+        console.log("checkIntersects!!! : ", intersects);
+
+        for (const item of intersects) {
+          if (item.object.name === "floor") {
+            destinationPoint.x = item.point.x;
+            destinationPoint.y = 0.3;
+            destinationPoint.z = item.point.z;
+            player.modelMesh.lookAt(destinationPoint);
+
+            // console.log(item.point)
+            player.moving = true;
+
+            pointerMesh.position.x = destinationPoint.x;
+            pointerMesh.position.z = destinationPoint.z;
+          }
+          break;
+        }
+      };
+
+      const setSize = () => {
+        camera.left = -(window.innerWidth / window.innerHeight);
+        camera.right = window.innerWidth / window.innerHeight;
+        camera.top = 1;
+        camera.bottom = -1;
+
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.render(scene, camera);
+      };
+
       // 이벤트
       window.addEventListener("resize", setSize);
+
+      // 마우스 좌표를 js에 맞게 변환
+      const calculateMousePosition = (e: any) => {
+        mouse.x = (e.clientX / canvas.clientWidth) * 2 - 1;
+        mouse.y = -((e.clientY / canvas.clientHeight) * 2 - 1);
+
+        // console.log("mouse : ", mouse);
+      };
+
+      // 변환된 마우스 좌표를 이용해 래이캐스팅
+      const raycasting = () => {
+        raycaster.setFromCamera(mouse, camera);
+        checkIntersects();
+      };
+
+      // 마우스 이벤트
+      canvas.addEventListener("mousedown", e => {
+        isPressed = true;
+        calculateMousePosition(e);
+      });
+      canvas.addEventListener("mouseup", () => {
+        isPressed = false;
+      });
+      canvas.addEventListener("mousemove", e => {
+        if (isPressed) {
+          calculateMousePosition(e);
+        }
+      });
+
+      // 터치 이벤트
+      canvas.addEventListener("touchstart", e => {
+        isPressed = true;
+        calculateMousePosition(e.touches[0]);
+      });
+      canvas.addEventListener("touchend", () => {
+        isPressed = false;
+      });
+      canvas.addEventListener("touchmove", e => {
+        if (isPressed) {
+          calculateMousePosition(e.touches[0]);
+        }
+      });
 
       draw();
     } catch (error) {
