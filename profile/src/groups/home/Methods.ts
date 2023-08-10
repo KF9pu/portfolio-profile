@@ -93,7 +93,7 @@ class Methods {
     const textureLoader = new TextureLoader();
     const gltfLoader = new GLTFLoader();
 
-    const floorTexture = textureLoader.load("/images/grid.png");
+    const floorTexture = textureLoader.load("/images/floor.jpg");
     floorTexture.wrapS = RepeatWrapping;
     floorTexture.wrapT = RepeatWrapping;
     floorTexture.repeat.x = 5;
