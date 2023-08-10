@@ -105,7 +105,7 @@ class Main {
       const checkIntersects = () => {
         // raycaster.setFromCamera(mouse, camera);
         const intersects = raycaster.intersectObjects(meshes);
-        console.log("checkIntersects!!! : ", intersects);
+        // console.log("checkIntersects!!! : ", intersects);
 
         for (const item of intersects) {
           if (item.object.name === "floor") {

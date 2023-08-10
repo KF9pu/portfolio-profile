@@ -1,26 +1,48 @@
+import { cls } from "@/libs/common";
 import { _isDropDown } from "@/store/default";
-import type { FC } from "react";
-import { useSetRecoilState } from "recoil";
+import { useEffect, type FC } from "react";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 
 interface MenuIconProps {}
 
 const MenuIcon: FC<MenuIconProps> = () => {
   const setIsDropDown = useSetRecoilState(_isDropDown);
+  const isDropDown = useRecoilValue(_isDropDown);
 
+  useEffect(() => {
+    console.log("isDropDown : ", isDropDown);
+  }, [isDropDown]);
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      className="w-6 h-6"
+    <label
+      htmlFor="checkbox"
+      className={cls("flex flex-col justify-between", "w-[35px] h-[25px]", "cursor-pointer")}
       onClick={() => setIsDropDown(prev => !prev)}
     >
-      <path
-        fillRule="evenodd"
-        d="M3 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 5.25zm0 4.5A.75.75 0 013.75 9h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 9.75zm0 4.5a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75zm0 4.5a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z"
-        clipRule="evenodd"
-      />
-    </svg>
+      <Line lineNum={1} />
+      <Line lineNum={2} />
+      <Line lineNum={3} />
+    </label>
   );
 };
 export default MenuIcon;
+
+interface LineProps {
+  lineNum: number;
+}
+
+const Line: FC<LineProps> = ({ lineNum }) => {
+  const isDropDown = useRecoilValue(_isDropDown);
+  return (
+    <span
+      className={cls(
+        "w-full h-[5px]",
+        "bg-black",
+        "rounded-[10px]",
+        lineNum === 1 ? cls("origin-[10%]", isDropDown ? "rotate-45" : "") : "",
+        lineNum === 2 && isDropDown ? "scale-y-0" : "",
+        lineNum === 3 ? cls("origin-[10%]", isDropDown ? "-rotate-45" : "") : "",
+        "transition-transform ease-in-out duration-200"
+      )}
+    />
+  );
+};
