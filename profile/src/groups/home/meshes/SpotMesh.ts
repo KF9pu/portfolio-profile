@@ -1,4 +1,4 @@
-import { CircleGeometry, Mesh, MeshStandardMaterial, PlaneGeometry, Scene } from "three";
+import { CircleGeometry, Mesh, MeshStandardMaterial, PlaneGeometry, RepeatWrapping, Scene, TextureLoader } from "three";
 
 interface SpotMeshProps {
   name: string;
@@ -8,12 +8,18 @@ interface SpotMeshProps {
 
 class SpotMesh {
   mesh: Mesh<CircleGeometry, MeshStandardMaterial>;
+
   constructor({ name, scene, position: { x, z } }: SpotMeshProps) {
-    const geometry = new CircleGeometry(2, 32);
+    const textureLoader = new TextureLoader();
+    const floorTexture = textureLoader.load("/images/grass.jpg");
+    floorTexture.wrapS = RepeatWrapping;
+    floorTexture.wrapT = RepeatWrapping;
+    floorTexture.repeat.x = 5;
+    floorTexture.repeat.y = 5;
+
+    const geometry = new CircleGeometry(1.5, 32);
     const material = new MeshStandardMaterial({
-      color: "yellow",
-      // transparent: true,
-      opacity: 0.5,
+      map: floorTexture,
     });
     const mesh = new Mesh(geometry, material);
     this.mesh = mesh;
