@@ -17,7 +17,7 @@ class Main {
 
       const { ambientLight, directionalLight } = SetLight(scene);
 
-      const { Me, MeSpot, house, houseSpot, player, pointerMesh, meshes } = CreateMeshes(scene);
+      const { Me, meSpot, house, houseSpot, player, pointerMesh, meshes } = CreateMeshes(scene);
 
       const raycaster = new Raycaster();
       let mouse = new Vector2();
@@ -81,7 +81,7 @@ class Main {
 
             MeshShowHide({
               mesh: Me,
-              spotMesh: MeSpot.mesh,
+              spotMesh: meSpot.mesh,
               player,
               camera,
               meshShowPositionY: 0.1,

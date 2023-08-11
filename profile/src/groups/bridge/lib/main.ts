@@ -1,10 +1,6 @@
 import { IBridgeMain } from "../interface";
-import { NoneCameraErr } from "../class/Errors/NoneCameraErr";
 import { NoneCanvasErr } from "../class/Errors/NoneCanvasErr";
 import { NoneRendererErr } from "../class/Errors/NoneRendererErr";
-import { SetSceneBackgroundColor } from "./methods/SetSceneBackgroundColor";
-import SetLight from "./methods/SetLight";
-import SetCamera from "./methods/SetCamera";
 import SetControls from "./methods/SetControls";
 import SetPhysicalEngine from "./methods/SetPhysicalEngine";
 import SetRaycaster from "./methods/SetRaycaster";

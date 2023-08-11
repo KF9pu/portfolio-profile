@@ -20,6 +20,7 @@ import {
 import SpotMesh from "./meshes/SpotMesh";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { Dispatch, SetStateAction } from "react";
+import { TextMesh } from "./meshes/TextMesh";
 
 interface MeshInOutprops {
   mesh: Stand;
@@ -89,7 +90,6 @@ class Methods {
     return { ambientLight, directionalLight };
   }
   public CreateMeshes(scene: Scene) {
-    // Texture
     const textureLoader = new TextureLoader();
     const gltfLoader = new GLTFLoader();
 
@@ -132,6 +132,13 @@ class Methods {
       position: { x: -3, z: -3 },
     });
 
+    const introText = new TextMesh({
+      text: "Intro !",
+      position: { x: houseSpot.mesh.position.x, z: houseSpot.mesh.position.z },
+      scene,
+      size: 1,
+    });
+
     const house = new Stand({
       gltfLoader,
       scene,
@@ -140,19 +147,40 @@ class Methods {
       name: "house",
     });
 
-    const MeSpot = new SpotMesh({
+    const meSpot = new SpotMesh({
       name: "MeSpotMesh",
       scene,
       position: { x: -3, z: 3 },
+    });
+
+    const MeText = new TextMesh({
+      text: "It's Me !",
+      position: { x: meSpot.mesh.position.x, z: meSpot.mesh.position.z },
+      scene,
+      size: 1,
     });
 
     const Me = new Stand({
       gltfLoader,
       scene,
       modelSrc: "/models/ReadyPlayerMeGlb.glb",
-      position: { x: MeSpot.mesh.position.x, y: -4, z: MeSpot.mesh.position.z - 2 },
+      position: { x: meSpot.mesh.position.x, y: -4, z: meSpot.mesh.position.z - 2 },
       name: "Me",
     });
+
+    // const skillsText = new TextMesh({
+    //   text: "Skills",
+    //   position: { x: houseSpot.mesh.position.x, z: houseSpot.mesh.position.x },
+    //   scene,
+    //   size: 1,
+    // });
+
+    // const workExperienceText = new TextMesh({
+    //   text: "Work Experience",
+    //   position: { x: houseSpot.mesh.position.x, z: houseSpot.mesh.position.x },
+    //   scene,
+    //   size: 1,
+    // });
 
     const player = new Player({
       scene,
@@ -161,7 +189,7 @@ class Methods {
       modelSrc: "/models/BearMe.glb",
     });
 
-    return { floorMesh, pointerMesh, houseSpot, MeSpot, house, Me, player, meshes };
+    return { floorMesh, pointerMesh, houseSpot, meSpot, house, Me, player, meshes };
   }
   public MeshShowHide({ mesh, spotMesh, player, camera, meshShowPositionY, spotEvent, spotNum }: MeshInOutprops) {
     if (mesh.modelMesh) {
