@@ -126,24 +126,24 @@ class Methods {
     pointerMesh.receiveShadow = true;
     scene.add(pointerMesh);
 
-    const houseSpot = new SpotMesh({
-      name: "houseSpotMesh",
+    const introSpot = new SpotMesh({
+      name: "introSpotMesh",
       scene,
       position: { x: -3, z: -3 },
     });
 
     const introText = new TextMesh({
       text: "Intro !",
-      position: { x: houseSpot.mesh.position.x, z: houseSpot.mesh.position.z },
+      position: { x: introSpot.mesh.position.x, z: introSpot.mesh.position.z },
       scene,
       size: 1,
     });
 
-    const house = new Stand({
+    const introStand = new Stand({
       gltfLoader,
       scene,
       modelSrc: "/models/house.glb",
-      position: { x: houseSpot.mesh.position.x, y: -1.3, z: houseSpot.mesh.position.x - 2 },
+      position: { x: introSpot.mesh.position.x, y: -1.3, z: introSpot.mesh.position.x - 2 },
       name: "house",
     });
 
@@ -153,27 +153,62 @@ class Methods {
       position: { x: -3, z: 3 },
     });
 
-    const MeText = new TextMesh({
+    const meText = new TextMesh({
       text: "It's Me !",
       position: { x: meSpot.mesh.position.x, z: meSpot.mesh.position.z },
       scene,
       size: 1,
     });
 
-    const Me = new Stand({
+    const meStand = new Stand({
       gltfLoader,
       scene,
       modelSrc: "/models/ReadyPlayerMeGlb.glb",
       position: { x: meSpot.mesh.position.x, y: -4, z: meSpot.mesh.position.z - 2 },
-      name: "Me",
+      name: "me",
     });
 
-    // const skillsText = new TextMesh({
-    //   text: "Skills",
-    //   position: { x: houseSpot.mesh.position.x, z: houseSpot.mesh.position.x },
-    //   scene,
-    //   size: 1,
-    // });
+    const gearSpot = new SpotMesh({
+      name: "gearSpotMesh",
+      scene,
+      position: { x: 6, z: -3 },
+    });
+
+    const gearText = new TextMesh({
+      text: "It's Me !",
+      position: { x: meSpot.mesh.position.x, z: meSpot.mesh.position.z },
+      scene,
+      size: 1,
+    });
+
+    const gearStand = new Stand({
+      gltfLoader,
+      scene,
+      modelSrc: "/models/gears.glb",
+      position: { x: meSpot.mesh.position.x + 9, y: -4, z: meSpot.mesh.position.z - 8 },
+      name: "gear",
+    });
+
+    const boardSpot = new SpotMesh({
+      name: "gearSpotMesh",
+      scene,
+      position: { x: 6, z: 3 },
+    });
+
+    const boardText = new TextMesh({
+      text: "It's Me !",
+      position: { x: meSpot.mesh.position.x, z: meSpot.mesh.position.z },
+      scene,
+      size: 1,
+    });
+
+    const boardStand = new Stand({
+      gltfLoader,
+      scene,
+      modelSrc: "/models/bulletin_board.glb",
+      position: { x: meSpot.mesh.position.x + 9, y: -4, z: meSpot.mesh.position.z - 2 },
+      name: "board",
+    });
 
     // const workExperienceText = new TextMesh({
     //   text: "Work Experience",
@@ -189,19 +224,36 @@ class Methods {
       modelSrc: "/models/BearMe.glb",
     });
 
-    return { floorMesh, pointerMesh, houseSpot, meSpot, house, Me, player, meshes };
+    return {
+      floorMesh,
+      pointerMesh,
+      introSpot,
+      introText,
+      introStand,
+      meSpot,
+      meText,
+      meStand,
+      gearSpot,
+      gearText,
+      gearStand,
+      boardSpot,
+      boardText,
+      boardStand,
+      player,
+      meshes,
+    };
   }
   public MeshShowHide({ mesh, spotMesh, player, camera, meshShowPositionY, spotEvent, spotNum }: MeshInOutprops) {
-    if (mesh.modelMesh) {
+    if (mesh.mesh) {
       if (
-        Math.abs(spotMesh.position.x - player.modelMesh.position.x) < 1.5 &&
-        Math.abs(spotMesh.position.z - player.modelMesh.position.z) < 1.5
+        Math.abs(spotMesh.position.x - player.mesh.position.x) < 1.5 &&
+        Math.abs(spotMesh.position.z - player.mesh.position.z) < 1.5
       ) {
         if (!mesh.visible) {
           console.log("나와");
           mesh.visible = true;
           spotMesh.material.color.set("seagreen");
-          gsap.to(mesh.modelMesh.position, {
+          gsap.to(mesh.mesh.position, {
             duration: 1,
             y: meshShowPositionY,
             ease: "Bounce.easeOut",
@@ -216,7 +268,7 @@ class Methods {
         console.log("들어가");
         mesh.visible = false;
         spotMesh.material.color.set("yellow");
-        gsap.to(mesh.modelMesh.position, {
+        gsap.to(mesh.mesh.position, {
           duration: 0.5,
           y: mesh.y,
         });

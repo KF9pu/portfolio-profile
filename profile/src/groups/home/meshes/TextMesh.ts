@@ -16,7 +16,6 @@ export class TextMesh {
     const frontLoader = new FontLoader();
 
     frontLoader.load("/fonts/HakgyoansimBunpilR.json", font => {
-      console.log("load ??? ", font);
       const geometrie = new TextGeometry(text, {
         font,
         size: 0.3,

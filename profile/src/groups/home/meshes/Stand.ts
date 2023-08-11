@@ -1,4 +1,13 @@
-import { Mesh, Object3D, Scene } from "three";
+import {
+  AnimationAction,
+  AnimationMixer,
+  Material,
+  Mesh,
+  MeshBasicMaterial,
+  MeshStandardMaterial,
+  Object3D,
+  Scene,
+} from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 interface StandProps {
@@ -14,7 +23,7 @@ export class Stand {
   y: number;
   z: number;
   visible: boolean;
-  modelMesh?: Object3D<THREE.Event>;
+  mesh?: Object3D<THREE.Event>;
 
   constructor({ name, scene, gltfLoader, modelSrc, position: { x, y, z } }: StandProps) {
     this.x = x;
@@ -24,18 +33,18 @@ export class Stand {
     this.visible = false;
 
     gltfLoader.load(modelSrc, glb => {
-      this.modelMesh = glb.scene.children[0];
-
-      // glb 모델 그림자 설정
       glb.scene.traverse(child => {
         if (child instanceof Mesh) {
-          child.castShadow = true;
+          child.castShadow = true; // glb 모델 그림자 설정
         }
       });
-      this.modelMesh.position.set(this.x, this.y, this.z);
-      this.modelMesh.name = name;
-      if (name === "Me") this.modelMesh.scale.set(2, 2, 2);
-      scene.add(this.modelMesh);
+      this.mesh = glb.scene.children[0];
+      this.mesh.position.set(this.x, this.y, this.z);
+      this.mesh.name = name;
+      if (name === "me") this.mesh.scale.set(2, 2, 2);
+      if (name === "board") this.mesh.scale.set(0.7, 0.7, 0.7);
+
+      scene.add(this.mesh);
     });
   }
 }

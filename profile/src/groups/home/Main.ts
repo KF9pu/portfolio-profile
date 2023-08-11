@@ -17,7 +17,23 @@ class Main {
 
       const { ambientLight, directionalLight } = SetLight(scene);
 
-      const { Me, meSpot, house, houseSpot, player, pointerMesh, meshes } = CreateMeshes(scene);
+      const {
+        introStand,
+        introText,
+        introSpot,
+        meStand,
+        meText,
+        meSpot,
+        gearSpot,
+        gearText,
+        gearStand,
+        boardSpot,
+        boardText,
+        boardStand,
+        player,
+        pointerMesh,
+        meshes,
+      } = CreateMeshes(scene);
 
       const raycaster = new Raycaster();
       let mouse = new Vector2();
@@ -35,11 +51,11 @@ class Main {
 
         if (player.mixer) player.mixer.update(delta);
 
-        if (player.modelMesh) {
-          camera.lookAt(player.modelMesh.position);
+        if (player.mesh) {
+          camera.lookAt(player.mesh.position);
         }
 
-        if (player.modelMesh) {
+        if (player.mesh) {
           if (isPressed) {
             raycasting();
           }
@@ -47,14 +63,14 @@ class Main {
           if (player.moving) {
             // 걸어가는 상태
             angle = Math.atan2(
-              destinationPoint.z - player.modelMesh.position.z,
-              destinationPoint.x - player.modelMesh.position.x
+              destinationPoint.z - player.mesh.position.z,
+              destinationPoint.x - player.mesh.position.x
             );
-            player.modelMesh.position.x += Math.cos(angle) * 0.05;
-            player.modelMesh.position.z += Math.sin(angle) * 0.05;
+            player.mesh.position.x += Math.cos(angle) * 0.05;
+            player.mesh.position.z += Math.sin(angle) * 0.05;
 
-            camera.position.x = cameraPosition.x + player.modelMesh.position.x;
-            camera.position.z = cameraPosition.z + player.modelMesh.position.z;
+            camera.position.x = cameraPosition.x + player.mesh.position.x;
+            camera.position.z = cameraPosition.z + player.mesh.position.z;
 
             if (player.actions) {
               player.actions[0].stop();
@@ -62,16 +78,16 @@ class Main {
             }
 
             if (
-              Math.abs(destinationPoint.x - player.modelMesh.position.x) < 0.03 &&
-              Math.abs(destinationPoint.z - player.modelMesh.position.z) < 0.03
+              Math.abs(destinationPoint.x - player.mesh.position.x) < 0.03 &&
+              Math.abs(destinationPoint.z - player.mesh.position.z) < 0.03
             ) {
               player.moving = false;
               console.log("멈춤");
             }
 
             MeshShowHide({
-              mesh: house,
-              spotMesh: houseSpot.mesh,
+              mesh: introStand,
+              spotMesh: introSpot.mesh,
               player,
               camera,
               meshShowPositionY: 1,
@@ -80,13 +96,33 @@ class Main {
             });
 
             MeshShowHide({
-              mesh: Me,
+              mesh: meStand,
               spotMesh: meSpot.mesh,
               player,
               camera,
               meshShowPositionY: 0.1,
               spotEvent: setPageNum,
               spotNum: 2,
+            });
+
+            MeshShowHide({
+              mesh: gearStand,
+              spotMesh: gearSpot.mesh,
+              player,
+              camera,
+              meshShowPositionY: 1.3,
+              spotEvent: setPageNum,
+              spotNum: 3,
+            });
+
+            MeshShowHide({
+              mesh: boardStand,
+              spotMesh: boardSpot.mesh,
+              player,
+              camera,
+              meshShowPositionY: 0,
+              spotEvent: setPageNum,
+              spotNum: 4,
             });
           } else {
             // 서 있는 상태
@@ -112,7 +148,7 @@ class Main {
             destinationPoint.x = item.point.x;
             destinationPoint.y = 0.3;
             destinationPoint.z = item.point.z;
-            player.modelMesh.lookAt(destinationPoint);
+            player.mesh.lookAt(destinationPoint);
 
             // console.log(item.point)
             player.moving = true;
