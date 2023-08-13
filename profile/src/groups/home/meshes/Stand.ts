@@ -43,6 +43,7 @@ export class Stand {
       this.mesh.name = name;
       if (name === "me") this.mesh.scale.set(2, 2, 2);
       if (name === "board") this.mesh.scale.set(0.7, 0.7, 0.7);
+      if (name === "skill") this.mesh.scale.set(6, 6, 6);
 
       scene.add(this.mesh);
     });

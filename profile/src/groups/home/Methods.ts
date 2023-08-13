@@ -5,6 +5,7 @@ import {
   AmbientLight,
   CircleGeometry,
   DirectionalLight,
+  Line,
   Mesh,
   MeshBasicMaterial,
   MeshStandardMaterial,
@@ -24,7 +25,7 @@ import { TextMesh } from "./meshes/TextMesh";
 
 interface MeshInOutprops {
   mesh: Stand;
-  spotMesh: Mesh<CircleGeometry, MeshStandardMaterial>;
+  spotMesh: Line<any, any>;
   player: Player;
   camera: OrthographicCamera;
   meshShowPositionY: number;
@@ -168,36 +169,15 @@ class Methods {
       name: "me",
     });
 
-    const gearSpot = new SpotMesh({
-      name: "gearSpotMesh",
-      scene,
-      position: { x: 6, z: -3 },
-    });
-
-    const gearText = new TextMesh({
-      text: "It's Me !",
-      position: { x: meSpot.mesh.position.x, z: meSpot.mesh.position.z },
-      scene,
-      size: 1,
-    });
-
-    const gearStand = new Stand({
-      gltfLoader,
-      scene,
-      modelSrc: "/models/gears.glb",
-      position: { x: meSpot.mesh.position.x + 9, y: -4, z: meSpot.mesh.position.z - 8 },
-      name: "gear",
-    });
-
     const boardSpot = new SpotMesh({
-      name: "gearSpotMesh",
+      name: "boardSpotMesh",
       scene,
-      position: { x: 6, z: 3 },
+      position: { x: 3, z: -3 },
     });
 
     const boardText = new TextMesh({
-      text: "It's Me !",
-      position: { x: meSpot.mesh.position.x, z: meSpot.mesh.position.z },
+      text: "Board !",
+      position: { x: boardSpot.mesh.position.x, z: boardSpot.mesh.position.z },
       scene,
       size: 1,
     });
@@ -206,16 +186,51 @@ class Methods {
       gltfLoader,
       scene,
       modelSrc: "/models/bulletin_board.glb",
-      position: { x: meSpot.mesh.position.x + 9, y: -4, z: meSpot.mesh.position.z - 2 },
+      position: { x: boardSpot.mesh.position.x, y: -4, z: boardSpot.mesh.position.z - 2 },
       name: "board",
     });
 
-    // const workExperienceText = new TextMesh({
-    //   text: "Work Experience",
-    //   position: { x: houseSpot.mesh.position.x, z: houseSpot.mesh.position.x },
-    //   scene,
-    //   size: 1,
-    // });
+    const skillSpot = new SpotMesh({
+      name: "adminSpotMesh",
+      scene,
+      position: { x: 3, z: 3 },
+    });
+
+    const skillText = new TextMesh({
+      text: "Skill !",
+      position: { x: skillSpot.mesh.position.x, z: skillSpot.mesh.position.z },
+      scene,
+      size: 1,
+    });
+
+    const skillStand = new Stand({
+      gltfLoader,
+      scene,
+      modelSrc: "/models/ruler_pencil.glb",
+      position: { x: skillSpot.mesh.position.x, y: -4, z: skillSpot.mesh.position.z - 1 },
+      name: "skill",
+    });
+
+    const adminSpot = new SpotMesh({
+      name: "adminSpotMesh",
+      scene,
+      position: { x: 0, z: -12 },
+    });
+
+    const adminText = new TextMesh({
+      text: "Admin !",
+      position: { x: adminSpot.mesh.position.x, z: adminSpot.mesh.position.z },
+      scene,
+      size: 1,
+    });
+
+    const adminStand = new Stand({
+      gltfLoader,
+      scene,
+      modelSrc: "/models/gears.glb",
+      position: { x: adminSpot.mesh.position.x, y: -4, z: adminSpot.mesh.position.z - 2 },
+      name: "admin",
+    });
 
     const player = new Player({
       scene,
@@ -233,12 +248,15 @@ class Methods {
       meSpot,
       meText,
       meStand,
-      gearSpot,
-      gearText,
-      gearStand,
+      adminSpot,
+      adminText,
+      adminStand,
       boardSpot,
       boardText,
       boardStand,
+      skillSpot,
+      skillText,
+      skillStand,
       player,
       meshes,
     };

@@ -24,12 +24,15 @@ class Main {
         meStand,
         meText,
         meSpot,
-        gearSpot,
-        gearText,
-        gearStand,
+        adminSpot,
+        adminText,
+        adminStand,
         boardSpot,
         boardText,
         boardStand,
+        skillSpot,
+        skillText,
+        skillStand,
         player,
         pointerMesh,
         meshes,
@@ -106,23 +109,33 @@ class Main {
             });
 
             MeshShowHide({
-              mesh: gearStand,
-              spotMesh: gearSpot.mesh,
-              player,
-              camera,
-              meshShowPositionY: 1.3,
-              spotEvent: setPageNum,
-              spotNum: 3,
-            });
-
-            MeshShowHide({
               mesh: boardStand,
               spotMesh: boardSpot.mesh,
               player,
               camera,
               meshShowPositionY: 0,
               spotEvent: setPageNum,
+              spotNum: 3,
+            });
+
+            MeshShowHide({
+              mesh: skillStand,
+              spotMesh: skillSpot.mesh,
+              player,
+              camera,
+              meshShowPositionY: 1,
+              spotEvent: setPageNum,
               spotNum: 4,
+            });
+
+            MeshShowHide({
+              mesh: adminStand,
+              spotMesh: adminSpot.mesh,
+              player,
+              camera,
+              meshShowPositionY: 1.3,
+              spotEvent: setPageNum,
+              spotNum: 5,
             });
           } else {
             // 서 있는 상태
