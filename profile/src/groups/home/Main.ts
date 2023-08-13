@@ -9,7 +9,7 @@ interface MainProps {
 
 class Main {
   constructor({ ThemeCode, canvas }: MainProps) {
-    console.log("*** Home Main.ts Start");
+    // console.log("*** Home Main.ts Start");
 
     if (!canvas) return;
     const { BearMe, ambientLight, camera, renderer, scene } = new Methods(canvas, ThemeCode);

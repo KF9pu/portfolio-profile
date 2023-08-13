@@ -1,1 +1,1 @@
-const DevStartdate = "2020-10-16";
+export const DevStartdate = "2020-10-16";

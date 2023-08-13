@@ -162,12 +162,11 @@
 }
 
 .textAniPolygon,
-.buttonAni {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+.textPolygon {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
-.char,
-.buttonAni {
+.char {
   transform: translateY(115px);
   transition: transform 0.5s;
 }

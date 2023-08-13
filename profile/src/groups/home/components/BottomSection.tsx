@@ -3,6 +3,7 @@ import { useMyinfo } from "@/common/hooks/useMyinfo";
 import { cls } from "@/common/libs";
 import useTheme from "@/groups/theme/useTheme";
 import { gsap } from "gsap";
+import { useRouter } from "next/router";
 import React, { useEffect, type FC, useRef, useState } from "react";
 import SplitType from "split-type";
 
@@ -13,7 +14,8 @@ const BottomSection: FC<BottomSectionProps> = ({}) => {
   const { isMobile } = useDisplay();
   const sectionRef = useRef(null);
   const [repeat, setRepeat] = useState<NodeJS.Timeout>();
-  const {} = useMyinfo();
+  const { yearsOfService } = new useMyinfo();
+  const router = useRouter();
 
   useEffect(() => {
     if (repeat) {
@@ -21,32 +23,24 @@ const BottomSection: FC<BottomSectionProps> = ({}) => {
     }
     setRepeat(
       setTimeout(() => {
-        console.log("isMobile : ", isMobile);
-        gsap.to(sectionRef.current, { y: isMobile ? -5 : -100, duration: 1, ease: "bounce.out" });
+        gsap.to(sectionRef.current, { y: isMobile ? -5 : -160, duration: 1, ease: "bounce.out" });
 
         const textAniPolygon = new SplitType(".textAniPolygon");
         gsap.to(".char", {
           y: 0,
-          stagger: 0.15,
+          stagger: 0.1,
           duration: 0.2,
           delay: 0.1,
+        });
+        gsap.to(".buttonAni", {
+          y: 0,
+          duration: 1,
+          delay: 3,
+          ease: "none",
         });
       }, 1000)
     );
   }, [isMobile]);
-
-  useEffect(() => {
-    return () => {
-      setTimeout(() => {
-        gsap.to(".buttonAni", {
-          y: 0,
-          stagger: 0.2,
-          duration: 0.5,
-          ease: "bounce.out",
-        });
-      }, 5000);
-    };
-  }, []);
 
   return (
     <section
@@ -56,30 +50,35 @@ const BottomSection: FC<BottomSectionProps> = ({}) => {
         "fixed bottom-0 left-0",
         "mx-[5px]",
         "bg-primary",
-        "overflow-hidden",
-        "border-4 rounded-md md:h-[450px] md:translate-y-[450px]",
+        "border-2 rounded-md md:h-[350px] md:translate-y-[350px]",
         "h-[30vh] translate-y-[30vh]",
-        "w-[calc(100%-10px)] md:w-[calc(50%-10px)]  md:translate-x-[50%]",
+        "select-none",
+        "w-[calc(100%-10px)] md:w-[calc(30%-10px)]  md:translate-x-[120%]",
         `theme-${ThemeCode}`
       )}
     >
       <div>
         <Text isTitle>안녕하세요 !</Text>
-        <Text>3년차 개발자 홍성화 입니다 !</Text>
+        <Text>{yearsOfService}년차 개발자 홍성화 입니다 !</Text>
         <Text isEmphasis>아래 버튼을 눌러 주세요!</Text>
       </div>
-      <button
-        className={cls(
-          "buttonAni",
-          "text-quaternary",
-          "border",
-          "w-[212px] h-[36px]",
-          "rounded-xl",
-          "hover:bg-quaternary hover:text-primary"
-        )}
-      >
-        Click Here!
-      </button>
+      <div className={cls("textPolygon")}>
+        <button
+          className={cls(
+            "buttonAni",
+            "text-quaternary",
+            "border",
+            "w-[212px] h-[36px]",
+            "rounded-xl",
+            "transition-all",
+            "translate-y-[100px]",
+            "hover:bg-quaternary hover:text-primary"
+          )}
+          onClick={() => router.push("/three")}
+        >
+          Click Here!
+        </button>
+      </div>
     </section>
   );
 };

@@ -11,9 +11,6 @@ const useDisplay = () => {
   const [showPCUI, setShowPCUI] = useState(false);
 
   useEffect(() => {
-    console.log("🚀 ~ file: useDisplay.tsx:18 ~ useDisplay ~ isDesktop:", isDesktop);
-    console.log("🚀 ~ file: useDisplay.tsx:18 ~ useDisplay ~ isTablet:", isTablet);
-    console.log("🚀 ~ file: useDisplay.tsx:18 ~ useDisplay ~ isMobile:", isMobile);
     setShowMobileUI(isMobile);
     setShowTabletUI(isTablet);
     setShowPCUI(isDesktop);
