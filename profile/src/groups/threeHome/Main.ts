@@ -12,7 +12,7 @@ interface MainProps {
 
 class Main {
   constructor({ canvas, ThemeCode, setPageNum }: MainProps) {
-    console.log("*** Home Main.ts Start");
+    console.log("*** ThreeHome Main.ts Start");
     const colors = Colors[colorEnum[ThemeCode]];
     const { MeshShowHide, SetRenderer, SetCamera, SetLight, CreateMeshes } = new Methods();
 

@@ -3,7 +3,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 interface PlayerProps {
   scene: Scene;
-  meshes: Mesh[];
+  meshes?: Mesh[];
   gltfLoader: GLTFLoader;
   modelSrc: string;
 }
@@ -13,10 +13,11 @@ export class Player {
   mesh?: any;
   actions?: AnimationAction[];
   mixer?: AnimationMixer;
-  constructor(info: PlayerProps) {
+
+  constructor({ gltfLoader, modelSrc, scene, meshes }: PlayerProps) {
     this.moving = false;
 
-    info.gltfLoader.load(info.modelSrc, glb => {
+    gltfLoader.load(modelSrc, glb => {
       glb.scene.traverse(child => {
         if (child instanceof Mesh) {
           child.castShadow = true;
@@ -26,8 +27,8 @@ export class Player {
       this.mesh = glb.scene.children[0];
       this.mesh.position.y = 0.1;
       this.mesh.name = "BearMe";
-      info.scene.add(this.mesh);
-      info.meshes.push(this.mesh);
+      scene.add(this.mesh);
+      if (meshes) meshes.push(this.mesh);
 
       this.actions = [];
 
