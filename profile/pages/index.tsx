@@ -23,25 +23,7 @@ export default function Home() {
 
   return (
     <Layout title="Home" hasHeader>
-      <MainCanvas canvasRef={canvasRef} />
-      <div
-        className={cls(
-          pageNum !== 0 ? "slide-fade-in-dropdown" : "slide-fade-out-dropdown",
-          "flex justify-center",
-          "fixed right-0 top-[65px]",
-          "w-screen h-max-[calc(100vh-195px)]",
-          "border border-primary rounded-l",
-          "bg-secondary",
-          "text-quaternary",
-          "py-[10px]",
-          "select-none",
-          "md:w-[50%]",
-          "hover:bg-tertiary",
-          `theme-${ThemeCode}`
-        )}
-      >
-        열기
-      </div>
+      hi
     </Layout>
   );
 }
