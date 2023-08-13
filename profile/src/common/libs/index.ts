@@ -1,3 +1,7 @@
+export const cls = (...classnames: string[]) => {
+  return classnames.join(" ");
+};
+
 // 클릭과, 드래그 이벤트 감지
 
 // 드래그 후 클릭 되지 않도록

@@ -1,6 +1,6 @@
 import useTheme from "@/theme/hooks/useTheme";
 import { _ThemeCode } from "@/store/default";
-import { cls } from "@/libs/common";
+import { cls } from "@/common/libs";
 import ColorChangeButtonLlist from "@/groups/home/ColorChangeButtonLlist";
 import { useRecoilValue } from "recoil";
 

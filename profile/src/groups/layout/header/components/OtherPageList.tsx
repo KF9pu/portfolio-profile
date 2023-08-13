@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import OtherPageLink from "./OtherPageLink";
-import { cls } from "@/libs/common";
+import { cls } from "@/common/libs";
 
 interface OtherPageListProps {}
 

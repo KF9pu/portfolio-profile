@@ -1,4 +1,4 @@
-import { cls } from "@/libs/common";
+import { cls } from "@/common/libs";
 import { _sidevarTabStatus } from "@/store/default";
 import useTheme from "@/groups/theme/useTheme";
 import type { FC } from "react";

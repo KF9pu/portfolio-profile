@@ -1,4 +1,4 @@
-import { cls } from "@/libs/common";
+import { cls } from "@/common/libs";
 import { FC } from "react";
 import { _ThemeCode } from "@/store/default";
 import { ColorCodeType } from "@/groups/theme/Interfaces";

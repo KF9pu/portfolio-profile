@@ -1,4 +1,4 @@
-import { cls } from "@/libs/common";
+import { cls } from "@/common/libs";
 import { FC } from "react";
 import { useRecoilState } from "recoil";
 import { _ThemeCode, _isDropDown } from "@/store/default";

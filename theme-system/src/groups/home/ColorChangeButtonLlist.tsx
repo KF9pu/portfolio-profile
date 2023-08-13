@@ -1,4 +1,4 @@
-import { cls } from "@/libs/common";
+import { cls } from "@/common/libs";
 import SetColorButton from "@/theme/components/SetColorButton";
 import type { FC } from "react";
 

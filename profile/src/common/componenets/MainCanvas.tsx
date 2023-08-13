@@ -1,7 +1,7 @@
-import { cls } from "@/libs/common";
 import { _isDropDown } from "@/store/default";
 import type { FC, RefObject } from "react";
 import { useRecoilState } from "recoil";
+import { cls } from "../libs";
 
 interface MainCanvasProps {
   canvasRef: RefObject<HTMLCanvasElement>;

@@ -3,8 +3,8 @@ import { _ThemeCode } from "@/store/default";
 import Layout from "@/groups/layout";
 import { useEffect, useRef, useState } from "react";
 import Main from "@/groups/threeHome/Main";
-import MainCanvas from "@/groups/common/MainCanvas";
-import { cls } from "@/libs/common";
+import MainCanvas from "@/common/componenets/MainCanvas";
+import { cls } from "@/common/libs";
 
 export default function Home() {
   const { ThemeCode } = useTheme();
