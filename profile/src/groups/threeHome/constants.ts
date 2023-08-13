@@ -14,7 +14,7 @@ export enum colorEnum {
   "dark-gold",
 }
 
-const ColorKeys = ["primary", "secondary", "tertiary", "quaternary", "quinary"] as const;
+export const ColorKeys = ["primary", "secondary", "tertiary", "quaternary", "quinary"] as const;
 export type IColor = {
   [key in (typeof ColorKeys)[number]]: `#${string}`;
 };

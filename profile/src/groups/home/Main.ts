@@ -12,7 +12,7 @@ class Main {
     console.log("*** Home Main.ts Start");
 
     if (!canvas) return;
-    const { BearMe, ambientLight, camera, renderer, scene } = new Methods(canvas);
+    const { BearMe, ambientLight, camera, renderer, scene } = new Methods(canvas, ThemeCode);
 
     // dragControls.addEventListener("dragstart", e => {
     //   console.log(e.object.name);

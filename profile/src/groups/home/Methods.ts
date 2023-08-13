@@ -1,6 +1,5 @@
 import {
   AmbientLight,
-  BoxGeometry,
   DirectionalLight,
   Mesh,
   MeshStandardMaterial,
@@ -8,13 +7,14 @@ import {
   PerspectiveCamera,
   Scene,
   SphereGeometry,
-  SpotLight,
   WebGLRenderer,
 } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { DragControls } from "three/examples/jsm/controls/DragControls";
 import { Player } from "../threeHome/meshes/Player";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { ThemeCodeType } from "../theme/Interfaces";
+import { ColorKeys, Colors, IColor, colorEnum } from "../threeHome/constants";
 class Methods {
   scene: Scene = new Scene();
   renderer: WebGLRenderer;
@@ -25,13 +25,13 @@ class Methods {
   BearMe: Player;
   meshes: Mesh<any, any>[];
 
-  constructor(canvas: HTMLCanvasElement) {
+  constructor(canvas: HTMLCanvasElement, ThemeCode: ThemeCodeType) {
     this.renderer = this.SetRenderer(canvas);
     this.camera = this.SetCamera();
     this.ambientLight = this.SetLight();
     this.orbitControls = this.SetOrbitControls();
 
-    const { BearMe, meshes } = this.CreateMeshes();
+    const { BearMe, meshes } = this.CreateMeshes(ThemeCode);
     this.BearMe = BearMe;
 
     this.meshes = meshes;
@@ -77,20 +77,19 @@ class Methods {
   //   return dragControls;
   // }
 
-  private CreateMeshes() {
+  private CreateMeshes(ThemeCode: ThemeCodeType) {
+    const colors = Colors[colorEnum[ThemeCode]];
+    const colorKeys = Object.keys(colors);
+
     const gltfLoader = new GLTFLoader();
     // Mesh
-    const geometry = new SphereGeometry(0.01, 64, 32);
+    const geometry = new SphereGeometry(0.02, 64, 32);
     const meshes = [];
     let mesh;
     let material;
     for (let i = 0; i < 1000; i++) {
       material = new MeshStandardMaterial({
-        color: `rgb(
-				${50 + Math.floor(Math.random() * 205)},
-				${50 + Math.floor(Math.random() * 205)},
-				${50 + Math.floor(Math.random() * 205)}
-			)`,
+        color: colors[colorKeys[Math.floor(Math.random() * 4)] as (typeof ColorKeys)[number]],
       });
       mesh = new Mesh(geometry, material);
       mesh.position.x = (Math.random() - 0.5) * 30;
