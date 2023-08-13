@@ -2,9 +2,9 @@ import useTheme from "@/groups/theme/useTheme";
 import { _ThemeCode } from "@/store/default";
 import Layout from "@/groups/layout";
 import { useEffect, useRef, useState } from "react";
-import MainCanvas from "@/groups/common/MainCanvas";
-import { cls } from "@/libs/common";
 import Main from "@/groups/home/Main";
+import BottomSection from "@/groups/home/components/BottomSection";
+import MainCanvas from "@/common/componenets/MainCanvas";
 
 export default function Home() {
   const { ThemeCode } = useTheme();
@@ -17,6 +17,7 @@ export default function Home() {
   return (
     <Layout title="Home" hasHeader>
       <MainCanvas canvasRef={canvasRef} />
+      <BottomSection />
     </Layout>
   );
 }
