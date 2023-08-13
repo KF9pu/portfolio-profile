@@ -26,7 +26,7 @@ export default function Home() {
       <MainCanvas canvasRef={canvasRef} />
       <div
         className={cls(
-          pageNum !== 0 ? "slide-fade-in-dropdown" : "slide-fade-out-dropdown",
+          pageNum !== 0 ? "slide-fade-in-dropdown" : "translate-x-[100%] duration-200",
           "flex justify-center",
           "fixed right-0 top-[65px]",
           "w-screen h-max-[calc(100vh-195px)]",

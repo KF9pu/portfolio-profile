@@ -7,11 +7,7 @@ interface MenuIconProps {}
 
 const MenuIcon: FC<MenuIconProps> = () => {
   const setIsDropDown = useSetRecoilState(_isDropDown);
-  const isDropDown = useRecoilValue(_isDropDown);
 
-  // useEffect(() => {
-  //   console.log("isDropDown : ", isDropDown);
-  // }, [isDropDown]);
   return (
     <label
       htmlFor="checkbox"

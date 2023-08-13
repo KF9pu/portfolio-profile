@@ -33,7 +33,7 @@ const DropBox: FC<DropBoxProps> = ({}) => {
   return (
     <div
       className={cls(
-        isDropDown ? "slide-fade-in-dropdown" : isDropDown === false ? "slide-fade-out-dropdown" : "translate-x-[100%]",
+        isDropDown ? "slide-fade-in-dropdown" : "translate-x-[100%] duration-200",
         "absolute",
         "w-[calc(100vw)] md:max-w-[300px]",
         "h-[calc(100vh-100px) md:max-h-full]",
