@@ -7,12 +7,13 @@ interface TextMeshProps {
   size: number;
   scene: Scene;
   position: { x: number; z: number };
+  color: `#${string}`;
 }
 export class TextMesh {
   mesh?: Mesh<TextGeometry, MeshStandardMaterial>;
 
-  constructor({ text, size, scene, position: { x, z } }: TextMeshProps) {
-    console.log(`TextMesh ${text} create`);
+  constructor({ text, size, scene, position: { x, z }, color }: TextMeshProps) {
+    // console.log(`TextMesh ${text} create`);
     const frontLoader = new FontLoader();
 
     frontLoader.load("/fonts/HakgyoansimBunpilR.json", font => {
@@ -29,7 +30,7 @@ export class TextMesh {
       });
 
       const material = new MeshStandardMaterial({
-        color: "#000",
+        color: color,
         roughness: 0.3,
         metalness: 0.7,
       });

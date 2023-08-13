@@ -26,13 +26,13 @@ interface SpotMeshProps {
   name: string;
   scene: Scene;
   position: { x: number; z: number };
+  color: `#${string}`;
 }
 
 class SpotMesh {
-  // mesh: Mesh<CircleGeometry, MeshStandardMaterial>;
   mesh: Line<any, any>;
 
-  constructor({ name, scene, position: { x, z } }: SpotMeshProps) {
+  constructor({ name, scene, position: { x, z }, color }: SpotMeshProps) {
     const textureLoader = new TextureLoader();
     const floorTexture = textureLoader.load("/images/grass.jpg");
     floorTexture.wrapS = RepeatWrapping;
@@ -42,23 +42,18 @@ class SpotMesh {
 
     const vectors: Vector2[] = [];
     for (let i = 0; i < 13; i++) {
-      vectors.push(new Vector2(Math.sin(i / 2) * 2, Math.cos(i / 2) * 2));
+      vectors.push(new Vector2(Math.sin(i / 2) * 1.5, Math.cos(i / 2) * 1.6));
     }
     const curve = new SplineCurve(vectors);
     // curve.
     const points = curve.getPoints(100);
     const geometry = new BufferGeometry().setFromPoints(points);
 
-    // 잔디 material
-    // const material = new MeshStandardMaterial({
-    //   map: floorTexture,
-    // });
-
     const material = new LineDashedMaterial({
-      color: 0xffffff,
+      color: color,
       linewidth: 1.5,
       scale: 0.2,
-      dashSize: 0.2,
+      dashSize: 0.1,
       gapSize: 0.1,
     });
 

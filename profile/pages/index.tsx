@@ -13,10 +13,10 @@ export default function Home() {
 
   useEffect(() => {
     new Main({ canvas: canvasRef.current, ThemeCode, setPageNum });
-  }, []);
+  }, [ThemeCode]);
 
   useEffect(() => {
-    console.log("pageNum : ", pageNum);
+    // console.log("pageNum : ", pageNum);
     if (pageNum !== 0) {
     }
   }, [pageNum]);

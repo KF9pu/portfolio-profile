@@ -3,7 +3,6 @@ import { Player } from "./meshes/Player";
 import { gsap } from "gsap";
 import {
   AmbientLight,
-  CircleGeometry,
   DirectionalLight,
   Line,
   Mesh,
@@ -22,6 +21,7 @@ import SpotMesh from "./meshes/SpotMesh";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { Dispatch, SetStateAction } from "react";
 import { TextMesh } from "./meshes/TextMesh";
+import { IColor } from "./constants";
 
 interface MeshInOutprops {
   mesh: Stand;
@@ -31,6 +31,11 @@ interface MeshInOutprops {
   meshShowPositionY: number;
   spotEvent: Dispatch<SetStateAction<number>>;
   spotNum: number;
+  outColors: `#${string}`;
+}
+interface CreateMeshesProps {
+  scene: Scene;
+  colors: IColor;
 }
 
 class Methods {
@@ -90,7 +95,8 @@ class Methods {
 
     return { ambientLight, directionalLight };
   }
-  public CreateMeshes(scene: Scene) {
+  public CreateMeshes({ scene, colors }: CreateMeshesProps) {
+    console.log("colors : ", colors);
     const textureLoader = new TextureLoader();
     const gltfLoader = new GLTFLoader();
 
@@ -131,6 +137,7 @@ class Methods {
       name: "introSpotMesh",
       scene,
       position: { x: -3, z: -3 },
+      color: colors.primary,
     });
 
     const introText = new TextMesh({
@@ -138,6 +145,7 @@ class Methods {
       position: { x: introSpot.mesh.position.x, z: introSpot.mesh.position.z },
       scene,
       size: 1,
+      color: colors.primary,
     });
 
     const introStand = new Stand({
@@ -152,6 +160,7 @@ class Methods {
       name: "MeSpotMesh",
       scene,
       position: { x: -3, z: 3 },
+      color: colors.primary,
     });
 
     const meText = new TextMesh({
@@ -159,6 +168,7 @@ class Methods {
       position: { x: meSpot.mesh.position.x, z: meSpot.mesh.position.z },
       scene,
       size: 1,
+      color: colors.primary,
     });
 
     const meStand = new Stand({
@@ -173,6 +183,7 @@ class Methods {
       name: "boardSpotMesh",
       scene,
       position: { x: 3, z: -3 },
+      color: colors.primary,
     });
 
     const boardText = new TextMesh({
@@ -180,6 +191,7 @@ class Methods {
       position: { x: boardSpot.mesh.position.x, z: boardSpot.mesh.position.z },
       scene,
       size: 1,
+      color: colors.primary,
     });
 
     const boardStand = new Stand({
@@ -194,6 +206,7 @@ class Methods {
       name: "adminSpotMesh",
       scene,
       position: { x: 3, z: 3 },
+      color: colors.primary,
     });
 
     const skillText = new TextMesh({
@@ -201,6 +214,7 @@ class Methods {
       position: { x: skillSpot.mesh.position.x, z: skillSpot.mesh.position.z },
       scene,
       size: 1,
+      color: colors.primary,
     });
 
     const skillStand = new Stand({
@@ -215,6 +229,7 @@ class Methods {
       name: "adminSpotMesh",
       scene,
       position: { x: 0, z: -12 },
+      color: colors.primary,
     });
 
     const adminText = new TextMesh({
@@ -222,6 +237,7 @@ class Methods {
       position: { x: adminSpot.mesh.position.x, z: adminSpot.mesh.position.z },
       scene,
       size: 1,
+      color: colors.primary,
     });
 
     const adminStand = new Stand({
@@ -261,14 +277,23 @@ class Methods {
       meshes,
     };
   }
-  public MeshShowHide({ mesh, spotMesh, player, camera, meshShowPositionY, spotEvent, spotNum }: MeshInOutprops) {
+  public MeshShowHide({
+    mesh,
+    spotMesh,
+    player,
+    camera,
+    meshShowPositionY,
+    spotEvent,
+    spotNum,
+    outColors,
+  }: MeshInOutprops) {
     if (mesh.mesh) {
       if (
         Math.abs(spotMesh.position.x - player.mesh.position.x) < 1.5 &&
         Math.abs(spotMesh.position.z - player.mesh.position.z) < 1.5
       ) {
         if (!mesh.visible) {
-          console.log("나와");
+          // console.log("나와");
           mesh.visible = true;
           spotMesh.material.color.set("seagreen");
           gsap.to(mesh.mesh.position, {
@@ -283,9 +308,9 @@ class Methods {
           spotEvent(spotNum);
         }
       } else if (mesh.visible) {
-        console.log("들어가");
+        // console.log("들어가");
         mesh.visible = false;
-        spotMesh.material.color.set("yellow");
+        spotMesh.material.color.set(outColors);
         gsap.to(mesh.mesh.position, {
           duration: 0.5,
           y: mesh.y,

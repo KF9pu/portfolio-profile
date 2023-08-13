@@ -1,10 +1,19 @@
 import { Clock, Raycaster, Scene, Vector2, Vector3 } from "three";
-import { MainProps } from "./interfaces";
 import Methods from "./Methods";
+import { ThemeCodeType } from "../theme/Interfaces";
+import { Dispatch, SetStateAction } from "react";
+import { colorEnum, Colors } from "./constants";
+
+interface MainProps {
+  canvas: HTMLCanvasElement | null;
+  ThemeCode: ThemeCodeType;
+  setPageNum: Dispatch<SetStateAction<number>>;
+}
 
 class Main {
   constructor({ canvas, ThemeCode, setPageNum }: MainProps) {
-    console.log("*** Home Main.ts Start", ThemeCode);
+    console.log("*** Home Main.ts Start");
+    const colors = Colors[colorEnum[ThemeCode]];
     const { MeshShowHide, SetRenderer, SetCamera, SetLight, CreateMeshes } = new Methods();
 
     try {
@@ -36,7 +45,7 @@ class Main {
         player,
         pointerMesh,
         meshes,
-      } = CreateMeshes(scene);
+      } = CreateMeshes({ scene, colors });
 
       const raycaster = new Raycaster();
       let mouse = new Vector2();
@@ -85,7 +94,7 @@ class Main {
               Math.abs(destinationPoint.z - player.mesh.position.z) < 0.03
             ) {
               player.moving = false;
-              console.log("멈춤");
+              // console.log("멈춤");
             }
 
             MeshShowHide({
@@ -96,6 +105,7 @@ class Main {
               meshShowPositionY: 1,
               spotEvent: setPageNum,
               spotNum: 1,
+              outColors: colors.tertiary,
             });
 
             MeshShowHide({
@@ -106,6 +116,7 @@ class Main {
               meshShowPositionY: 0.1,
               spotEvent: setPageNum,
               spotNum: 2,
+              outColors: colors.tertiary,
             });
 
             MeshShowHide({
@@ -116,6 +127,7 @@ class Main {
               meshShowPositionY: 0,
               spotEvent: setPageNum,
               spotNum: 3,
+              outColors: colors.tertiary,
             });
 
             MeshShowHide({
@@ -126,6 +138,7 @@ class Main {
               meshShowPositionY: 1,
               spotEvent: setPageNum,
               spotNum: 4,
+              outColors: colors.tertiary,
             });
 
             MeshShowHide({
@@ -136,6 +149,7 @@ class Main {
               meshShowPositionY: 1.3,
               spotEvent: setPageNum,
               spotNum: 5,
+              outColors: colors.tertiary,
             });
           } else {
             // 서 있는 상태
