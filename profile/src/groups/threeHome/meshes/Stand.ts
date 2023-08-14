@@ -1,3 +1,4 @@
+import { IPosition } from "@/common/constants";
 import {
   AnimationAction,
   AnimationMixer,
@@ -11,7 +12,7 @@ import {
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 interface StandProps {
-  position: { x: number; y: number; z: number };
+  position: IPosition;
   gltfLoader: GLTFLoader;
   scene: Scene;
   modelSrc: string;
@@ -20,7 +21,7 @@ interface StandProps {
 
 export class Stand {
   x: number;
-  y: number;
+  y?: number;
   z: number;
   visible: boolean;
   mesh?: Object3D<THREE.Event>;
@@ -39,7 +40,7 @@ export class Stand {
         }
       });
       this.mesh = glb.scene.children[0];
-      this.mesh.position.set(this.x, this.y, this.z);
+      if (this.y !== undefined) this.mesh.position.set(this.x, this.y, this.z);
       this.mesh.name = name;
       if (name === "me") this.mesh.scale.set(2, 2, 2);
       if (name === "board") this.mesh.scale.set(0.7, 0.7, 0.7);

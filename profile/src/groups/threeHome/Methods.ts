@@ -22,6 +22,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { Dispatch, SetStateAction } from "react";
 import { TextMesh } from "./meshes/TextMesh";
 import { IColor } from "./constants";
+import { SpotInfos } from "@/common/constants";
 
 interface MeshInOutprops {
   mesh: Stand;
@@ -133,119 +134,36 @@ class Methods {
     pointerMesh.receiveShadow = true;
     scene.add(pointerMesh);
 
-    const introSpot = new SpotMesh({
-      name: "introSpotMesh",
-      scene,
-      position: { x: -3, z: -3 },
-      color: colors.primary,
-    });
+    let SpotMeshs: any;
+    SpotInfos.forEach(SpotInfo => {
+      const spotMesh = new SpotMesh({
+        name: SpotInfo.spot.name,
+        scene,
+        position: SpotInfo.spot.position,
+        color: colors.primary,
+      });
+      SpotMeshs = { ...SpotMeshs, [SpotInfo.spot.name]: spotMesh };
 
-    const introText = new TextMesh({
-      text: "Intro !",
-      position: { x: introSpot.mesh.position.x, z: introSpot.mesh.position.z },
-      scene,
-      size: 1,
-      color: colors.primary,
-    });
+      const textMesh = new TextMesh({
+        name: SpotInfo.text.name,
+        text: SpotInfo.text.text,
+        position: SpotInfo.text.position,
+        scene,
+        size: SpotInfo.text.size,
+        color: colors.primary,
+      });
 
-    const introStand = new Stand({
-      gltfLoader,
-      scene,
-      modelSrc: "/models/house.glb",
-      position: { x: introSpot.mesh.position.x, y: -1.3, z: introSpot.mesh.position.x - 2 },
-      name: "house",
-    });
+      SpotMeshs = { ...SpotMeshs, [SpotInfo.text.name]: textMesh };
 
-    const meSpot = new SpotMesh({
-      name: "MeSpotMesh",
-      scene,
-      position: { x: -3, z: 3 },
-      color: colors.primary,
-    });
+      const stand = new Stand({
+        gltfLoader,
+        scene,
+        modelSrc: SpotInfo.stand.modelSrc,
+        position: SpotInfo.stand.position,
+        name: "house",
+      });
 
-    const meText = new TextMesh({
-      text: "It's Me !",
-      position: { x: meSpot.mesh.position.x, z: meSpot.mesh.position.z },
-      scene,
-      size: 1,
-      color: colors.primary,
-    });
-
-    const meStand = new Stand({
-      gltfLoader,
-      scene,
-      modelSrc: "/models/ReadyPlayerMeGlb.glb",
-      position: { x: meSpot.mesh.position.x, y: -4, z: meSpot.mesh.position.z - 2 },
-      name: "me",
-    });
-
-    const boardSpot = new SpotMesh({
-      name: "boardSpotMesh",
-      scene,
-      position: { x: 3, z: -3 },
-      color: colors.primary,
-    });
-
-    const boardText = new TextMesh({
-      text: "Board !",
-      position: { x: boardSpot.mesh.position.x, z: boardSpot.mesh.position.z },
-      scene,
-      size: 1,
-      color: colors.primary,
-    });
-
-    const boardStand = new Stand({
-      gltfLoader,
-      scene,
-      modelSrc: "/models/bulletin_board.glb",
-      position: { x: boardSpot.mesh.position.x, y: -4, z: boardSpot.mesh.position.z - 2 },
-      name: "board",
-    });
-
-    const skillSpot = new SpotMesh({
-      name: "adminSpotMesh",
-      scene,
-      position: { x: 3, z: 3 },
-      color: colors.primary,
-    });
-
-    const skillText = new TextMesh({
-      text: "Skill !",
-      position: { x: skillSpot.mesh.position.x, z: skillSpot.mesh.position.z },
-      scene,
-      size: 1,
-      color: colors.primary,
-    });
-
-    const skillStand = new Stand({
-      gltfLoader,
-      scene,
-      modelSrc: "/models/ruler_pencil.glb",
-      position: { x: skillSpot.mesh.position.x, y: -4, z: skillSpot.mesh.position.z - 1 },
-      name: "skill",
-    });
-
-    const adminSpot = new SpotMesh({
-      name: "adminSpotMesh",
-      scene,
-      position: { x: 0, z: -12 },
-      color: colors.primary,
-    });
-
-    const adminText = new TextMesh({
-      text: "Admin !",
-      position: { x: adminSpot.mesh.position.x, z: adminSpot.mesh.position.z },
-      scene,
-      size: 1,
-      color: colors.primary,
-    });
-
-    const adminStand = new Stand({
-      gltfLoader,
-      scene,
-      modelSrc: "/models/gears.glb",
-      position: { x: adminSpot.mesh.position.x, y: -4, z: adminSpot.mesh.position.z - 2 },
-      name: "admin",
+      SpotMeshs = { ...SpotMeshs, [SpotInfo.stand.name]: stand };
     });
 
     const player = new Player({
@@ -258,25 +176,12 @@ class Methods {
     return {
       floorMesh,
       pointerMesh,
-      introSpot,
-      introText,
-      introStand,
-      meSpot,
-      meText,
-      meStand,
-      adminSpot,
-      adminText,
-      adminStand,
-      boardSpot,
-      boardText,
-      boardStand,
-      skillSpot,
-      skillText,
-      skillStand,
+      ...SpotMeshs,
       player,
       meshes,
     };
   }
+
   public MeshShowHide({
     mesh,
     spotMesh,

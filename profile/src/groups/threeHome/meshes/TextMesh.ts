@@ -8,6 +8,7 @@ interface TextMeshProps {
   scene: Scene;
   position: { x: number; z: number };
   color: `#${string}`;
+  name: string;
 }
 export class TextMesh {
   mesh?: Mesh<TextGeometry, MeshStandardMaterial>;

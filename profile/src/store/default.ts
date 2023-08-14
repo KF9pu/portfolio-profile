@@ -15,3 +15,8 @@ export const _sidevarTabStatus = atom<number>({
   key: `sidevarTabStatus${Math.random()}`,
   default: 0,
 });
+
+export const _sectionNum = atom<number>({
+  key: `_sectionNum${Math.random()}`,
+  default: 0,
+});

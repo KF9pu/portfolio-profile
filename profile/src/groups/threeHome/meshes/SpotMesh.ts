@@ -1,3 +1,4 @@
+import { IPosition } from "@/common/constants";
 import {
   BufferGeometry,
   CircleGeometry,
@@ -25,7 +26,7 @@ import {
 interface SpotMeshProps {
   name: string;
   scene: Scene;
-  position: { x: number; z: number };
+  position: IPosition;
   color: `#${string}`;
 }
 
