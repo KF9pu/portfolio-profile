@@ -1,14 +1,5 @@
 import { IPosition } from "@/common/constants";
-import {
-  AnimationAction,
-  AnimationMixer,
-  Material,
-  Mesh,
-  MeshBasicMaterial,
-  MeshStandardMaterial,
-  Object3D,
-  Scene,
-} from "three";
+import { Mesh, Object3D, Scene } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 interface StandProps {
@@ -27,6 +18,7 @@ export class Stand {
   mesh?: Object3D<THREE.Event>;
 
   constructor({ name, scene, gltfLoader, modelSrc, position: { x, y, z } }: StandProps) {
+    console.log("*** stand start :", name);
     this.x = x;
     this.y = y;
     this.z = z;

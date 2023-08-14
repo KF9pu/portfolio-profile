@@ -160,7 +160,7 @@ class Methods {
         scene,
         modelSrc: SpotInfo.stand.modelSrc,
         position: SpotInfo.stand.position,
-        name: "house",
+        name: SpotInfo.stand.name,
       });
 
       SpotMeshs = { ...SpotMeshs, [SpotInfo.stand.name]: stand };
@@ -192,7 +192,9 @@ class Methods {
     spotNum,
     outColors,
   }: MeshInOutprops) {
+    console.log("mesh :", spotMesh.name);
     if (mesh.mesh) {
+      console.log("mesh :", mesh.mesh.name);
       if (
         Math.abs(spotMesh.position.x - player.mesh.position.x) < 1.5 &&
         Math.abs(spotMesh.position.z - player.mesh.position.z) < 1.5

@@ -33,28 +33,28 @@ type ISpotInfos = ISpotInfo[];
 export const SpotInfos: ISpotInfos = [
   {
     spot: {
-      name: "introSpotMesh",
+      name: "introSpot",
       position: { x: introSpotPosition.x, z: introSpotPosition.z },
     },
     text: {
-      name: "introTextMesh",
+      name: "introText",
       text: "Intro !",
       position: { x: introSpotPosition.x, z: introSpotPosition.z },
       size: 1,
     },
     stand: {
-      name: "house",
+      name: "intro",
       modelSrc: "/models/house.glb",
       position: { x: introSpotPosition.x, y: -1.3, z: introSpotPosition.z - 2 },
     },
   },
   {
     spot: {
-      name: "MeSpotMesh",
+      name: "meSpot",
       position: { x: meSpotPosition.x, z: meSpotPosition.z },
     },
     text: {
-      name: "meTextMesh",
+      name: "meText",
       text: "It's Me !",
       position: { x: meSpotPosition.x, z: meSpotPosition.z },
       size: 1,
@@ -67,11 +67,11 @@ export const SpotInfos: ISpotInfos = [
   },
   {
     spot: {
-      name: "boardSpotMesh",
+      name: "boardSpot",
       position: { x: boardSpotPosition.x, z: boardSpotPosition.z },
     },
     text: {
-      name: "boardTextMesh",
+      name: "boardText",
       text: "Board !",
       position: { x: boardSpotPosition.x, z: boardSpotPosition.z },
       size: 1,
@@ -84,11 +84,11 @@ export const SpotInfos: ISpotInfos = [
   },
   {
     spot: {
-      name: "skillSpotMesh",
+      name: "skillSpot",
       position: { x: skillSpotPosition.x, z: skillSpotPosition.z },
     },
     text: {
-      name: "skillTextMesh",
+      name: "skillText",
       text: "Skill !",
       position: { x: skillSpotPosition.x, z: skillSpotPosition.z },
       size: 1,
@@ -101,11 +101,11 @@ export const SpotInfos: ISpotInfos = [
   },
   {
     spot: {
-      name: "adminSpotMesh",
+      name: "adminSpot",
       position: { x: adminSpotPosition.x, z: adminSpotPosition.z },
     },
     text: {
-      name: "adminTextMesh",
+      name: "adminText",
       text: "Admin !",
       position: { x: adminSpotPosition.x, z: adminSpotPosition.z },
       size: 1,
