@@ -4,6 +4,7 @@ import { _sectionIsOpen, _sectionNum } from "@/store/default";
 import { gsap } from "gsap";
 import { useState, type FC, useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
+import PageByNumber from "./PageByNumber";
 
 interface TopSectionProps {}
 
@@ -24,7 +25,7 @@ const TopSection: FC<TopSectionProps> = ({}) => {
         "w-screen md:w-[80vw] h-full",
         "relative",
         "font-DNF",
-        isOpen ? "h-max-[calc(100vh-295px)]" : "overflow-hidden",
+        isOpen ? "h-max-[calc(100vh-295px)]" : "",
         `theme-${ThemeCode}`
       )}
     >
@@ -49,32 +50,7 @@ const TopSection: FC<TopSectionProps> = ({}) => {
       >
         <p className="text-center">{isOpen ? "닫기" : "열기"}</p>
       </div>
-      <div
-        className={cls(
-          "flex flex-col",
-          "absolute top-0",
-          "bg-tertiary",
-          "w-screen md:w-[80vw] h-[calc(100vh-160px)] md:h-[calc(100vh-295px)]",
-          "border border-primary rounded-xl",
-          "transition-all duration-500",
-          "md:translate-x-[10vw]",
-          "px-[24px] py-[24px]",
-          "overflow-y-scroll",
-          "break-all",
-          isOpen ? "translate-y-[120px] opacity-100" : "translate-y-[-1000px] opacity-0"
-        )}
-      >
-        <p className="">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-        <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-        <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-        <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-        <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-        <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-        <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-        <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-        <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-        <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-      </div>
+      <PageByNumber />
     </div>
   );
 };
