@@ -6,13 +6,13 @@ interface ColorChangeButtonLlistProps {}
 const ColorChangeButtonLlist: FC<ColorChangeButtonLlistProps> = ({}) => {
   return (
     <>
-      <SetColorButton colorCode="default">default</SetColorButton>
-      <SetColorButton colorCode="red">red</SetColorButton>
-      <SetColorButton colorCode="green">green</SetColorButton>
-      <SetColorButton colorCode="blue">blue</SetColorButton>
-      <SetColorButton colorCode="pink">pink</SetColorButton>
-      <SetColorButton colorCode="pupple">pupple</SetColorButton>
-      <SetColorButton colorCode="gold">gold</SetColorButton>
+      <SetColorButton colorCode="default">Default</SetColorButton>
+      <SetColorButton colorCode="red">Red</SetColorButton>
+      <SetColorButton colorCode="green">Green</SetColorButton>
+      <SetColorButton colorCode="blue">Blue</SetColorButton>
+      <SetColorButton colorCode="pink">Pink</SetColorButton>
+      <SetColorButton colorCode="pupple">Pupple</SetColorButton>
+      <SetColorButton colorCode="gold">Gold</SetColorButton>
     </>
   );
 };

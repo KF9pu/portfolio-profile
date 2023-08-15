@@ -1,5 +1,5 @@
 import useTheme from "@/groups/theme/useTheme";
-import { _ThemeCode, _sectionNum } from "@/store/default";
+import { _ThemeCode, _sectionIsOpen, _sectionNum } from "@/store/default";
 import Layout from "@/groups/layout";
 import { useEffect, useRef } from "react";
 import Main from "@/groups/threeHome/Main";
@@ -11,9 +11,20 @@ export default function Home() {
   const { ThemeCode } = useTheme();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const setPageNum = useSetRecoilState(_sectionNum);
+  const SetIsOpen = useSetRecoilState(_sectionIsOpen);
 
   useEffect(() => {
-    new Main({ canvas: canvasRef.current, ThemeCode, setPageNum });
+    new Main({
+      canvas: canvasRef.current,
+      ThemeCode,
+      spotEvent: {
+        open: setPageNum,
+        close: () => {
+          setPageNum(0);
+          SetIsOpen(false);
+        },
+      },
+    });
   }, [ThemeCode]);
 
   return (

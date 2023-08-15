@@ -20,3 +20,8 @@ export const _sectionNum = atom<number>({
   key: `_sectionNum${Math.random()}`,
   default: 0,
 });
+
+export const _sectionIsOpen = atom<boolean>({
+  key: `_sectionIsOpen${Math.random()}`,
+  default: false,
+});

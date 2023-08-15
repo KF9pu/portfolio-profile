@@ -2,6 +2,9 @@
 module.exports = {
   content: ["./pages/**/*.{js,ts,jsx,tsx,mdx}", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    fontFamily: {
+      DNF: "DNF",
+    },
     extend: {
       colors: {
         primary: "var(--color-primary)",

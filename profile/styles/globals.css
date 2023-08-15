@@ -12,6 +12,11 @@
   }
 }
 
+@font-face {
+  font-family: "DNF";
+  src: url(/fonts/DNFBitBitv2.ttf);
+}
+
 .theme-default {
   --color-primary: #212529;
   --color-secondary: #495057;

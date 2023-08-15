@@ -30,7 +30,7 @@ interface MeshInOutprops {
   player: Player;
   camera: OrthographicCamera;
   meshShowPositionY: number;
-  spotEvent: Dispatch<SetStateAction<number>>;
+  spotEvent: { open: Dispatch<SetStateAction<number>>; close: () => void };
   spotNum: number;
   outColors: `#${string}`;
 }
@@ -83,8 +83,8 @@ class Methods {
     directionalLight.castShadow = true;
 
     // mapSize 세팅으로 그림자 퀄리티 설정
-    directionalLight.shadow.mapSize.width = 2048;
-    directionalLight.shadow.mapSize.height = 2048;
+    directionalLight.shadow.mapSize.width = 512;
+    directionalLight.shadow.mapSize.height = 512;
     // 그림자 범위
     directionalLight.shadow.camera.left = -100;
     directionalLight.shadow.camera.right = 100;
@@ -212,7 +212,7 @@ class Methods {
             duration: 1,
             y: 3,
           });
-          spotEvent(spotNum);
+          spotEvent.open(spotNum);
         }
       } else if (mesh.visible) {
         // console.log("들어가");
@@ -226,7 +226,7 @@ class Methods {
           duration: 1,
           y: 5,
         });
-        spotEvent(0);
+        spotEvent.close();
       }
     }
   }

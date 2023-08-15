@@ -15,7 +15,14 @@ const Header: FC<HeaderProps> = ({}) => {
   return (
     <header
       ref={outside}
-      className={cls("z-[20]", "fixed left-0 top-0", "flex justify-end items-center", "w-full", "select-none")}
+      className={cls(
+        "z-[20]",
+        "fixed left-0 top-0",
+        "flex justify-end items-center",
+        "w-full",
+        "select-none",
+        "font-DNF"
+      )}
     >
       <div className={cls("relative", "flex flex-col justify-center items-center", "h-full", "p-[20px]")}>
         <MenuIcon />

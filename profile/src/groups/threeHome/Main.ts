@@ -7,11 +7,11 @@ import { colorEnum, Colors } from "./constants";
 interface MainProps {
   canvas: HTMLCanvasElement | null;
   ThemeCode: ThemeCodeType;
-  setPageNum: Dispatch<SetStateAction<number>>;
+  spotEvent: { open: Dispatch<SetStateAction<number>>; close: () => void };
 }
 
 class Main {
-  constructor({ canvas, ThemeCode, setPageNum }: MainProps) {
+  constructor({ canvas, ThemeCode, spotEvent }: MainProps) {
     console.log("*** ThreeHome Main.ts Start");
     const colors = Colors[colorEnum[ThemeCode]];
     const { MeshShowHide, SetRenderer, SetCamera, SetLight, CreateMeshes } = new Methods();
@@ -103,7 +103,7 @@ class Main {
               player,
               camera,
               meshShowPositionY: 1,
-              spotEvent: setPageNum,
+              spotEvent,
               spotNum: 1,
               outColors: colors.tertiary,
             });
@@ -114,7 +114,7 @@ class Main {
               player,
               camera,
               meshShowPositionY: 0.1,
-              spotEvent: setPageNum,
+              spotEvent,
               spotNum: 2,
               outColors: colors.tertiary,
             });
@@ -125,7 +125,7 @@ class Main {
               player,
               camera,
               meshShowPositionY: 0,
-              spotEvent: setPageNum,
+              spotEvent,
               spotNum: 3,
               outColors: colors.tertiary,
             });
@@ -136,7 +136,7 @@ class Main {
               player,
               camera,
               meshShowPositionY: 1,
-              spotEvent: setPageNum,
+              spotEvent,
               spotNum: 4,
               outColors: colors.tertiary,
             });
@@ -147,7 +147,7 @@ class Main {
               player,
               camera,
               meshShowPositionY: 1.3,
-              spotEvent: setPageNum,
+              spotEvent,
               spotNum: 5,
               outColors: colors.tertiary,
             });

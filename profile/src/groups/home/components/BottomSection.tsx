@@ -66,7 +66,7 @@ const BottomSection: FC<BottomSectionProps> = ({}) => {
         <button
           className={cls(
             "buttonAni",
-            "text-quaternary",
+            "text-quaternary font-DNF",
             "border",
             "w-[212px] h-[36px]",
             "rounded-xl",
@@ -93,7 +93,11 @@ interface TextProps {
 const Text: FC<TextProps> = ({ isTitle, isEmphasis, children }) => {
   return (
     <p
-      className={cls("textAniPolygon", isEmphasis ? "text-tertiary" : "text-quaternary", isTitle ? "text-[24px]" : "")}
+      className={cls(
+        "textAniPolygon font-DNF",
+        isEmphasis ? "text-tertiary" : "text-quaternary",
+        isTitle ? "text-[24px]" : ""
+      )}
     >
       {children}
     </p>
