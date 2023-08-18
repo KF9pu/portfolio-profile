@@ -26,6 +26,7 @@ interface ISpotInfo {
     name: string;
     modelSrc: string;
     position: IPosition;
+    dec: string;
   };
 }
 type ISpotInfos = ISpotInfo[];
@@ -46,6 +47,7 @@ export const SpotInfos: ISpotInfos = [
       name: "intro",
       modelSrc: "/models/house.glb",
       position: { x: introSpotPosition.x, y: -1.3, z: introSpotPosition.z - 2 },
+      dec: "프로젝트 소개",
     },
   },
   {
@@ -63,6 +65,7 @@ export const SpotInfos: ISpotInfos = [
       name: "me",
       modelSrc: "/models/ReadyPlayerMeGlb.glb",
       position: { x: meSpotPosition.x, y: -4, z: meSpotPosition.z - 2 },
+      dec: "자기 소개 & 경력사항",
     },
   },
   {
@@ -80,6 +83,7 @@ export const SpotInfos: ISpotInfos = [
       name: "board",
       modelSrc: "/models/bulletin_board.glb",
       position: { x: boardSpotPosition.x, y: -4, z: boardSpotPosition.z - 2 },
+      dec: "게시판 (준비중)",
     },
   },
   {
@@ -97,6 +101,7 @@ export const SpotInfos: ISpotInfos = [
       name: "skill",
       modelSrc: "/models/ruler_pencil.glb",
       position: { x: skillSpotPosition.x, y: -4, z: skillSpotPosition.z - 2 },
+      dec: "기술 스텍",
     },
   },
   {
@@ -114,6 +119,7 @@ export const SpotInfos: ISpotInfos = [
       name: "admin",
       modelSrc: "/models/gears.glb",
       position: { x: adminSpotPosition.x, y: -4, z: adminSpotPosition.z - 2 },
+      dec: "관리자 (준비중)",
     },
   },
 ];

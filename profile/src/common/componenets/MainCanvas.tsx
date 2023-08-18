@@ -12,7 +12,7 @@ const MainCanvas: FC<MainCanvasProps> = ({ canvasRef }) => {
   return (
     <canvas
       ref={canvasRef}
-      className={cls("fixed", "w-screen h-screen", "mt-[64px]")}
+      className={cls("fixed", "w-screen h-screen")}
       onClick={() => {
         if (IsDropDown) setIsDropDown(false);
       }}

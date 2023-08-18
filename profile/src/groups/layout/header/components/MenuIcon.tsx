@@ -1,4 +1,5 @@
 import { cls } from "@/common/libs";
+import useTheme from "@/groups/theme/useTheme";
 import { _isDropDown } from "@/store/default";
 import { useEffect, type FC } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
@@ -28,16 +29,19 @@ interface LineProps {
 
 const Line: FC<LineProps> = ({ lineNum }) => {
   const isDropDown = useRecoilValue(_isDropDown);
+  const { ThemeCode } = useTheme();
+
   return (
     <span
       className={cls(
         "w-full h-[5px]",
-        "bg-black",
+        "bg-primary",
         "rounded-[10px]",
         lineNum === 1 ? cls("origin-[10%]", isDropDown ? "rotate-45" : "") : "",
         lineNum === 2 && isDropDown ? "scale-y-0" : "",
         lineNum === 3 ? cls("origin-[10%]", isDropDown ? "-rotate-45" : "") : "",
-        "transition-transform ease-in-out duration-200"
+        "transition-transform ease-in-out duration-200",
+        `theme-${ThemeCode}`
       )}
     />
   );
