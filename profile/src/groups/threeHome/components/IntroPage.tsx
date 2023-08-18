@@ -29,7 +29,7 @@ const IntroPage: FC<IntroPageProps> = ({}) => {
           <div className="flex gap-[4px]">
             {SpotInfos.map((item, index) => {
               return (
-                <p>
+                <p key={`_SpotInfos${index}`}>
                   {item.stand.name}
                   {index !== 4 ? ", " : ""}
                 </p>
