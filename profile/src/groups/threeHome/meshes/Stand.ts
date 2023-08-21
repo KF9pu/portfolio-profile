@@ -34,9 +34,9 @@ export class Stand {
       this.mesh = glb.scene.children[0];
       if (this.y !== undefined) this.mesh.position.set(this.x, this.y, this.z);
       this.mesh.name = name;
-      if (name === "me") this.mesh.scale.set(2, 2, 2);
-      if (name === "board") this.mesh.scale.set(0.7, 0.7, 0.7);
-      if (name === "skill") this.mesh.scale.set(6, 6, 6);
+      if (name === "Me") this.mesh.scale.set(2, 2, 2);
+      if (name === "Board") this.mesh.scale.set(0.7, 0.7, 0.7);
+      if (name === "Skill") this.mesh.scale.set(6, 6, 6);
 
       scene.add(this.mesh);
     });

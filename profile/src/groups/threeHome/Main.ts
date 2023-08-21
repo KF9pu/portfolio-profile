@@ -27,21 +27,21 @@ class Main {
       const { ambientLight, directionalLight } = SetLight(scene);
 
       const {
-        intro,
+        Intro,
         introText,
         introSpot,
-        me,
+        Me,
         meText,
         meSpot,
         adminSpot,
         adminText,
-        admin,
+        Admin,
         boardSpot,
         boardText,
-        board,
+        Board,
         skillSpot,
         skillText,
-        skill,
+        Skill,
         player,
         pointerMesh,
         meshes,
@@ -98,7 +98,7 @@ class Main {
             }
 
             MeshShowHide({
-              mesh: intro,
+              mesh: Intro,
               spotMesh: introSpot.mesh,
               player,
               camera,
@@ -109,7 +109,7 @@ class Main {
             });
 
             MeshShowHide({
-              mesh: me,
+              mesh: Me,
               spotMesh: meSpot.mesh,
               player,
               camera,
@@ -120,7 +120,7 @@ class Main {
             });
 
             MeshShowHide({
-              mesh: board,
+              mesh: Board,
               spotMesh: boardSpot.mesh,
               player,
               camera,
@@ -131,7 +131,7 @@ class Main {
             });
 
             MeshShowHide({
-              mesh: skill,
+              mesh: Skill,
               spotMesh: skillSpot.mesh,
               player,
               camera,
@@ -142,7 +142,7 @@ class Main {
             });
 
             MeshShowHide({
-              mesh: admin,
+              mesh: Admin,
               spotMesh: adminSpot.mesh,
               player,
               camera,

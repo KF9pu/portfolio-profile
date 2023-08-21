@@ -12,6 +12,8 @@ const IntroPage: FC<IntroPageProps> = ({}) => {
   return (
     <div className={cls("flex flex-col gap-[40px]", "h-full")}>
       <div className={cls("flex flex-col gap-[20px]", "w-full h-full", "overflow-y-scroll", "text-secondary")}>
+        <Title big>프로젝트 소개</Title>
+
         <Section>
           <Title normal>✔ 목차</Title>
           <ul className={cls("flex flex-col gap-[4px]", "pl-[8px]")}>

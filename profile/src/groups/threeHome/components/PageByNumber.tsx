@@ -24,7 +24,7 @@ const PageByNumber: FC<PageByNumberProps> = ({}) => {
         "w-[90vw] md:w-[30vw] h-[calc(100vh-160px)] md:h-[calc(100vh-295px)]",
         "border border-primary rounded-xl",
         "transition-all duration-500",
-        "pl-[24px] py-[24px] md:px-[24px]",
+        "pl-[24px] py-[24px] md:px-[24px] md:pt-[48px]",
         "overflow-y-scroll",
         "break-all",
         "translate-x-[-5vw] md:translate-x-0",
