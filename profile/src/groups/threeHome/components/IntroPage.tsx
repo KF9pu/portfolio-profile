@@ -3,7 +3,7 @@ import { cls } from "@/common/libs";
 import { type FC } from "react";
 import useTheme from "@/groups/theme/useTheme";
 import Link from "next/link";
-import Title from "./Title";
+import Title from "../../home/components/Title";
 
 // TODO: 모바일 폰트 크기 조정
 interface IntroPageProps {}

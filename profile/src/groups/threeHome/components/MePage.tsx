@@ -1,10 +1,10 @@
 import type { FC } from "react";
 import React from "react";
-import Title from "./Title";
+import Title from "../../home/components/Title";
 import useMyinfo from "@/common/hooks/useMyinfo";
 import { cls } from "@/common/libs";
 import { NoneProps, OnlyChildrenProps } from "@/common/interface";
-import { PresonalInfoProps, SectionProps } from "../interface/MePage";
+import { PresonalInfoProps, SectionProps, ViewButtonProps } from "../interface/MePage";
 
 interface MePageProps {}
 
@@ -34,14 +34,14 @@ const MePage: FC<MePageProps> = ({}) => {
       <Section tab>
         <Title normal>✔ 연혁</Title>
         <Contents>
-          <button className="text-[14px]">[ 보기 ]</button>
+          <ViewButton onClick={() => {}} />
         </Contents>
       </Section>
 
       <Section tab>
         <Title normal>✔ 자기소개서</Title>
         <Contents>
-          <button className="text-[14px]">[ 보기 ]</button>
+          <ViewButton onClick={() => {}} />
         </Contents>
       </Section>
     </Main>
@@ -67,10 +67,16 @@ const Contents: FC<OnlyChildrenProps> = ({ children }) => {
 
 const PresonalInfo: FC<PresonalInfoProps> = ({ title, data, small, smallData }) => {
   return (
-    <div className={cls("text-primary", small ? "text-[14px]" : "")}>
+    <div className={cls("text-primary", small ? "text-[14px] md:text-[16px]" : "text-[18px]")}>
       <span>{title}</span>
 
-      <span className={cls("text-secondary", smallData ? "text-[12px]" : "text-[14px]")}>{data}</span>
+      <span className={cls("text-secondary", smallData ? "text-[12px] md:text-[14px]" : "text-[14px] md:text-[16px]")}>
+        {data}
+      </span>
     </div>
   );
+};
+
+const ViewButton: FC<ViewButtonProps> = ({ onClick }) => {
+  return <button onClick={onClick}>[ 보기 ]</button>;
 };

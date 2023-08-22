@@ -14,10 +14,10 @@ const Title: FC<TitleProps> = ({ children, big, normal, small, ssmall, underline
     <h1
       className={cls(
         "text-primary ",
-        big ? "text-[20px]" : "",
-        normal ? "text-[18px]" : "",
-        small ? "text-[16px]" : "",
-        ssmall ? "text-[14px]" : "",
+        big ? "text-[20px] md:text-[24px]" : "",
+        normal ? "text-[18px] md:text-[22px]" : "",
+        small ? "text-[16px] md:text-[20px]" : "",
+        ssmall ? "text-[14px] md:text-[18px]" : "",
         underline ? "underline underline-offset-8" : ""
       )}
     >
