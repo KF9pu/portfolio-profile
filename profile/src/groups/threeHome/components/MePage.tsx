@@ -2,16 +2,14 @@ import type { FC } from "react";
 import React from "react";
 import Title from "../../home/components/Title";
 import useMyinfo from "@/common/hooks/useMyinfo";
-import { cls } from "@/common/libs";
-import { NoneProps, OnlyChildrenProps } from "@/common/interface";
-import { PresonalInfoProps, SectionProps, ViewButtonProps } from "../interface/MePage";
+import { Contents, MainSection, PresonalInfo, Section, Underline, ViewButton } from "./MePageSub";
 
 interface MePageProps {}
 
 const MePage: FC<MePageProps> = ({}) => {
   const { yearsOfService, hobys, name, bloodType, residence, mbti, gender, color, age, born } = useMyinfo();
   return (
-    <Main>
+    <MainSection>
       <Section>
         <Title big>자기소개</Title>
         <Underline />
@@ -44,39 +42,7 @@ const MePage: FC<MePageProps> = ({}) => {
           <ViewButton onClick={() => {}} />
         </Contents>
       </Section>
-    </Main>
+    </MainSection>
   );
 };
 export default MePage;
-
-const Main: FC<OnlyChildrenProps> = ({ children }) => {
-  return <div className={cls("flex flex-col gap-[8px] md:gap-[12px]", "text-secondary")}>{children}</div>;
-};
-
-const Section: FC<SectionProps> = ({ children, tab }) => {
-  return <section className={cls("flex flex-col md:gap-[4px]", tab ? "pl-[4px]" : "")}>{children}</section>;
-};
-
-const Underline: FC<NoneProps> = () => {
-  return <hr className={cls("w-[92%] h-px", "bg-primary", "border-0", "mb-[4px]")} />;
-};
-
-const Contents: FC<OnlyChildrenProps> = ({ children }) => {
-  return <div className="pl-[8px] md:pl-[12px]">{children}</div>;
-};
-
-const PresonalInfo: FC<PresonalInfoProps> = ({ title, data, small, smallData }) => {
-  return (
-    <div className={cls("text-primary", small ? "text-[14px] md:text-[16px]" : "text-[18px]")}>
-      <span>{title}</span>
-
-      <span className={cls("text-secondary", smallData ? "text-[12px] md:text-[14px]" : "text-[14px] md:text-[16px]")}>
-        {data}
-      </span>
-    </div>
-  );
-};
-
-const ViewButton: FC<ViewButtonProps> = ({ onClick }) => {
-  return <button onClick={onClick}>[ 보기 ]</button>;
-};
