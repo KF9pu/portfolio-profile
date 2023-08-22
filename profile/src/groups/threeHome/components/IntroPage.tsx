@@ -1,11 +1,11 @@
 import { SpotInfos } from "@/common/constants";
 import { cls } from "@/common/libs";
-import Image from "next/image";
-import { useRef, type FC, useEffect } from "react";
+import { type FC } from "react";
 import useTheme from "@/groups/theme/useTheme";
 import Link from "next/link";
 import Title from "./Title";
 
+// TODO: 모바일 폰트 크기 조정
 interface IntroPageProps {}
 
 const IntroPage: FC<IntroPageProps> = ({}) => {
