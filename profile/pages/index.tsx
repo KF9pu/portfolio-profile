@@ -1,7 +1,7 @@
 import useTheme from "@/groups/theme/useTheme";
 import { _ThemeCode, _sectionIsOpen, _sectionNum } from "@/store/default";
 import Layout from "@/groups/layout";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Main from "@/groups/home/Main";
 import BottomSection from "@/groups/home/components/BottomSection";
 import MainCanvas from "@/common/componenets/MainCanvas";
