@@ -3,6 +3,7 @@ import { cls } from "@/common/libs";
 import Image from "next/image";
 import { useRef, type FC, useEffect } from "react";
 import useTheme from "@/groups/theme/useTheme";
+import Link from "next/link";
 
 interface IntroPageProps {}
 
@@ -51,7 +52,19 @@ const IntroPage: FC<IntroPageProps> = ({}) => {
           <Article>
             <Title normal>▫ 형상관리</Title>
             <SkillBox>
-              <li>- github</li>
+              <li>
+                - github{" "}
+                <Link
+                  className={cls(
+                    "hover:text-quaternary hover:underline underline-offset-4 decoration-2",
+                    "transition-all"
+                  )}
+                  target="_blank"
+                  href="https://github.com/KF9pu/portfolio-profile/tree/main/profile"
+                >
+                  [ Link ]
+                </Link>
+              </li>
               <li>- github Desktop</li>
             </SkillBox>
           </Article>
