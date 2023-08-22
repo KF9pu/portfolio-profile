@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRef, type FC, useEffect } from "react";
 import useTheme from "@/groups/theme/useTheme";
 import Link from "next/link";
+import Title from "./Title";
 
 interface IntroPageProps {}
 
@@ -80,29 +81,6 @@ interface SectionProps {
 }
 const Section: FC<SectionProps> = ({ children }) => {
   return <section className="flex flex-col gap-[4px]">{children}</section>;
-};
-
-interface TitleProps {
-  children: React.ReactNode;
-  ssmall?: true;
-  small?: true;
-  normal?: true;
-  big?: true;
-}
-const Title: FC<TitleProps> = ({ children, big, normal, small, ssmall }) => {
-  return (
-    <h1
-      className={cls(
-        "text-primary ",
-        big ? "text-[20px]" : "",
-        normal ? "text-[18px]" : "",
-        small ? "text-[16px]" : "",
-        ssmall ? "text-[14px]" : ""
-      )}
-    >
-      {children}
-    </h1>
-  );
 };
 
 interface ArticleProps {
