@@ -19,12 +19,12 @@ const PageByNumber: FC<PageByNumberProps> = ({}) => {
     <div
       className={cls(
         "flex flex-col",
-        "fixed top-0 right-0",
+        "fixed top-0 right-0 md:right-[20px]",
         "bg-tertiary",
-        "w-[90vw] md:w-[30vw] h-[calc(100vh-160px)] md:h-[calc(100vh-295px)]",
+        "w-[90vw] md:w-[30vw] h-[calc(100vh-160px)] md:h-auto",
         "border border-primary rounded-xl",
         "transition-all duration-500",
-        "pl-[24px] py-[24px] md:px-[24px] md:pt-[48px]",
+        "pl-[24px] py-[24px] md:px-[24px] md:pt-[48px]  md:pb-[56px]",
         "overflow-y-scroll",
         "break-all",
         "translate-x-[-5vw] md:translate-x-0",

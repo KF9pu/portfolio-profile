@@ -18,7 +18,7 @@ const TopSection: FC<TopSectionProps> = ({}) => {
       <button
         className={cls(
           pageNum === 0 ? "translate-x-[100%]" : "translate-x-[-5vw] md:translate-x-0",
-          "fixed right-0 top-[65px]",
+          "fixed right-0 top-[65px] md:right-[20px]",
           "w-[90vw] md:w-[30vw]",
           "border border-primary rounded-xl",
           "bg-secondary hover:bg-tertiary",
