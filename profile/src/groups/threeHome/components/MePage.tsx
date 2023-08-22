@@ -30,7 +30,7 @@ const MePage: FC<MePageProps> = ({}) => {
       </Section>
 
       <Section tab>
-        <Title normal>✔ 연혁</Title>
+        <Title sbig>✔ 연혁</Title>
         <Contents>
           <ViewButton onClick={() => {}} />
         </Contents>

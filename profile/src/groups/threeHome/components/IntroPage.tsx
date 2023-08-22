@@ -14,7 +14,14 @@ const IntroPage: FC<IntroPageProps> = ({}) => {
 
   return (
     <div className={cls("flex flex-col gap-[40px]", "h-full")}>
-      <div className={cls("flex flex-col gap-[20px]", "w-full h-full", "overflow-y-scroll", "text-secondary")}>
+      <div
+        className={cls(
+          "flex flex-col gap-[12px] md:gap-[20px]",
+          "w-full h-full",
+          "overflow-y-scroll",
+          "text-secondary"
+        )}
+      >
         <Title big>프로젝트 소개</Title>
 
         <Section>
@@ -22,8 +29,9 @@ const IntroPage: FC<IntroPageProps> = ({}) => {
           <ul className={cls("flex flex-col gap-[4px]", "pl-[8px]")}>
             {SpotInfos.map((item, index) => {
               return (
-                <li className="text-[14px]" key={`_SpotInfos[${index}] : dec`}>
-                  <span className="text-primary text-[16px]">- {item.stand.name} :</span> {item.stand.dec}
+                <li className="text-[12px] md:text-[16px]" key={`_SpotInfos[${index}] : dec`}>
+                  <span className="text-primary text-[14px] md:text-[17px]">- {item.stand.name} :</span>{" "}
+                  {item.stand.dec}
                 </li>
               );
             })}
@@ -33,7 +41,7 @@ const IntroPage: FC<IntroPageProps> = ({}) => {
         <Section>
           <Title normal>✔ 사용 기술</Title>
           <Article>
-            <Title small>▫ Front</Title>
+            <Title ssmall>Front</Title>
             <SkillBox>
               <li>- javascript, typescript</li>
               <li>- react (nextjs)</li>
@@ -43,7 +51,7 @@ const IntroPage: FC<IntroPageProps> = ({}) => {
             </SkillBox>
           </Article>
           <Article>
-            <Title small>▫ Back</Title>
+            <Title ssmall>Back</Title>
             <SkillBox>
               <li>- javascript, typescript</li>
               <li>- api (nextjs)</li>
@@ -52,7 +60,7 @@ const IntroPage: FC<IntroPageProps> = ({}) => {
             </SkillBox>
           </Article>
           <Article>
-            <Title normal>▫ 형상관리</Title>
+            <Title small>형상관리</Title>
             <SkillBox>
               <li>
                 - github{" "}

@@ -21,7 +21,7 @@ export const Contents: FC<OnlyChildrenProps> = ({ children }) => {
 
 export const PresonalInfo: FC<PresonalInfoProps> = ({ title, data, small, smallData }) => {
   return (
-    <div className={cls("text-primary", small ? "text-[14px] md:text-[16px]" : "text-[18px]")}>
+    <div className={cls("text-primary", small ? "text-[14px] md:text-[16px]" : "text-[15px] md:text-[18px]")}>
       <span>{title}</span>
 
       <span className={cls("text-secondary", smallData ? "text-[12px] md:text-[14px]" : "text-[14px] md:text-[16px]")}>
@@ -32,5 +32,9 @@ export const PresonalInfo: FC<PresonalInfoProps> = ({ title, data, small, smallD
 };
 
 export const ViewButton: FC<ViewButtonProps> = ({ onClick }) => {
-  return <button onClick={onClick}>[ 보기 ]</button>;
+  return (
+    <button onClick={onClick} className="text-[14px]">
+      [ 보기 ]
+    </button>
+  );
 };

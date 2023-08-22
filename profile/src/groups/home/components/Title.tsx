@@ -7,16 +7,18 @@ interface TitleProps {
   small?: true;
   normal?: true;
   big?: true;
+  sbig?: true;
   underline?: true;
 }
-const Title: FC<TitleProps> = ({ children, big, normal, small, ssmall, underline }) => {
+const Title: FC<TitleProps> = ({ children, big, sbig, normal, small, ssmall, underline }) => {
   return (
     <h1
       className={cls(
         "text-primary ",
-        big ? "text-[20px] md:text-[24px]" : "",
-        normal ? "text-[18px] md:text-[22px]" : "",
-        small ? "text-[16px] md:text-[20px]" : "",
+        big ? "text-[19px] md:text-[24px]" : "",
+        sbig ? "text-[18px] md:text-[23px]" : "",
+        normal ? "text-[17px] md:text-[22px]" : "",
+        small ? "text-[16px] md:text-[19px]" : "",
         ssmall ? "text-[14px] md:text-[18px]" : "",
         underline ? "underline underline-offset-8" : ""
       )}
