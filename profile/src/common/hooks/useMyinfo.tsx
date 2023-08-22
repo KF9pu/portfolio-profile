@@ -1,5 +1,3 @@
-import { DevStartdate } from "../constants";
-
 export class useMyinfo {
   yearsOfService: number;
   constructor() {
@@ -7,7 +5,7 @@ export class useMyinfo {
   }
 
   private setYearsOfService() {
-    const devStartdate = Math.floor(new Date(DevStartdate).getTime() / 1000);
+    const devStartdate = Math.floor(new Date(process.env.NEXT_PUBLIC_DEVSTART_DT!).getTime() / 1000);
     const today = Math.floor(new Date().getTime() / 1000);
     return Math.round((today - devStartdate) / 60 / 60 / 24 / 365);
   }

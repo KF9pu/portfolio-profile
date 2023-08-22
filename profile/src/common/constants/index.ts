@@ -1,5 +1,3 @@
-export const DevStartdate = "2020-10-16";
-
 export const introSpotPosition = { x: -3, z: -3 };
 export const meSpotPosition = { x: -3, z: 3 };
 export const boardSpotPosition = { x: 3, z: -3 };
