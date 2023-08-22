@@ -4,6 +4,7 @@ import { type FC } from "react";
 import useTheme from "@/groups/theme/useTheme";
 import Link from "next/link";
 import Title from "../../home/components/Title";
+import { Article, Section, SkillBox } from "./IntroPageSub";
 
 // TODO: 모바일 폰트 크기 조정
 interface IntroPageProps {}
@@ -75,24 +76,3 @@ const IntroPage: FC<IntroPageProps> = ({}) => {
   );
 };
 export default IntroPage;
-
-interface SectionProps {
-  children: React.ReactNode;
-}
-const Section: FC<SectionProps> = ({ children }) => {
-  return <section className="flex flex-col gap-[4px]">{children}</section>;
-};
-
-interface ArticleProps {
-  children: React.ReactNode;
-}
-const Article: FC<ArticleProps> = ({ children }) => {
-  return <article className={cls("pl-[4px] md:pl-[8px]")}>{children}</article>;
-};
-
-interface SkillBoxProps {
-  children: React.ReactNode;
-}
-const SkillBox: FC<SkillBoxProps> = ({ children }) => {
-  return <ul className={cls("pl-[8px] md:pl-[16px] text-[14px]")}>{children}</ul>;
-};
