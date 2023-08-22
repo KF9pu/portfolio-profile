@@ -6,7 +6,6 @@ import Link from "next/link";
 import Title from "../../home/components/Title";
 import { Article, Section, SkillBox } from "./IntroPageSub";
 
-// TODO: 모바일 폰트 크기 조정
 interface IntroPageProps {}
 
 const IntroPage: FC<IntroPageProps> = ({}) => {
