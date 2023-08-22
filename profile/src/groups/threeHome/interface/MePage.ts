@@ -9,3 +9,7 @@ export interface PresonalInfoProps {
   small?: true;
   smallData?: true;
 }
+
+export interface ViewButtonProps {
+  onClick: () => void;
+}
