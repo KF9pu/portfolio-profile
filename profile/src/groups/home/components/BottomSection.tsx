@@ -1,7 +1,7 @@
 import useDisplay from "@/common/hooks/useDisplay";
-import { useMyinfo } from "@/common/hooks/useMyinfo";
 import { cls } from "@/common/libs";
 import useTheme from "@/groups/theme/useTheme";
+import useMyinfo from "@/common/hooks/useMyinfo";
 import { gsap } from "gsap";
 import { useRouter } from "next/router";
 import React, { useEffect, type FC, useRef, useState } from "react";
@@ -14,7 +14,7 @@ const BottomSection: FC<BottomSectionProps> = ({}) => {
   const { isMobile } = useDisplay();
   const sectionRef = useRef(null);
   const [repeat, setRepeat] = useState<NodeJS.Timeout>();
-  const { yearsOfService } = new useMyinfo();
+  const { yearsOfService } = useMyinfo();
   const router = useRouter();
 
   useEffect(() => {
