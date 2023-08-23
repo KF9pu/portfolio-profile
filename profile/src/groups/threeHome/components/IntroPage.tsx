@@ -29,8 +29,7 @@ const IntroPage: FC<IntroPageProps> = ({}) => {
             {SpotInfos.map((item, index) => {
               return (
                 <li className="text-[12px] md:text-[16px]" key={`_SpotInfos[${index}] : dec`}>
-                  <span className="text-primary text-[14px] md:text-[17px]">- {item.stand.name} :</span>{" "}
-                  {item.stand.dec}
+                  <span className="text-primary text-[14px] md:text-[17px]">{item.stand.name} :</span> {item.stand.dec}
                 </li>
               );
             })}
