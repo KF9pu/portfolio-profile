@@ -24,8 +24,8 @@ const MePage: FC<MePageProps> = ({}) => {
           <PresonalInfo title="혈액형 : " data={bloodType} />
           <PresonalInfo title="MBTI : " data={mbti} small smallData />
           <PresonalInfo title="Color : " data={color} small smallData />
-          <PresonalInfo title="거주지 : " data={residence} />
           <PresonalInfo title="취미 : " data={hobys} />
+          <PresonalInfo title="거주지 : " data={residence} />
         </Contents>
       </Section>
 
