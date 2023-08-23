@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import React from "react";
-import Title from "../../home/components/Title";
+import Title from "../../../common/componenets/Title";
 import useMyinfo from "@/common/hooks/useMyinfo";
 import { Contents, MainSection, PresonalInfo, Section, Underline, ViewButton } from "./MePageSub";
 
@@ -32,14 +32,14 @@ const MePage: FC<MePageProps> = ({}) => {
       <Section tab>
         <Title sbig>✔ 연혁</Title>
         <Contents>
-          <ViewButton onClick={() => {}} />
+          <ViewButton history />
         </Contents>
       </Section>
 
       <Section tab>
         <Title normal>✔ 자기소개서</Title>
         <Contents>
-          <ViewButton onClick={() => {}} />
+          <ViewButton selfIntroduction />
         </Contents>
       </Section>
     </MainSection>

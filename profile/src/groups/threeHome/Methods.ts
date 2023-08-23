@@ -97,7 +97,6 @@ class Methods {
     return { ambientLight, directionalLight };
   }
   public CreateMeshes({ scene, colors }: CreateMeshesProps) {
-    console.log("colors : ", colors);
     const textureLoader = new TextureLoader();
     const gltfLoader = new GLTFLoader();
 
@@ -192,9 +191,7 @@ class Methods {
     spotNum,
     outColors,
   }: MeshInOutprops) {
-    console.log("mesh :", spotMesh.name);
     if (mesh.mesh) {
-      console.log("mesh :", mesh.mesh.name);
       if (
         Math.abs(spotMesh.position.x - player.mesh.position.x) < 1.5 &&
         Math.abs(spotMesh.position.z - player.mesh.position.z) < 1.5

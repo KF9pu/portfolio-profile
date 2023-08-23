@@ -3,7 +3,7 @@ import { cls } from "@/common/libs";
 import { type FC } from "react";
 import useTheme from "@/groups/theme/useTheme";
 import Link from "next/link";
-import Title from "../../home/components/Title";
+import Title from "../../../common/componenets/Title";
 import { Article, Section, SkillBox } from "./IntroPageSub";
 
 interface IntroPageProps {}

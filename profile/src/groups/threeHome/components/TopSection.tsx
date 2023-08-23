@@ -1,25 +1,27 @@
 import { cls } from "@/common/libs";
 import useTheme from "@/groups/theme/useTheme";
-import { _sectionIsOpen, _sectionNum } from "@/store/default";
-import { gsap } from "gsap";
-import { useState, type FC, useEffect } from "react";
+import { _historyIsOpen, _sectionIsOpen, _sectionNum, _selfIntroductionIsOpen } from "@/store/default";
+import { type FC } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import PageByNumber from "./PageByNumber";
+import { MyHistory, MyIntroduction } from "./MePageSub";
 
 interface TopSectionProps {}
 
 const TopSection: FC<TopSectionProps> = ({}) => {
   const pageNum = useRecoilValue(_sectionNum);
   const [isOpen, SetIsOpen] = useRecoilState(_sectionIsOpen);
+  const historyIsOpen = useRecoilValue(_historyIsOpen);
+  const selfIntroductionIsOpen = useRecoilValue(_selfIntroductionIsOpen);
   const { ThemeCode } = useTheme();
 
   return (
-    <div className={cls("relative", "font-DNF", `theme-${ThemeCode}`)}>
+    <div className={cls("relative", "font-DNF", "select-none", `theme-${ThemeCode}`)}>
       <button
         className={cls(
-          pageNum === 0 ? "translate-x-[100%]" : "translate-x-[-5vw] md:translate-x-0",
-          "fixed right-0 top-[65px] md:right-[20px]",
-          "w-[90vw] md:w-[30vw]",
+          pageNum === 0 ? "translate-x-[calc(100%+20px)]" : "translate-x-[-5vw] md:translate-x-0",
+          "fixed right-0 top-[65px] md:right-[20px] z-[100]",
+          "w-[90vw] md:w-[30vw] md:min-w-[320px] md:max-w-[420px]",
           "border border-primary rounded-xl",
           "bg-secondary hover:bg-tertiary",
           "text-quaternary hover:text-primary",
@@ -34,6 +36,8 @@ const TopSection: FC<TopSectionProps> = ({}) => {
         {isOpen ? "닫기" : "열기"}
       </button>
       <PageByNumber />
+      {historyIsOpen ? <MyHistory /> : null}
+      {selfIntroductionIsOpen ? <MyIntroduction /> : null}
     </div>
   );
 };

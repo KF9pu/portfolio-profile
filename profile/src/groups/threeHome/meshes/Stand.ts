@@ -18,7 +18,6 @@ export class Stand {
   mesh?: Object3D<THREE.Event>;
 
   constructor({ name, scene, gltfLoader, modelSrc, position: { x, y, z } }: StandProps) {
-    console.log("*** stand start :", name);
     this.x = x;
     this.y = y;
     this.z = z;

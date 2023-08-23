@@ -12,7 +12,6 @@ interface MainProps {
 
 class Main {
   constructor({ canvas, ThemeCode, spotEvent }: MainProps) {
-    console.log("*** ThreeHome Main.ts Start");
     const colors = Colors[colorEnum[ThemeCode]];
     const { MeshShowHide, SetRenderer, SetCamera, SetLight, CreateMeshes } = new Methods();
 

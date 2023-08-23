@@ -25,3 +25,13 @@ export const _sectionIsOpen = atom<boolean>({
   key: `_sectionIsOpen${Math.random()}`,
   default: false,
 });
+
+export const _historyIsOpen = atom<boolean>({
+  key: `_historyIsOpen${Math.random()}`,
+  default: false,
+});
+
+export const _selfIntroductionIsOpen = atom<boolean>({
+  key: `_selfIntroductionIsOpen${Math.random()}`,
+  default: false,
+});

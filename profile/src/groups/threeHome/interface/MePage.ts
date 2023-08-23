@@ -11,5 +11,6 @@ export interface PresonalInfoProps {
 }
 
 export interface ViewButtonProps {
-  onClick: () => void;
+  history?: true;
+  selfIntroduction?: true;
 }
