@@ -3,7 +3,10 @@ module.exports = {
   content: ["./pages/**/*.{js,ts,jsx,tsx,mdx}", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     fontFamily: {
-      DNF: "DNF",
+      DNF: "DNFBit",
+      DNFBladeBold: "DNFBladeBold",
+      DNFBladeLight: "DNFBladeLight",
+      DNFBladeMedium: "DNFBladeMedium",
     },
     extend: {
       colors: {
