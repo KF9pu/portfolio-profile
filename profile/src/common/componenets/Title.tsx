@@ -10,12 +10,26 @@ interface TitleProps {
   sbig?: true;
   underline?: true;
   isQuaternary?: true;
+  Fixed?: true;
+  widthFull?: true;
 }
-const Title: FC<TitleProps> = ({ children, big, sbig, normal, small, ssmall, underline, isQuaternary }) => {
+const Title: FC<TitleProps> = ({
+  children,
+  big,
+  sbig,
+  normal,
+  small,
+  ssmall,
+  underline,
+  isQuaternary,
+  Fixed,
+  widthFull,
+}) => {
   return (
     <h1
       className={cls(
         isQuaternary ? "text-quaternary" : "text-primary",
+        Fixed ? "fixed" : "",
         big ? "text-[19px] md:text-[24px]" : "",
         sbig ? "text-[18px] md:text-[23px]" : "",
         normal ? "text-[17px] md:text-[22px]" : "",

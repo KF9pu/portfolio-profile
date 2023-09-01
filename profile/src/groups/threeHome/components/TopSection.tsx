@@ -4,7 +4,8 @@ import { _historyIsOpen, _sectionIsOpen, _sectionNum, _selfIntroductionIsOpen } 
 import { type FC } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import PageByNumber from "./PageByNumber";
-import { MyHistory, MyIntroduction } from "./MePageSub";
+import MyPageIntroduction from "./MyPageIntroduction";
+import MyPageHistory from "./MyPageHistory";
 
 interface TopSectionProps {}
 
@@ -36,8 +37,8 @@ const TopSection: FC<TopSectionProps> = ({}) => {
         {isOpen ? "닫기" : "열기"}
       </button>
       <PageByNumber />
-      {historyIsOpen ? <MyHistory /> : null}
-      {selfIntroductionIsOpen ? <MyIntroduction /> : null}
+      {historyIsOpen ? <MyPageHistory /> : null}
+      {selfIntroductionIsOpen ? <MyPageIntroduction /> : null}
     </div>
   );
 };

@@ -13,4 +13,5 @@ export interface PresonalInfoProps {
 export interface ViewButtonProps {
   history?: true;
   selfIntroduction?: true;
+  career?: true;
 }

@@ -35,3 +35,8 @@ export const _selfIntroductionIsOpen = atom<boolean>({
   key: `_selfIntroductionIsOpen${Math.random()}`,
   default: false,
 });
+
+export const _careerIsOpen = atom<boolean>({
+  key: `_careerIsOpen${Math.random()}`,
+  default: false,
+});

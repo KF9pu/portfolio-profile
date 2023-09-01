@@ -42,6 +42,13 @@ const MePage: FC<MePageProps> = ({}) => {
           <ViewButton selfIntroduction />
         </Contents>
       </Section>
+
+      <Section tab>
+        <Title normal>✔ 경력 사항</Title>
+        <Contents>
+          <ViewButton career />
+        </Contents>
+      </Section>
     </MainSection>
   );
 };
