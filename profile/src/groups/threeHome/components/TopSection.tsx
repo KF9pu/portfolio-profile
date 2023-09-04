@@ -1,7 +1,7 @@
 import { cls } from "@/common/libs";
 import useTheme from "@/groups/theme/useTheme";
 import { _historyIsOpen, _sectionIsOpen, _sectionNum, _selfIntroductionIsOpen } from "@/store/default";
-import { type FC } from "react";
+import { useEffect, type FC } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import PageByNumber from "./PageByNumber";
 import MyPageIntroduction from "./MyPageIntroduction";
@@ -15,6 +15,14 @@ const TopSection: FC<TopSectionProps> = ({}) => {
   const historyIsOpen = useRecoilValue(_historyIsOpen);
   const selfIntroductionIsOpen = useRecoilValue(_selfIntroductionIsOpen);
   const { ThemeCode } = useTheme();
+
+  useEffect(() => {
+    console.log("historyIsOpen : ", historyIsOpen);
+  }, [historyIsOpen]);
+
+  useEffect(() => {
+    console.log("selfIntroductionIsOpen : ", selfIntroductionIsOpen);
+  }, [selfIntroductionIsOpen]);
 
   return (
     <div className={cls("relative", "font-DNF", "select-none", `theme-${ThemeCode}`)}>
