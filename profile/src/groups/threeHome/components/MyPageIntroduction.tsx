@@ -46,7 +46,7 @@ export const MyPageIntroduction: FC<NoneProps> = ({}) => {
         >
           {selfIntroduceTitles.map(({ title, content }, i) => (
             <div
-              key={`selfIntroduceTitlesSection_${i}`}
+              key={`selfIntroduceTitlesSection_total_${i}`}
               className={cls("flex flex-col", "", "w-[84vw] h-[76vh]", "mx-[8vw]")}
             >
               <Title isQuaternary small>
@@ -59,7 +59,7 @@ export const MyPageIntroduction: FC<NoneProps> = ({}) => {
         <ul className={cls("flex items-center justify-center gap-[8px]", "w-full", "", "text-tertiary")}>
           {selfIntroduceTitles.map(({ title }, i) => (
             <div
-              key={i}
+              key={`selfIntroduceTitlesSection_title_${i}`}
               className={cls(
                 "flex justify-center items-center",
                 "relative",

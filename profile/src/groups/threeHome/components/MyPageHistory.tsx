@@ -10,10 +10,10 @@ const MyPageHistory: FC<NoneProps> = ({}) => {
       <div className={cls("flex flex-col gap-[4px]", "")}>
         {historys.map((history, index) => {
           return (
-            <div className={cls("flex gap-[4px]", "hover:text-quinary")}>
+            <div key={`MyPageHistory_historys_${index}`} className={cls("flex gap-[4px]", "hover:text-quinary")}>
               {history.map((item, index) => {
                 return (
-                  <span>
+                  <span key={`MyPageHistory_history_${index}`}>
                     {item}
                     {index === 0 ? " :" : ""}
                   </span>
