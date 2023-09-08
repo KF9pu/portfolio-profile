@@ -1,19 +1,16 @@
 import { NoneProps, OnlyChildrenProps } from "@/common/interface";
-import { FC, useEffect, useRef, useState } from "react";
+import { FC } from "react";
 import { PresonalInfoProps, SectionProps, ViewButtonProps } from "../interface/MePage";
 import { cls } from "@/common/libs";
-import useDisplay from "@/common/hooks/useDisplay";
 import { useSetRecoilState } from "recoil";
 import { _careerIsOpen, _historyIsOpen, _selfIntroductionIsOpen } from "@/store/default";
-import { gsap } from "gsap";
-import { historys, selfIntroduceTitles } from "../constants";
 
 export const MainSection: FC<OnlyChildrenProps> = ({ children }) => {
   return <div className={cls("flex flex-col gap-[8px] md:gap-[12px]", "text-secondary")}>{children}</div>;
 };
 
 export const Section: FC<SectionProps> = ({ children, tab }) => {
-  return <section className={cls("flex flex-col md:gap-[4px]", tab ? "pl-[4px]" : "")}>{children}</section>;
+  return <section className={cls("flex flex-col  md:gap-[4px]", tab ? "pl-[4px]" : "")}>{children}</section>;
 };
 
 export const Underline: FC<NoneProps> = () => {
@@ -37,7 +34,6 @@ export const PresonalInfo: FC<PresonalInfoProps> = ({ title, data, small, smallD
 };
 
 export const ViewButton: FC<ViewButtonProps> = ({ history, selfIntroduction, career }) => {
-  const { isDesktop } = useDisplay();
   const setHistoryIsOpen = useSetRecoilState(_historyIsOpen);
   const setSelfIntroductionIsOpen = useSetRecoilState(_selfIntroductionIsOpen);
   const setCareerIsOpen = useSetRecoilState(_careerIsOpen);
@@ -49,15 +45,7 @@ export const ViewButton: FC<ViewButtonProps> = ({ history, selfIntroduction, car
   }
 
   return (
-    <button
-      onClick={() => {
-        if (!isDesktop) Open();
-      }}
-      onMouseOver={() => {
-        if (isDesktop) Open();
-      }}
-      className={cls("text-[14px] hover:text-quaternary", "transition-all")}
-    >
+    <button onClick={() => Open()} className={cls("text-[14px] hover:text-quaternary", "transition-all")}>
       [ 보기 ]
     </button>
   );
