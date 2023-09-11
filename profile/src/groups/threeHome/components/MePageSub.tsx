@@ -63,9 +63,8 @@ export const ModalLayout: FC<OnlyChildrenProps> = ({ children }) => {
         "fixed top-0 left-0 z-[101]",
         "flex flex-col justify-center items-center gap-[8px]",
         "w-screen h-screen",
-        "bg-primary before:opacity-0 after:opacity-100",
+        "bg-primary md:bg-[rgba(0,0,0,.9)]",
         "text-quaternary text-[13px]",
-        "transition-all duration-500",
         "px-[4vw] py-[2vh]"
       )}
     >
@@ -73,7 +72,8 @@ export const ModalLayout: FC<OnlyChildrenProps> = ({ children }) => {
         className={cls(
           "flex flex-col justify-center items-center",
           "border border-quaternary rounded-xl",
-          "w-full h-full"
+          "w-full h-full md:max-w-[420px] md:max-h-[700px]",
+          "bg-primary"
         )}
       >
         {children}
@@ -84,7 +84,7 @@ export const ModalLayout: FC<OnlyChildrenProps> = ({ children }) => {
           setSelfIntroductionIsOpen(false);
           setCareerIsOpen(false);
         }}
-        className={cls("w-full", "py-[1vh]", "border border-quaternary rounded-xl")}
+        className={cls("w-full  md:max-w-[420px]", "py-[1vh]", "border border-quaternary rounded-xl")}
       >
         닫기
       </button>

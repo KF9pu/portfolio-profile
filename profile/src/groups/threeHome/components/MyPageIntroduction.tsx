@@ -4,11 +4,13 @@ import { useState, type FC, useEffect } from "react";
 import { selfIntroduceTitles } from "../constants";
 import { ModalLayout } from "./MePageSub";
 import Title from "@/common/componenets/Title";
+import useDisplay from "@/common/hooks/useDisplay";
 
 export const MyPageIntroduction: FC<NoneProps> = ({}) => {
   const [sectionIdx, setSectionIdx] = useState(0);
   const [pageXStart, setPageXStart] = useState(0);
   const [translateX, setTranslate] = useState(0);
+  const { isMobile } = useDisplay();
 
   const handleDragTouchEnd = (event: React.DragEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
     const sectionIdxUp = () => {
@@ -29,7 +31,8 @@ export const MyPageIntroduction: FC<NoneProps> = ({}) => {
   };
 
   useEffect(() => {
-    setTranslate(150 - sectionIdx * 100);
+    if (isMobile) setTranslate(150 - sectionIdx * 100);
+    else setTranslate(400);
   }, [sectionIdx]);
 
   return (
@@ -41,13 +44,18 @@ export const MyPageIntroduction: FC<NoneProps> = ({}) => {
           onDragEnd={e => handleDragTouchEnd(e)}
           onTouchStart={e => setPageXStart(e.changedTouches[0].pageX)}
           onTouchEnd={e => handleDragTouchEnd(e)}
-          style={{ translate: `${translateX}vw` }}
+          style={{ translate: isMobile ? `${translateX}vw` : `${translateX * 8}px` }}
           className={cls("flex justify-start items-start", "w-[400vw]", "transition-all")}
         >
           {selfIntroduceTitles.map(({ title, content }, i) => (
             <div
               key={`selfIntroduceTitlesSection_total_${i}`}
-              className={cls("flex flex-col", "", "w-[84vw] h-[76vh]", "mx-[8vw]")}
+              className={cls(
+                "flex flex-col",
+                "",
+                "w-[84vw] h-[76vh] md:w-[400px] md:max-h-[600px]",
+                "mx-[8vw] md:mx-[10px]"
+              )}
             >
               <Title isQuaternary small>
                 {i + ". " + title}
@@ -68,10 +76,9 @@ export const MyPageIntroduction: FC<NoneProps> = ({}) => {
                 "border-quaternary rounded-full",
                 sectionIdx === i ? "text-quaternary border-2" : ""
               )}
+              onClick={() => setSectionIdx(i)}
             >
-              <p className={cls("")} onMouseOver={() => setSectionIdx(i)}>
-                {i}
-              </p>
+              <p className={cls("")}>{i}</p>
               <SpeechBubble>{title}</SpeechBubble>
             </div>
           ))}
