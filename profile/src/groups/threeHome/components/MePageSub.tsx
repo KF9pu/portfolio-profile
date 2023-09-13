@@ -72,7 +72,7 @@ export const ModalLayout: FC<OnlyChildrenProps> = ({ children }) => {
         className={cls(
           "flex flex-col justify-center items-center",
           "border border-quaternary rounded-xl",
-          "w-full h-full md:max-w-[420px] md:max-h-[700px]",
+          "w-full h-full md:max-w-[420px] md:max-h-[600px]",
           "bg-primary"
         )}
       >
@@ -84,7 +84,7 @@ export const ModalLayout: FC<OnlyChildrenProps> = ({ children }) => {
           setSelfIntroductionIsOpen(false);
           setCareerIsOpen(false);
         }}
-        className={cls("w-full  md:max-w-[420px]", "py-[1vh]", "border border-quaternary rounded-xl")}
+        className={cls("w-full md:max-w-[420px]", "py-[1vh]", "border border-quaternary rounded-xl")}
       >
         닫기
       </button>

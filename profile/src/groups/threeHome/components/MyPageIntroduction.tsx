@@ -31,31 +31,30 @@ export const MyPageIntroduction: FC<NoneProps> = ({}) => {
   };
 
   useEffect(() => {
-    if (isMobile) setTranslate(150 - sectionIdx * 100);
-    else setTranslate(400);
+    setTranslate(150 - sectionIdx * 100);
   }, [sectionIdx]);
 
   return (
     <ModalLayout>
-      <div className={cls("flex flex-col justify-center items-center gap-[8px]")}>
+      <div className={cls("flex flex-col justify-center items-center gap-[8px]", "md:overflow-y-scroll")}>
         <div
           draggable
           onDragStart={e => setPageXStart(e.pageX)}
           onDragEnd={e => handleDragTouchEnd(e)}
           onTouchStart={e => setPageXStart(e.changedTouches[0].pageX)}
           onTouchEnd={e => handleDragTouchEnd(e)}
-          style={{ translate: isMobile ? `${translateX}vw` : `${translateX * 8}px` }}
-          className={cls("flex justify-start items-start", "w-[400vw]", "transition-all")}
+          style={{ translate: isMobile ? `${translateX}vw` : `` }}
+          className={cls(
+            "flex justify-start items-start md:flex-col md:items-center md:gap-[24px]",
+            "w-[400vw] md:w-full md:h-full",
+            "md:py-[24px]",
+            "transition-all"
+          )}
         >
           {selfIntroduceTitles.map(({ title, content }, i) => (
             <div
               key={`selfIntroduceTitlesSection_total_${i}`}
-              className={cls(
-                "flex flex-col",
-                "",
-                "w-[84vw] h-[76vh] md:w-[400px] md:max-h-[600px]",
-                "mx-[8vw] md:mx-[10px]"
-              )}
+              className={cls("flex flex-col", "w-[84vw] h-[76vh] md:w-[92%] md:h-full", "mx-[8vw] md:mx-0")}
             >
               <Title isQuaternary small>
                 {i + ". " + title}
@@ -64,25 +63,27 @@ export const MyPageIntroduction: FC<NoneProps> = ({}) => {
             </div>
           ))}
         </div>
-        <ul className={cls("flex items-center justify-center gap-[8px]", "w-full", "", "text-tertiary")}>
-          {selfIntroduceTitles.map(({ title }, i) => (
-            <div
-              key={`selfIntroduceTitlesSection_title_${i}`}
-              className={cls(
-                "flex justify-center items-center",
-                "relative",
-                "group",
-                "w-[24px] h-[24px]",
-                "border-quaternary rounded-full",
-                sectionIdx === i ? "text-quaternary border-2" : ""
-              )}
-              onClick={() => setSectionIdx(i)}
-            >
-              <p className={cls("")}>{i}</p>
-              <SpeechBubble>{title}</SpeechBubble>
-            </div>
-          ))}
-        </ul>
+        {isMobile ? (
+          <ul className={cls("flex items-center justify-center gap-[8px]", "w-full", "", "text-tertiary")}>
+            {selfIntroduceTitles.map(({ title }, i) => (
+              <div
+                key={`selfIntroduceTitlesSection_title_${i}`}
+                className={cls(
+                  "flex justify-center items-center",
+                  "relative",
+                  "group",
+                  "w-[24px] h-[24px]",
+                  "border-quaternary rounded-full",
+                  sectionIdx === i ? "text-quaternary border-2" : ""
+                )}
+                onClick={() => setSectionIdx(i)}
+              >
+                <p className={cls("")}>{i}</p>
+                <SpeechBubble>{title}</SpeechBubble>
+              </div>
+            ))}
+          </ul>
+        ) : null}
       </div>
     </ModalLayout>
   );
@@ -95,13 +96,13 @@ const Contents: FC<OnlyChildrenProps> = ({ children }) => {
       className={cls(
         "flex",
         "relative",
-        "h-[72vh]",
+        "h-[72vh] md:h-full",
         "my-[12px] py-[12px] px-[4px]",
         "border rounded-lg",
         "overflow-y-scroll"
       )}
     >
-      <p className={cls("", "whitespace-pre-line")}>{children}</p>
+      <p className={cls("whitespace-pre-line")}>{children}</p>
     </div>
   );
 };
