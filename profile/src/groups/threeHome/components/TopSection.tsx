@@ -1,20 +1,22 @@
 import { cls } from "@/common/libs";
 import useTheme from "@/groups/theme/useTheme";
-import { _historyIsOpen, _sectionIsOpen, _sectionNum, _selfIntroductionIsOpen } from "@/store/default";
+import { _careerIsOpen, _historyIsOpen, _sectionIsOpen, _sectionNum, _selfIntroductionIsOpen } from "@/store/default";
 import { useEffect, type FC } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import PageByNumber from "./PageByNumber";
 import MyPageIntroduction from "./MyPageIntroduction";
 import MyPageHistory from "./MyPageHistory";
+import MyPageCarrer from "./MyPageCarrer";
 
 interface TopSectionProps {}
 
 const TopSection: FC<TopSectionProps> = ({}) => {
   const pageNum = useRecoilValue(_sectionNum);
+  const { ThemeCode } = useTheme();
   const [isOpen, SetIsOpen] = useRecoilState(_sectionIsOpen);
   const historyIsOpen = useRecoilValue(_historyIsOpen);
   const selfIntroductionIsOpen = useRecoilValue(_selfIntroductionIsOpen);
-  const { ThemeCode } = useTheme();
+  const careerIsOpen = useRecoilValue(_careerIsOpen);
 
   useEffect(() => {
     console.log("historyIsOpen : ", historyIsOpen);
@@ -47,6 +49,7 @@ const TopSection: FC<TopSectionProps> = ({}) => {
       <PageByNumber />
       {historyIsOpen ? <MyPageHistory /> : null}
       {selfIntroductionIsOpen ? <MyPageIntroduction /> : null}
+      {careerIsOpen ? <MyPageCarrer /> : null}
     </div>
   );
 };
