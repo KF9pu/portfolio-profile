@@ -3,9 +3,8 @@ import { _ThemeCode, _sectionIsOpen, _sectionNum } from "@/store/default";
 import Layout from "@/groups/layout";
 import { useEffect, useRef } from "react";
 import Main from "@/groups/home/Main";
-import BottomSection from "@/groups/home/components/BottomSection";
-import MainCanvas from "@/common/componenets/MainCanvas";
 import { useSetRecoilState } from "recoil";
+import { Canvas } from "@react-three/fiber";
 
 export default function Home() {
   const { ThemeCode } = useTheme();
@@ -24,8 +23,11 @@ export default function Home() {
 
   return (
     <Layout title="Home" hasHeader>
-      <MainCanvas canvasRef={canvasRef} />
-      <BottomSection />
+      {/* <MainCanvas canvasRef={canvasRef} />
+      <BottomSection /> */}
+      <Canvas shadows camera={{ position: [5, 0, 15], fov: 30 }}>
+        Canvas
+      </Canvas>
     </Layout>
   );
 }
