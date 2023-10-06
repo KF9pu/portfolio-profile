@@ -2,6 +2,8 @@ import Head from "next/head";
 
 import Header from "./header";
 import Footer from "./footer";
+import useTheme from "../theme/useTheme";
+import { cls } from "@/common/libs";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -10,6 +12,8 @@ interface LayoutProps {
   hasFooter?: true;
 }
 const Layout = ({ children, title, hasHeader, hasFooter }: LayoutProps) => {
+  const { ThemeCode } = useTheme();
+
   return (
     <>
       <Head>
@@ -17,7 +21,7 @@ const Layout = ({ children, title, hasHeader, hasFooter }: LayoutProps) => {
       </Head>
 
       {hasHeader ? <Header /> : null}
-      <main className="flex flex-col relative">
+      <main className={cls("flex flex-col relative", `theme-${ThemeCode}`)}>
         {children}
         {hasFooter ? <Footer /> : null}
       </main>
