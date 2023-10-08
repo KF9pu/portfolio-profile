@@ -29,6 +29,7 @@ const HtmlCard: FC<HtmlCardProps> = ({ idx }) => {
 };
 export default HtmlCard;
 
+// TODO: 각 카드에 넣을 내용 생각...
 const FirstCard: FC<NoneProps> = () => {
   return <p className={cls("text-quaternary text-[32px] font-DNFBladeBold")}>FirstCard</p>;
 };
