@@ -8,7 +8,7 @@ const TitleSection: FC<NoneProps> = ({}) => {
     <div className="sections">
       {Titles.map((title, idx) => {
         return (
-          <section className="h-screen">
+          <section className="h-screen" key={`TitleSection_title_${idx}`}>
             <h2 className={cls("pl-[12px] pt-[12px]")}>{title}</h2>
           </section>
         );
