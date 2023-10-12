@@ -10,13 +10,14 @@ const HtmlCard: FC<HtmlCardProps> = ({ idx }) => {
   return (
     <div
       className={cls(
-        "w-[580px] md:w-[72vw]",
-        "h-[1200px] md:h-screen",
+        "w-[400px] md:w-[60vw]",
+        "h-[600px] md:h-[80vh]",
         "rounded-3xl",
         "bg-primary",
         "text-primary",
         "select-none",
-        "p-[20px]"
+        "p-[20px]",
+        "border border-quaternary"
       )}
     >
       {idx === 0 ? <FirstCard /> : null}
