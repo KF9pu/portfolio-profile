@@ -5,7 +5,7 @@ import type { FC } from "react";
 const TitleSection: FC<NoneProps> = ({}) => {
   const Titles = ["01", "02", "03", "04", "05"];
   return (
-    <div className="sections">
+    <div className={cls("")}>
       {Titles.map((title, idx) => {
         return (
           <section className="h-screen" key={`TitleSection_title_${idx}`}>
