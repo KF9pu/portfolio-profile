@@ -21,6 +21,11 @@ export const _sectionNum = atom<number>({
   default: 0,
 });
 
+export const _scrollSectionNum = atom<number>({
+  key: `_scrollSectionNum${Math.random()}`,
+  default: 0,
+});
+
 export const _sectionIsOpen = atom<boolean>({
   key: `_sectionIsOpen${Math.random()}`,
   default: false,
