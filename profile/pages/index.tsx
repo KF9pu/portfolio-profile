@@ -1,11 +1,13 @@
-import { _scrollSectionNum, _sectionIsOpen, _sectionNum } from "@/store/default";
+import {
+  _scrollSectionNum,
+  _sectionIsOpen,
+  _sectionNum,
+} from "@/store/default";
 import Layout from "@/groups/layout";
 import { useEffect, useRef } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { Canvas } from "@react-three/fiber";
-import { useGLTF, useDepthBuffer, OrbitControls, PerspectiveCamera, Html, useTexture } from "@react-three/drei";
-import { cls } from "@/common/libs";
-import { RepeatWrapping } from "three";
+import { PerspectiveCamera, Html } from "@react-three/drei";
 import gsap from "gsap";
 import { meshpositions } from "@/groups/home/constants";
 import useDisplay from "@/common/hooks/useDisplay";
@@ -19,7 +21,8 @@ export default function Home() {
   const setPageNum = useSetRecoilState(_sectionNum);
   const SetIsOpen = useSetRecoilState(_sectionIsOpen);
   const { isMobile } = useDisplay();
-  const [scrollSectionNum, setScrollSectionNum] = useRecoilState(_scrollSectionNum);
+  const [scrollSectionNum, setScrollSectionNum] =
+    useRecoilState(_scrollSectionNum);
 
   let currentSection = 0;
 
@@ -51,18 +54,45 @@ export default function Home() {
 
   return (
     <Layout title="Home" hasHeader>
-      <Canvas shadows style={{ width: "100vw", height: "100vh", position: "fixed" }}>
-        <PerspectiveCamera ref={cameraRef} makeDefault position={[-5, 2, 26]} rotation={[-0.05, 0, 0]} />
+      <Canvas
+        shadows
+        style={{ width: "100vw", height: "100vh", position: "fixed" }}
+      >
+        <PerspectiveCamera
+          ref={cameraRef}
+          makeDefault
+          position={[-5, 2, 26]}
+          rotation={[-0.05, 0, 0]}
+        />
         <ambientLight intensity={0.5} color="white" />
-        <spotLight position={[0, 200, 150]} angle={0.3} penumbra={1} intensity={0.7} castShadow color={"white"} />
+        <spotLight
+          position={[0, 200, 150]}
+          angle={0.3}
+          penumbra={1}
+          intensity={0.7}
+          castShadow
+          color={"white"}
+        />
         {/* <OrbitControls /> */}
         <Floor />
         {meshpositions.map(({ position }, idx) => {
           return (
-            <mesh position={position} castShadow key={`meshpositions_mesh_${idx}`}>
-              <boxGeometry attach="geometry" args={isMobile ? [1.2, 2.5, 0.02] : [3.13, 3.85, 0.02]} />
+            <mesh
+              position={position}
+              castShadow
+              key={`meshpositions_mesh_${idx}`}
+            >
+              <boxGeometry
+                attach="geometry"
+                args={isMobile ? [1.2, 2.5, 0.02] : [3.13, 3.85, 0.02]}
+              />
               <meshStandardMaterial attach="material" transparent opacity={0} />
-              <Html occlude distanceFactor={1.5} position={[0, 0, 0.011]} transform>
+              <Html
+                occlude
+                distanceFactor={1.5}
+                position={[0, 0, 0.011]}
+                transform
+              >
                 <HtmlCard idx={idx} />
               </Html>
             </mesh>
