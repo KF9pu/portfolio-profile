@@ -1,0 +1,6 @@
+{
+	"dependencies": {
+		"hsh-utils-date": "^0.0.3",
+		"hsh-utils-string": "^1.0.1"
+	}
+}
