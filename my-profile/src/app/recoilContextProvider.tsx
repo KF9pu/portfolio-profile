@@ -1,10 +1,14 @@
-import { ThemeCodeType } from "@/groups/theme/Interfaces";
-import { atom } from "recoil";
+"use client";
 
-export const _ThemeCode = atom<ThemeCodeType>({
-  key: `ThemeCode${Math.random()}`,
-  default: "default",
-});
+import { RecoilRoot, atom } from "recoil";
+
+export default function RecoidContextProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return <RecoilRoot>{children}</RecoilRoot>;
+}
 
 export const _isDropDown = atom<boolean>({
   key: `isDropDown${Math.random()}`,

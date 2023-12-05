@@ -2,7 +2,7 @@ export enum E_criterion {
   PreferredWorld, // 선호하는 세계 ( E / I )
   PerceptualMode, // 인식형태 ( N / S )
   JudgmentCriteria, // 판단기준 ( T / F )
-  LifestylePattern, // 생황양식 ( J / p )
+  LifestylePattern, // 생활양식 ( J / p )
 }
 
 export interface I_questions {
