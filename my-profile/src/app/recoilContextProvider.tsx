@@ -10,6 +10,21 @@ export default function RecoidContextProvider({
   return <RecoilRoot>{children}</RecoilRoot>;
 }
 
+export const _red = atom<number>({
+  key: `red${Math.random()}`,
+  default: 0,
+});
+
+export const _green = atom<number>({
+  key: `green${Math.random()}`,
+  default: 0,
+});
+
+export const _blue = atom<number>({
+  key: `blue${Math.random()}`,
+  default: 0,
+});
+
 export const _isDropDown = atom<boolean>({
   key: `isDropDown${Math.random()}`,
   default: undefined,

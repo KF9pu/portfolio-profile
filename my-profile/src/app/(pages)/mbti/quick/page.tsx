@@ -3,8 +3,13 @@
 import { _blue, _green, _red } from "@/app/recoilContextProvider";
 import { cls } from "hsh-utils-string";
 import type { NextPage } from "next";
+import { useRecoilState } from "recoil";
 
 const Page: NextPage = () => {
+  const [red, serRed] = useRecoilState(_red);
+  const [green, setGreen] = useRecoilState(_green);
+  const [blue, setBlue] = useRecoilState(_blue);
+
   return (
     <main
       className={cls(
@@ -12,9 +17,11 @@ const Page: NextPage = () => {
         "w-screen h-screen",
         "transition-all"
       )}
+      style={{
+        backgroundColor: `rgba(${red},${green},${blue},.5)`,
+      }}
     >
-      {/* TODO: 검사 유형 선택 페이지 [빠른 검사 (40질문), 일반 검사 (80질문), 정밀 검사 (120개 질문)] */}
-      <div className={cls("flex gap-2 justify-center items-center")}></div>
+      Quick
     </main>
   );
 };
