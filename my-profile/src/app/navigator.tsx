@@ -2,7 +2,7 @@
 
 import { cls } from "hsh-utils-string";
 import type { FC } from "react";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState, useEffect } from "react";
 import { _isDropDown } from "./recoilContextProvider";
 import { useGesture } from "@use-gesture/react";
 import { animated, useSpring, useSprings, a } from "@react-spring/web";
@@ -18,7 +18,7 @@ const Navigator: FC<navigatorProps> = ({}) => {
   const containerRef = useRef<HTMLDivElement>(null!);
   const isVisible = useRef(false);
   const [floatingFlipped, setFloatingFlipped] = useState(false);
-  const [menuFlipped, setMenuFlipped] = useState(false);
+  const [menuFlipped, setMenuFlipped] = useState(true);
 
   const [{ x, y, opacity }, api] = useSpring(
     () => ({
@@ -167,7 +167,7 @@ const Navigator: FC<navigatorProps> = ({}) => {
         style={{
           x,
           y,
-          backgroundColor: opacity.to(o => `rgba(0,0,0,${0.2 * o})`),
+          backgroundColor: opacity.to(o => `rgba(0,0,0,${0.5 * o})`),
         }}
       >
         <animated.button
@@ -194,17 +194,17 @@ const Navigator: FC<navigatorProps> = ({}) => {
             <animated.div
               key={`avatarSprings${index}`}
               ref={ref => (avatarRefs.current[index] = ref!)}
-              className={cls("w-[56px] h-[56px]", "rounded-full")}
+              className={cls(
+                "flex justify-center items-center",
+                "w-[56px] h-[56px]",
+                "rounded-full"
+              )}
               style={{
                 ...springs,
               }}
             >
-              <MenuReverseDiv flipped={menuFlipped} index={index}>
-                {backConstant.title}
-              </MenuReverseDiv>
-              <MenuReverseDiv front flipped={menuFlipped} index={index}>
-                {frontConstant.title}
-              </MenuReverseDiv>
+              <MenuReverseDiv flipped={menuFlipped} index={index} />
+              <MenuReverseDiv front flipped={menuFlipped} index={index} />
             </animated.div>
           );
         })}
@@ -216,6 +216,7 @@ const Navigator: FC<navigatorProps> = ({}) => {
             "rounded-full",
             "w-[56px] h-[56px]",
             "bg-white",
+            "border",
             "z-[0]"
           )}
           onClick={onClick}
@@ -273,18 +274,12 @@ interface MenuReverseDivProps {
   flipped: boolean;
   front?: true;
   index: number;
-  children: React.ReactNode;
 }
 
-const MenuReverseDiv: FC<MenuReverseDivProps> = ({
-  flipped,
-  front,
-  index,
-  children,
-}) => {
+const MenuReverseDiv: FC<MenuReverseDivProps> = ({ flipped, front, index }) => {
   const router = useRouter();
 
-  const { color, routePath } = front
+  const { color, routePath, title } = front
     ? floatingButtonCostans[index].front
     : floatingButtonCostans[index].back;
 
@@ -295,15 +290,21 @@ const MenuReverseDiv: FC<MenuReverseDivProps> = ({
     config: { mass: 5, tension: 500, friction: 80 },
   });
 
+  useEffect(() => {
+    console.log("🚀 ~ file: navigator.tsx:295 ~ useEffect ~ flipped:", flipped);
+  }, [flipped]);
+
   return (
     <a.div
       className={cls(
         "absolute",
-        "flex justify-center items-center",
-        "w-[56px] h-[56px]",
+        "justify-center items-center",
+        "w-[54px] h-[54px]",
         "rounded-full",
         "will-change-transform",
-        "cursor-pointer"
+        "cursor-pointer",
+        "text-white",
+        flipped ? (front ? "flex" : "hidden") : front ? "hidden" : "flex"
       )}
       style={{
         opacity: front ? opacity : opacity.to(o => 1 - o),
@@ -311,9 +312,12 @@ const MenuReverseDiv: FC<MenuReverseDivProps> = ({
         backgroundColor,
         rotateX: front ? "180deg" : "0deg",
       }}
-      onClick={() => router.push(routePath)}
+      onClick={() => {
+        console.log("🚀 ~ file: navigator.tsx:311 ~ routePath:", routePath);
+        router.push(routePath);
+      }}
     >
-      {children}
+      {title}
     </a.div>
   );
 };
