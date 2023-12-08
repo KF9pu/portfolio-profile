@@ -7,7 +7,7 @@ import { _isDropDown } from "./recoilContextProvider";
 import { useGesture } from "@use-gesture/react";
 import { animated, useSpring, useSprings, a } from "@react-spring/web";
 import floatingButtonCostans from "@/constants/floatingButtonCostans";
-import { useRouter } from "next/navigation";
+import useLoadingRoute from "@/hooks/useLoadingRoute";
 
 interface navigatorProps {}
 
@@ -158,7 +158,8 @@ const Navigator: FC<navigatorProps> = ({}) => {
           "absolute",
           "p-[12px]",
           "rounded-[8px]",
-          "bottom-[12px] right-[12px]"
+          "bottom-[12px] right-[12px]",
+          "z-[10]"
         )}
         ref={containerRef}
         onPointerLeave={onPointerLeave}
@@ -188,8 +189,6 @@ const Navigator: FC<navigatorProps> = ({}) => {
           />
         </animated.button>
         {avatarSprings.map((springs, index) => {
-          const { front: frontConstant, back: backConstant } =
-            floatingButtonCostans[index];
           return (
             <animated.div
               key={`avatarSprings${index}`}
@@ -217,7 +216,7 @@ const Navigator: FC<navigatorProps> = ({}) => {
             "w-[56px] h-[56px]",
             "bg-white",
             "border",
-            "z-[0]"
+            "z-[10]"
           )}
           onClick={onClick}
           onPointerEnter={onPointerEnter}
@@ -277,7 +276,7 @@ interface MenuReverseDivProps {
 }
 
 const MenuReverseDiv: FC<MenuReverseDivProps> = ({ flipped, front, index }) => {
-  const router = useRouter();
+  const { loadingRouter } = useLoadingRoute();
 
   const { color, routePath, title } = front
     ? floatingButtonCostans[index].front
@@ -287,12 +286,8 @@ const MenuReverseDiv: FC<MenuReverseDivProps> = ({ flipped, front, index }) => {
     opacity: flipped ? 1 : 0,
     transform: `perspective(600px) rotateX(${flipped ? 180 : 0}deg)`,
     backgroundColor: color,
-    config: { mass: 5, tension: 500, friction: 80 },
+    config: { mass: 5, tension: 1000, friction: 80 },
   });
-
-  useEffect(() => {
-    console.log("🚀 ~ file: navigator.tsx:295 ~ useEffect ~ flipped:", flipped);
-  }, [flipped]);
 
   return (
     <a.div
@@ -312,10 +307,7 @@ const MenuReverseDiv: FC<MenuReverseDivProps> = ({ flipped, front, index }) => {
         backgroundColor,
         rotateX: front ? "180deg" : "0deg",
       }}
-      onClick={() => {
-        console.log("🚀 ~ file: navigator.tsx:311 ~ routePath:", routePath);
-        router.push(routePath);
-      }}
+      onClick={() => loadingRouter(routePath)}
     >
       {title}
     </a.div>

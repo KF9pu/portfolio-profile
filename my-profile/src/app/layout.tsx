@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import RecoidContextProvider from "./recoilContextProvider";
 import Navigator from "./navigator";
+import Loading from "./loading";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,6 +19,7 @@ export default function RootLayout({
       <RecoidContextProvider>
         <body className="flex">
           <Navigator />
+          <Loading />
           {children}
         </body>
       </RecoidContextProvider>

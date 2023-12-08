@@ -1,5 +1,6 @@
 "use client";
 
+import { E_testTypes } from "@/enums/testTypes";
 import { RecoilRoot, atom } from "recoil";
 
 export default function RecoidContextProvider({
@@ -63,4 +64,14 @@ export const _selfIntroductionIsOpen = atom<boolean>({
 export const _careerIsOpen = atom<boolean>({
   key: `_careerIsOpen${Math.random()}`,
   default: false,
+});
+
+export const _isLoading = atom<boolean>({
+  key: `_isLoading${Math.random()}`,
+  default: false,
+});
+
+export const _selectedTestType = atom<E_testTypes>({
+  key: "_selectedTestType",
+  default: E_testTypes.none,
 });

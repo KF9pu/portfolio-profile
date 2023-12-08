@@ -3,11 +3,13 @@
 import { cls } from "hsh-utils-string";
 import { useRecoilState } from "recoil";
 import { _blue, _green, _red } from "./recoilContextProvider";
+import useEndLoading from "@/hooks/useEndLoading";
 
 export default function Home() {
   const [red, serRed] = useRecoilState(_red);
   const [green, setGreen] = useRecoilState(_green);
   const [blue, setBlue] = useRecoilState(_blue);
+  useEndLoading();
 
   return (
     <main
