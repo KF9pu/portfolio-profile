@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  font-family: "DNFBit";
+}
+
+@font-face {
+  font-family: "DNFBit";
+  src: url(/fonts/DNFBitBitv2.ttf);
+}
+@font-face {
+  font-family: "DNFBladeBold";
+  src: url(/fonts/DNFForgedBlade-Bold.ttf);
+}
+@font-face {
+  font-family: "DNFBladeLight";
+  src: url(/fonts/DNFForgedBlade-Light.ttf);
+}
+@font-face {
+  font-family: "DNFBladeMedium";
+  src: url(/fonts/DNFForgedBlade-Medium.ttf);
+}

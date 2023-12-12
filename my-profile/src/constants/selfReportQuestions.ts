@@ -14,7 +14,7 @@ export interface I_questions {
   criterion: E_criterion;
 }
 
-export interface I_IndexByQuestions extends I_questions {
+export interface I_QuestionAnswers extends I_questions {
   index: number;
 }
 

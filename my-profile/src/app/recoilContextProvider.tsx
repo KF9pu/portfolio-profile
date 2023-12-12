@@ -1,5 +1,9 @@
 "use client";
 
+import {
+  I_QuestionAnswers,
+  I_questions,
+} from "@/constants/selfReportQuestions";
 import { E_testTypes } from "@/enums/testTypes";
 import { RecoilRoot, atom } from "recoil";
 
@@ -74,4 +78,18 @@ export const _isLoading = atom<boolean>({
 export const _selectedTestType = atom<E_testTypes>({
   key: "_selectedTestType",
   default: E_testTypes.none,
+});
+
+export const _questions = atom<I_questions[]>({
+  key: "_questions",
+  default: [],
+});
+
+export const _currentQuestion = atom<number | undefined>({
+  key: "_currentQuestion",
+  default: undefined,
+});
+export const _questionAnswers = atom<I_QuestionAnswers[]>({
+  key: "_questionAnswers",
+  default: [],
 });
