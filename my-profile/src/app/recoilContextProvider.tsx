@@ -13,17 +13,17 @@ export default function RecoidContextProvider({
 
 export const _red = atom<number>({
   key: `red${Math.random()}`,
-  default: 0,
+  default: 120,
 });
 
 export const _green = atom<number>({
   key: `green${Math.random()}`,
-  default: 0,
+  default: 120,
 });
 
 export const _blue = atom<number>({
   key: `blue${Math.random()}`,
-  default: 0,
+  default: 120,
 });
 
 export const _isDropDown = atom<boolean>({

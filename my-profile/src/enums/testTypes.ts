@@ -1,8 +1,8 @@
 export enum E_testTypes {
-  none,
-  quick,
-  normal,
-  thorough,
+  none = "none",
+  quick = "quick",
+  normal = "normal",
+  thorough = "thorough",
 }
 
 export const isValidTestType = (

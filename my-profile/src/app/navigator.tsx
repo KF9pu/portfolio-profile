@@ -156,9 +156,9 @@ const Navigator: FC<navigatorProps> = ({}) => {
         className={cls(
           "flex flex-col items-center gap-[8px]",
           "absolute",
-          "p-[12px]",
+          "p-[4px]",
           "rounded-[8px]",
-          "bottom-[12px] right-[12px]",
+          "bottom-[4px] right-[4px]",
           "z-[10]"
         )}
         ref={containerRef}
@@ -174,7 +174,7 @@ const Navigator: FC<navigatorProps> = ({}) => {
         <animated.button
           className={cls(
             "w-full h-[56px]",
-            "p-[12px]",
+            "p-[4px]",
             "bg-white",
             "rounded-full"
           )}
