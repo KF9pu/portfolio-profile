@@ -1,10 +1,9 @@
 "use client";
 
-import {
-  I_QuestionAnswers,
-  I_questions,
-} from "@/constants/selfReportQuestions";
 import { E_testTypes } from "@/enums/testTypes";
+import I_questionAnswer from "@/interface/I_questionAnswer";
+import I_questionWithIndex from "@/interface/I_questionWithIndex";
+import I_testResult from "@/interface/I_testResult";
 import { RecoilRoot, atom } from "recoil";
 
 export default function RecoidContextProvider({
@@ -80,7 +79,7 @@ export const _selectedTestType = atom<E_testTypes>({
   default: E_testTypes.none,
 });
 
-export const _questions = atom<I_questions[]>({
+export const _questions = atom<I_questionWithIndex[]>({
   key: "_questions",
   default: [],
 });
@@ -89,7 +88,13 @@ export const _currentQuestion = atom<number | undefined>({
   key: "_currentQuestion",
   default: undefined,
 });
-export const _questionAnswers = atom<I_QuestionAnswers[]>({
+
+export const _questionAnswers = atom<I_questionAnswer[]>({
   key: "_questionAnswers",
   default: [],
+});
+
+export const _testResult = atom<I_testResult>({
+  key: "_testResult",
+  default: {},
 });

@@ -1,24 +1,7 @@
-export enum E_criterion {
-  Extraversion = "Extraversion", // 선호하는 세계 ( E )
-  Introversion = "Introversion", // 선호하는 세계 ( I )
-  Intuition = "Intuition", // 인식형태 ( N )
-  Sensing = "Sensing", // 인식형태 ( S )
-  Thinking = "Thinking", // 판단기준 ( T )
-  Feeling = "Feeling", // 판단기준 ( F )
-  Perceiving = "Perceiving", // 생활양식 ( p )
-  Judging = "Judging", // 생활양식 ( J )
-}
+import E_criterion from "@/enums/E_criterion";
+import I_question from "@/interface/I_question";
 
-export interface I_questions {
-  question: string;
-  criterion: E_criterion;
-}
-
-export interface I_QuestionAnswers extends I_questions {
-  index: number;
-}
-
-export const questions: I_questions[] = [
+export const questions: I_question[] = [
   // Extraversion -START-
   {
     question: "나는 대부분의 사람들과 만나는 것을 즐깁니다.",

@@ -15,7 +15,7 @@ import useMBTI from "@/hooks/useMBTI";
 import AnswerStartCard from "./AnswerStartCard";
 import AnswerCard from "./AnswerCard";
 import QuestionBox from "./QuestionBox";
-import TextEndButton from "./TextEndButton";
+import TestEndButton from "./TestEndButton";
 
 interface AnswerBoxBoxProps {}
 
@@ -90,13 +90,13 @@ const AnswerBox: FC<AnswerBoxBoxProps> = ({}) => {
               <AnswerCard
                 key={`questions${index}`}
                 index={index}
-                question={question}
+                questionInfo={question}
               />
             );
           })}
           <QuestionBox />
         </div>
-        <TextEndButton />
+        <TestEndButton />
       </div>
     </animated.div>
   );

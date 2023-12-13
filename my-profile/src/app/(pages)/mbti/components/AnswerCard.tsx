@@ -1,24 +1,23 @@
 import type { FC, HTMLProps } from "react";
 import AnswerRadio from "./AnswerRadio";
-import { I_questions } from "@/constants/selfReportQuestions";
+import {
+  I_question,
+  I_questionWithIndex,
+} from "@/constants/selfReportQuestions";
 import { cls } from "hsh-utils-string";
 import { useRecoilState } from "recoil";
 import { _currentQuestion } from "@/app/recoilContextProvider";
-import QuestionBox from "./QuestionBox";
 import AnswerRadioBox from "./AnswerRadioBox";
 
 interface AnswerCardProps extends HTMLProps<HTMLDivElement> {
   index: number;
-  question: I_questions;
+  questionInfo: I_questionWithIndex;
 }
 
-const AnswerCard: FC<AnswerCardProps> = ({
-  index,
-  question: { question },
-  ...props
-}) => {
+const AnswerCard: FC<AnswerCardProps> = ({ index, questionInfo, ...props }) => {
   const [currentQuestion, setCurrentQuestion] =
     useRecoilState(_currentQuestion);
+
   return (
     <div
       className={cls(
@@ -45,7 +44,7 @@ const AnswerCard: FC<AnswerCardProps> = ({
         )}
       >
         <p>Q.</p>
-        <p className={cls("break-keep text-center")}>{question}</p>
+        <p className={cls("break-keep text-center")}>{questionInfo.question}</p>
       </div>
       <AnswerRadioBox>
         {Array.from({ length: 5 }).map((_, idx) => (
@@ -53,6 +52,7 @@ const AnswerCard: FC<AnswerCardProps> = ({
             key={`AnswerRadio${idx}${index}`}
             typeIndex={idx}
             keyIndex={index}
+            questionInfo={questionInfo}
           />
         ))}
       </AnswerRadioBox>

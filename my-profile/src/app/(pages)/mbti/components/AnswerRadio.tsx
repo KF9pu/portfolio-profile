@@ -1,32 +1,41 @@
+import { _questionAnswers } from "@/app/recoilContextProvider";
+import indexByAnswerInfo from "@/constants/indexByAnswerInfo";
+import { I_questionWithIndex } from "@/constants/selfReportQuestions";
 import { cls } from "hsh-utils-string";
 import { FC } from "react";
+import { useSetRecoilState } from "recoil";
 
 interface AnwserRadioProps {
   typeIndex: number;
   keyIndex: number;
+  questionInfo: I_questionWithIndex;
 }
 
-const AnswerRadio: FC<AnwserRadioProps> = ({ typeIndex, keyIndex }) => {
-  const indexByInfo = [
-    { id: "veryAgree", text: "매우 그렇다", value: 3 },
-    { id: "agree", text: "그렇다", value: 2 },
-    { id: "neutral", text: "보통이다", value: 1 },
-    { id: "disagree", text: "아니다", value: -1 },
-    { id: "veryDisagree", text: "매우 아니다", value: -2 },
-  ];
+const AnswerRadio: FC<AnwserRadioProps> = ({
+  typeIndex,
+  keyIndex,
+  questionInfo,
+}) => {
+  const setQuestionAnswers = useSetRecoilState(_questionAnswers);
 
   return (
     <label
       className={cls("flex gap-[8px]")}
-      htmlFor={`${indexByInfo[typeIndex].id}${keyIndex}`}
+      htmlFor={`${indexByAnswerInfo[typeIndex].id}${keyIndex}`}
     >
       <input
-        id={`${indexByInfo[typeIndex].id}${keyIndex}`}
+        id={`${indexByAnswerInfo[typeIndex].id}${keyIndex}`}
         type="radio"
         name="answer"
-        value={indexByInfo[typeIndex].value}
+        value={indexByAnswerInfo[typeIndex].value}
+        onChange={() =>
+          setQuestionAnswers(prev => [
+            { answer: indexByAnswerInfo[typeIndex].value, ...questionInfo },
+            ...prev,
+          ])
+        }
       />
-      <span>{indexByInfo[typeIndex].text}</span>
+      <span>{indexByAnswerInfo[typeIndex].text}</span>
     </label>
   );
 };
