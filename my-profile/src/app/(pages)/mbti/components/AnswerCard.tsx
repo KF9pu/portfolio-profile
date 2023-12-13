@@ -18,9 +18,8 @@ const AnswerCard: FC<AnswerCardProps> = ({ index, questionInfo, ...props }) => {
   return (
     <div
       className={cls(
-        "flex flex-col gap-[12px]",
+        "flex flex-col gap-[24px]",
         "absolute",
-        "p-[12px]",
         currentQuestion === index
           ? "opacity-100 translate-x-0"
           : currentQuestion === undefined
@@ -40,7 +39,7 @@ const AnswerCard: FC<AnswerCardProps> = ({ index, questionInfo, ...props }) => {
           "py-[12px] px-[8px]"
         )}
       >
-        <p>Q.</p>
+        <p>Q.{questionInfo.index}</p>
         <p className={cls("break-keep text-center")}>{questionInfo.question}</p>
       </div>
       <AnswerRadioBox>

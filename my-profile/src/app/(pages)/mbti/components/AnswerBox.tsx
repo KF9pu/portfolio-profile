@@ -67,21 +67,19 @@ const AnswerBox: FC<AnswerBoxBoxProps> = ({}) => {
     >
       <div
         className={cls(
-          "flex flex-col justify-center items-center gap-[28px]",
+          "flex flex-col justify-center items-start gap-[12px]",
           "w-full h-full",
           "min-h-[653px]",
-          "px-[12px] py-[28px]"
+          "p-[12px]"
         )}
       >
         <div
           className={cls(
-            "flex justify-center items-center",
+            "flex justify-center items-start",
             "relative",
             "w-full h-full min-h-[440px]",
             "rounded-[12px]",
-            "overflow-hidden",
-            "text-black",
-            "shadow-bold"
+            "text-black"
           )}
         >
           <AnswerStartCard />

@@ -21,7 +21,6 @@ const AnswerStartCard: FC<AnswerStartCardProps> = ({}) => {
     <div
       className={cls(
         "flex flex-col justify-center items-center gap-[12px]",
-        "absolute",
         "w-full h-full",
         "transition-all duration-500 ease-in-out",
         currentQuestion === undefined

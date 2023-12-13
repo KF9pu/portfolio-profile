@@ -7,10 +7,11 @@ const AnswerRadioBox: FC<AnswerRadioBoxProps> = ({ children }) => {
   return (
     <div
       className={cls(
-        "flex flex-col justify-around items-stacrt gap-[8px]",
+        "flex flex-col justify-around items-stacrt gap-[12px]",
         "w-full",
-        "py-[12px] px-[20px]",
-        "rounded-[12px]"
+        "p-[12px]",
+        "rounded-[12px]",
+        "shadow-bold"
       )}
     >
       {children}
