@@ -1,13 +1,10 @@
 import type { FC, HTMLProps } from "react";
 import AnswerRadio from "./AnswerRadio";
-import {
-  I_question,
-  I_questionWithIndex,
-} from "@/constants/selfReportQuestions";
 import { cls } from "hsh-utils-string";
 import { useRecoilState } from "recoil";
 import { _currentQuestion } from "@/app/recoilContextProvider";
 import AnswerRadioBox from "./AnswerRadioBox";
+import I_questionWithIndex from "@/interface/I_questionWithIndex";
 
 interface AnswerCardProps extends HTMLProps<HTMLDivElement> {
   index: number;

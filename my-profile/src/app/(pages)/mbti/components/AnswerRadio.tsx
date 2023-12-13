@@ -1,6 +1,6 @@
 import { _questionAnswers } from "@/app/recoilContextProvider";
 import indexByAnswerInfo from "@/constants/indexByAnswerInfo";
-import { I_questionWithIndex } from "@/constants/selfReportQuestions";
+import I_questionWithIndex from "@/interface/I_questionWithIndex";
 import { cls } from "hsh-utils-string";
 import { FC } from "react";
 import { useSetRecoilState } from "recoil";
