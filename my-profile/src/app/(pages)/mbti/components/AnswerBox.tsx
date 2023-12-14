@@ -2,7 +2,7 @@ import { useLayoutEffect, type FC } from "react";
 import { animated, useSpring, useSprings, a } from "@react-spring/web";
 import { cls } from "hsh-utils-string";
 import { useSearchParams } from "next/navigation";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import {
   _blue,
   _currentQuestion,
@@ -12,8 +12,6 @@ import {
 } from "@/app/recoilContextProvider";
 import { E_testTypes, isValidTestType } from "@/enums/testTypes";
 import useMBTI from "@/hooks/useMBTI";
-import AnswerStartCard from "./AnswerStartCard";
-import AnswerCard from "./AnswerCard";
 import QuestionBox from "./QuestionBox";
 import AnswerSlider from "./AnswerSlider";
 
@@ -21,10 +19,9 @@ interface AnswerBoxBoxProps {}
 
 const AnswerBox: FC<AnswerBoxBoxProps> = ({}) => {
   const searchParams = useSearchParams()!;
-
-  const [red, serRed] = useRecoilState(_red);
-  const [green, setGreen] = useRecoilState(_green);
-  const [blue, setBlue] = useRecoilState(_blue);
+  const red = useRecoilValue(_red);
+  const green = useRecoilValue(_green);
+  const blue = useRecoilValue(_blue);
   const setQuestions = useSetRecoilState(_questions);
   const setCurrentQuestion = useSetRecoilState(_currentQuestion);
   const { getQuestions } = useMBTI();
@@ -54,30 +51,39 @@ const AnswerBox: FC<AnswerBoxBoxProps> = ({}) => {
   }, [searchParams]);
 
   return (
-    <animated.div
+    <div
       className={cls(
         "fixed",
         "w-screen h-screen",
-        "bg-red-50",
         "z-[11]",
         "overflow-y-scroll",
-        "transition-all duration-500 ease-in-out",
-        searchParams.get("type") ? "" : "translate-x-[100vw]"
+        "bg-[url('/images/mbti-background-m.jpg')] bg-cover bg-center bg-no-repeat"
       )}
-      style={{ ...props, backgroundColor: `rgba(${red},${green},${blue},1)` }}
     >
-      <div
+      <animated.div
         className={cls(
-          "flex flex-col justify-center items-start",
           "w-full h-full",
-          "p-[12px]",
-          "overflow-hidden"
+          "transition-all duration-500 ease-in-out",
+          searchParams.get("type") ? "" : "translate-x-[100vw]"
         )}
+        style={{
+          ...props,
+          backgroundColor: `rgba(${red},${green},${blue},.8)`,
+        }}
       >
-        <AnswerSlider />
-        <QuestionBox />
-      </div>
-    </animated.div>
+        <div
+          className={cls(
+            "flex flex-col justify-center items-start",
+            "w-full h-full",
+            "p-[12px]",
+            "overflow-hidden"
+          )}
+        >
+          <AnswerSlider />
+          <QuestionBox />
+        </div>
+      </animated.div>
+    </div>
   );
 };
 export default AnswerBox;

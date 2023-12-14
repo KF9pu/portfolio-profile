@@ -26,7 +26,7 @@ const QuestionNav: FC<QuestionNavProps> = ({}) => {
         "w-full",
         "transition-all duration-500 ease-in-out",
         "p-[12px]",
-        currentQuestion === undefined ? "opacity-0" : "opacity-100"
+        currentQuestion === undefined ? "opacity-0" : ""
       )}
     >
       <div className={cls("flex justify-center items-center gap-[8px]")}>

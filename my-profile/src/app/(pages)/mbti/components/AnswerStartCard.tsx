@@ -35,7 +35,8 @@ const AnswerStartCard: FC<AnswerStartCardProps> = ({}) => {
           "flex flex-col justify-center items-center gap-[16px]",
           "px-[24px] py-[20px]",
           "rounded-[12px]",
-          "shadow-bold"
+          "shadow-bold",
+          currentQuestion === undefined ? "bg-[rgba(120,120,120,.5)]" : ""
         )}
         onClick={() => setCurrentQuestion(0)}
       >

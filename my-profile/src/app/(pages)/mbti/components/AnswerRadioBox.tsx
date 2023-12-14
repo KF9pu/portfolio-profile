@@ -12,7 +12,7 @@ const AnswerRadioBox: FC<AnswerRadioBoxProps> = ({ children }) => {
         "p-[12px]",
         "rounded-[12px]",
         "shadow-bold",
-        "bg-[rgba(120,120,120,1)]"
+        "bg-[rgba(120,120,120,.85)]"
       )}
     >
       {children}

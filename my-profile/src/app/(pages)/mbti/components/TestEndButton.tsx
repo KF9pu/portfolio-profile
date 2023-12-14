@@ -1,4 +1,7 @@
-import { _questionAnswers } from "@/app/recoilContextProvider";
+import {
+  _currentQuestion,
+  _questionAnswers,
+} from "@/app/recoilContextProvider";
 import { questions } from "@/constants/selfReportQuestions";
 import { cls } from "hsh-utils-string";
 import { useRouter } from "next/navigation";
@@ -9,6 +12,7 @@ interface TestEndButtonProps {}
 
 const TestEndButton: FC<TestEndButtonProps> = ({}) => {
   const questionAnswers = useRecoilValue(_questionAnswers);
+  const currentQuestion = useRecoilValue(_currentQuestion);
   const router = useRouter();
   return (
     <button
@@ -17,7 +21,11 @@ const TestEndButton: FC<TestEndButtonProps> = ({}) => {
         "p-[12px]",
         "rounded-[12px]",
         "shadow-bold",
-        "text-[16px]"
+        "text-[16px]",
+        "transition-all",
+        currentQuestion === undefined
+          ? "bg-[rgba(120,120,120,.85)]"
+          : "bg-opacity-100"
       )}
       onClick={() => {
         const indexs = questionAnswers.map(({ index }) => index);

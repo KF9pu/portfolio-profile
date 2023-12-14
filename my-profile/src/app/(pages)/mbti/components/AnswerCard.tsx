@@ -38,7 +38,7 @@ const AnswerCard: FC<AnswerCardProps> = ({ index, questionInfo, ...props }) => {
           "shadow-bold",
           "rounded-[12px]",
           "py-[12px] px-[8px]",
-          "bg-[rgba(120,120,120,1)]"
+          "bg-[rgba(120,120,120,.85)]"
         )}
       >
         <p>Q.{questionInfo.index}</p>

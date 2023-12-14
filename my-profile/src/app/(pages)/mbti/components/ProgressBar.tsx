@@ -1,4 +1,8 @@
-import { _questionAnswers, _questions } from "@/app/recoilContextProvider";
+import {
+  _currentQuestion,
+  _questionAnswers,
+  _questions,
+} from "@/app/recoilContextProvider";
 import { cls } from "hsh-utils-string";
 import type { FC } from "react";
 import { useRecoilValue } from "recoil";
@@ -8,8 +12,16 @@ interface ProgressBarProps {}
 const ProgressBar: FC<ProgressBarProps> = ({}) => {
   const questions = useRecoilValue(_questions);
   const questionAnswers = useRecoilValue(_questionAnswers);
+  const currentQuestion = useRecoilValue(_currentQuestion);
   return (
-    <div className={cls("flex", "w-[96%] h-[8px]", "rounded-full")}>
+    <div
+      className={cls(
+        "flex",
+        "w-[96%] h-[8px]",
+        "rounded-full",
+        currentQuestion === undefined ? "opacity-0" : ""
+      )}
+    >
       {questions.map(({}, idx) => {
         return (
           <div
