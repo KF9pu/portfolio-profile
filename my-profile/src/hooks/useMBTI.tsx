@@ -1,3 +1,4 @@
+import { _blue, _green, _red } from "@/app/recoilContextProvider";
 import { questions } from "@/constants/selfReportQuestions";
 import E_criterion from "@/enums/E_criterion";
 import { E_testTypes } from "@/enums/testTypes";
@@ -10,42 +11,38 @@ const useMBTI = () => {
 
     if (numberOfQuestions === 0) return [];
 
-    const extraversionQuestions: I_questionWithIndex[] = questionsByCriterion(
-      numberOfQuestions,
-      E_criterion.Extraversion
-    );
+    const extraversionQuestions: I_questionWithIndex[] =
+      getQuestionsByCriterion(numberOfQuestions, E_criterion.Extraversion);
 
-    const FeelingQuestions: I_questionWithIndex[] = questionsByCriterion(
+    const FeelingQuestions: I_questionWithIndex[] = getQuestionsByCriterion(
       numberOfQuestions,
       E_criterion.Feeling
     );
 
-    const IntroversionQuestions: I_questionWithIndex[] = questionsByCriterion(
-      numberOfQuestions,
-      E_criterion.Introversion
-    );
+    const IntroversionQuestions: I_questionWithIndex[] =
+      getQuestionsByCriterion(numberOfQuestions, E_criterion.Introversion);
 
-    const IntuitionQuestions: I_questionWithIndex[] = questionsByCriterion(
+    const IntuitionQuestions: I_questionWithIndex[] = getQuestionsByCriterion(
       numberOfQuestions,
       E_criterion.Intuition
     );
 
-    const JudgingQuestions: I_questionWithIndex[] = questionsByCriterion(
+    const JudgingQuestions: I_questionWithIndex[] = getQuestionsByCriterion(
       numberOfQuestions,
       E_criterion.Judging
     );
 
-    const PerceivingQuestions: I_questionWithIndex[] = questionsByCriterion(
+    const PerceivingQuestions: I_questionWithIndex[] = getQuestionsByCriterion(
       numberOfQuestions,
       E_criterion.Perceiving
     );
 
-    const SensingQuestions: I_questionWithIndex[] = questionsByCriterion(
+    const SensingQuestions: I_questionWithIndex[] = getQuestionsByCriterion(
       numberOfQuestions,
       E_criterion.Sensing
     );
 
-    const ThinkingQuestions: I_questionWithIndex[] = questionsByCriterion(
+    const ThinkingQuestions: I_questionWithIndex[] = getQuestionsByCriterion(
       numberOfQuestions,
       E_criterion.Thinking
     );
@@ -81,7 +78,7 @@ function getNumberOfQuestionsByType(testType: E_testTypes): number {
   }
 }
 
-const questionsByCriterion = (
+const getQuestionsByCriterion = (
   numberOfQuestions: number,
   criterion: E_criterion
 ): I_questionWithIndex[] => {

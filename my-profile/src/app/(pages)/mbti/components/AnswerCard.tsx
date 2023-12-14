@@ -40,7 +40,9 @@ const AnswerCard: FC<AnswerCardProps> = ({ index, questionInfo, ...props }) => {
         )}
       >
         <p>Q.{questionInfo.index}</p>
-        <p className={cls("break-keep text-center")}>{questionInfo.question}</p>
+        <p className={cls("break-keep text-center", "text-[20px]")}>
+          {questionInfo.question}
+        </p>
       </div>
       <AnswerRadioBox>
         {Array.from({ length: 5 }).map((_, idx) => (

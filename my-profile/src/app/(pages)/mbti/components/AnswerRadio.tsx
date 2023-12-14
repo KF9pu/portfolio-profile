@@ -1,11 +1,15 @@
 import {
+  _blue,
   _currentQuestion,
+  _green,
   _questionAnswers,
   _questions,
+  _red,
 } from "@/app/recoilContextProvider";
 import indexByAnswerInfo from "@/constants/indexByAnswerInfo";
-import I_questionWithIndex from "@/interface/I_questionWithIndex";
-import { limitAddNum } from "hsh-utils-math";
+import personalityColorDatas from "@/constants/personalityColorDatas";
+import E_criterionOpposite from "@/enums/E_criterionOpposite";
+import useChangeBackgroundColor from "@/hooks/useChangeBackgroundColor";
 import { cls } from "hsh-utils-string";
 import { FC, useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
@@ -18,10 +22,12 @@ interface AnwserRadioProps {
 const AnswerRadio: FC<AnwserRadioProps> = ({ typeIndex, keyIndex }) => {
   const [questionAnswers, setQuestionAnswers] =
     useRecoilState(_questionAnswers);
-  const [currentQuestion, setCurrentQuestion] =
-    useRecoilState(_currentQuestion);
+  const setCurrentQuestion = useSetRecoilState(_currentQuestion);
   const questions = useRecoilValue(_questions);
   const [isChekced, setIsChekced] = useState(false);
+  const { minusBackgroundColor, plusBackgroundColor } =
+    useChangeBackgroundColor();
+  const { answer, id, text } = indexByAnswerInfo[typeIndex];
 
   useEffect(() => {
     setIsChekced(() => {
@@ -31,7 +37,7 @@ const AnswerRadio: FC<AnwserRadioProps> = ({ typeIndex, keyIndex }) => {
 
       return questionAnswer.length === 0
         ? false
-        : questionAnswer[0].answer === indexByAnswerInfo[typeIndex].value;
+        : questionAnswer[0].answer === answer;
     });
   }, [questionAnswers]);
 
@@ -46,40 +52,60 @@ const AnswerRadio: FC<AnwserRadioProps> = ({ typeIndex, keyIndex }) => {
         "rounded-full"
       )}
       onClick={() => {
-        setQuestionAnswers(prev => {
-          if (prev.some(({ index }) => questions[keyIndex].index === index)) {
-            const nonDuplicateItems = prev.filter(
-              ({ index }) => questions[keyIndex].index !== index
-            );
+        const currentQuestionInfo = questions[keyIndex]; // 현재 질문 데이터
+        const { index: idx } = currentQuestionInfo;
 
-            const duplicateItems = prev.find(
-              ({ index }) => questions[keyIndex].index === index
-            );
+        const newAnswer = {
+          answer,
+          ...currentQuestionInfo,
+        };
 
-            if (duplicateItems?.answer === indexByAnswerInfo[typeIndex].value) {
-              // 같은 답을 누를 경우 취소
-              return [...nonDuplicateItems];
-            } else {
-              // 수정
-              return [
-                {
-                  answer: indexByAnswerInfo[typeIndex].value,
-                  ...questions[keyIndex],
-                },
-                ...nonDuplicateItems,
-              ];
-            }
-          } else {
-            // 새로 질문에 답한 경우
-            return [
-              {
-                answer: indexByAnswerInfo[typeIndex].value,
-                ...questions[keyIndex],
-              },
-              ...prev,
-            ];
-          }
-        });
+        const hasAnsweredPreviously = questionAnswers.some(
+          ({ index }) => idx === index
+        );
+
+        if (hasAnsweredPreviously) {
+          const duplicateItems = questionAnswers.find(
+            ({ index }) => idx === index
+          );
+          const nonDuplicateItems = questionAnswers.filter(
+            ({ index }) => idx !== index
+          );
+          const {
+            red: appliedRed,
+            green: appliedGreen,
+            blue: appliedBlue,
+          } = personalityColorDatas[duplicateItems!.criterion];
+
+          const {
+            red: oppositeRed,
+            green: oppositeGreen,
+            blue: oppositeBlue,
+          } = personalityColorDatas[
+            E_criterionOpposite[duplicateItems!.criterion]
+          ];
+
+          const hasSameResponse = duplicateItems?.answer === answer;
+
+          setQuestionAnswers(
+            hasSameResponse
+              ? [...nonDuplicateItems]
+              : [newAnswer, ...nonDuplicateItems]
+          );
+
+          minusBackgroundColor(appliedRed, appliedGreen, appliedBlue);
+          if (!hasSameResponse)
+            plusBackgroundColor(oppositeRed, oppositeGreen, oppositeBlue);
+        } else {
+          const {
+            red: appliedRed,
+            green: appliedGreen,
+            blue: appliedBlue,
+          } = personalityColorDatas[questions[keyIndex].criterion];
+          // 답변에 대한 컬러값 추가
+          plusBackgroundColor(appliedRed, appliedGreen, appliedBlue);
+          setQuestionAnswers(prev => [newAnswer, ...prev]);
+        }
 
         if (keyIndex === questions.length - 1) return; // 마지막 문제인 경우 종료
 
@@ -91,11 +117,12 @@ const AnswerRadio: FC<AnwserRadioProps> = ({ typeIndex, keyIndex }) => {
         )
           return;
 
+        // 다음 질문으로 이동
         setCurrentQuestion(prev => prev! + 1);
       }}
     >
       <div
-        id={`${indexByAnswerInfo[typeIndex].id}${keyIndex}`}
+        id={`${id}${keyIndex}`}
         className={cls(
           "flex justify-center items-center",
           "w-[16px] h-[16px]",
@@ -113,7 +140,7 @@ const AnswerRadio: FC<AnwserRadioProps> = ({ typeIndex, keyIndex }) => {
           )}
         />
       </div>
-      <div className="">{indexByAnswerInfo[typeIndex].text}</div>
+      <div className="">{text}</div>
     </button>
   );
 };
