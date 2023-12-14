@@ -12,10 +12,14 @@ const TestEndButton: FC<TestEndButtonProps> = ({}) => {
   const router = useRouter();
   return (
     <button
-      className={cls("w-full", "p-[12px]", "rounded-[12px]", "shadow-bold")}
+      className={cls(
+        "w-full",
+        "p-[12px]",
+        "rounded-[12px]",
+        "shadow-bold",
+        "text-[16px]"
+      )}
       onClick={() => {
-        console.log("ss : ", questionAnswers);
-
         const indexs = questionAnswers.map(({ index }) => index);
 
         const questionByIndex = indexs.map(idx => questions[idx]);

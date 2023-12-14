@@ -14,8 +14,8 @@ import { E_testTypes, isValidTestType } from "@/enums/testTypes";
 import useMBTI from "@/hooks/useMBTI";
 import AnswerStartCard from "./AnswerStartCard";
 import AnswerCard from "./AnswerCard";
-import QuestionNavBox from "./QuestionNavBox";
-import TestEndButton from "./TestEndButton";
+import QuestionBox from "./QuestionBox";
+import AnswerSlider from "./AnswerSlider";
 
 interface AnswerBoxBoxProps {}
 
@@ -25,7 +25,7 @@ const AnswerBox: FC<AnswerBoxBoxProps> = ({}) => {
   const [red, serRed] = useRecoilState(_red);
   const [green, setGreen] = useRecoilState(_green);
   const [blue, setBlue] = useRecoilState(_blue);
-  const [questions, setQuestions] = useRecoilState(_questions);
+  const setQuestions = useSetRecoilState(_questions);
   const setCurrentQuestion = useSetRecoilState(_currentQuestion);
   const { getQuestions } = useMBTI();
 
@@ -61,41 +61,21 @@ const AnswerBox: FC<AnswerBoxBoxProps> = ({}) => {
         "bg-red-50",
         "z-[11]",
         "overflow-y-scroll",
+        "transition-all duration-500 ease-in-out",
         searchParams.get("type") ? "" : "translate-x-[100vw]"
       )}
       style={{ ...props, backgroundColor: `rgba(${red},${green},${blue},1)` }}
     >
       <div
         className={cls(
-          "flex flex-col justify-center items-start gap-[12px]",
+          "flex flex-col justify-center items-start",
           "w-full h-full",
-          "min-h-[653px]",
           "p-[12px]",
           "overflow-hidden"
         )}
       >
-        <div
-          className={cls(
-            "flex justify-center items-start",
-            "relative",
-            "w-full h-full min-h-[440px]",
-            "rounded-[12px]",
-            "text-black"
-          )}
-        >
-          <AnswerStartCard />
-          {questions.map((question, index) => {
-            return (
-              <AnswerCard
-                key={`questions${index}`}
-                index={index}
-                questionInfo={question}
-              />
-            );
-          })}
-          <QuestionNavBox />
-        </div>
-        <TestEndButton />
+        <AnswerSlider />
+        <QuestionBox />
       </div>
     </animated.div>
   );

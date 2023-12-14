@@ -11,7 +11,8 @@ const AnswerRadioBox: FC<AnswerRadioBoxProps> = ({ children }) => {
         "w-full",
         "p-[12px]",
         "rounded-[12px]",
-        "shadow-bold"
+        "shadow-bold",
+        "bg-[rgba(120,120,120,1)]"
       )}
     >
       {children}

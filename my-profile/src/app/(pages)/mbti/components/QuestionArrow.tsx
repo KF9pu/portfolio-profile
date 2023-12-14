@@ -12,21 +12,28 @@ const QuestionArrow: FC<QuestionArrowProps> = ({ left, onClick, ...props }) => {
   const questions = useRecoilValue(_questions);
 
   return (
-    <div className={cls("flex")} onClick={onClick} {...props}>
+    <div
+      className={cls(
+        "flex justify-center items-center",
+        "w-[36px] h-full",
+        "transition-all duration-500 ease-in-out",
+        "opacity-0",
+        left
+          ? cls(
+              currentQuestion === undefined || currentQuestion === 0
+                ? ""
+                : "opacity-100"
+            )
+          : cls(currentQuestion === questions.length - 1 ? "" : "opacity-100")
+      )}
+      onClick={onClick}
+      {...props}
+    >
       <div
         className={cls(
-          "w-[36px] h-[36px]",
+          "w-[16px] h-[16px]",
           "bg-[url('/images/right-arrow.png')] bg-cover bg-center",
-          "transition-all duration-500 ease-in-out",
-          "opacity-0",
-          left
-            ? cls(
-                "rotate-180",
-                currentQuestion === undefined || currentQuestion === 0
-                  ? ""
-                  : "opacity-100"
-              )
-            : cls(currentQuestion === questions.length - 1 ? "" : "opacity-100")
+          left ? "rotate-180" : ""
         )}
       />
     </div>

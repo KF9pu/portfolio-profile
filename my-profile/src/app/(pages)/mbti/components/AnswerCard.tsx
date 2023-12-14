@@ -34,15 +34,15 @@ const AnswerCard: FC<AnswerCardProps> = ({ index, questionInfo, ...props }) => {
       <div
         className={cls(
           "flex flex-col justify-center items-center gap-[4px]",
+          "min-h-[172px]",
           "shadow-bold",
           "rounded-[12px]",
-          "py-[12px] px-[8px]"
+          "py-[12px] px-[8px]",
+          "bg-[rgba(120,120,120,1)]"
         )}
       >
         <p>Q.{questionInfo.index}</p>
-        <p className={cls("break-keep text-center", "text-[20px]")}>
-          {questionInfo.question}
-        </p>
+        <p className={cls("break-keep text-center")}>{questionInfo.question}</p>
       </div>
       <AnswerRadioBox>
         {Array.from({ length: 5 }).map((_, idx) => (
