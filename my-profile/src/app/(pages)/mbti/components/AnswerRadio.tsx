@@ -13,14 +13,9 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 interface AnwserRadioProps {
   typeIndex: number;
   keyIndex: number;
-  questionInfo: I_questionWithIndex;
 }
 
-const AnswerRadio: FC<AnwserRadioProps> = ({
-  typeIndex,
-  keyIndex,
-  questionInfo,
-}) => {
+const AnswerRadio: FC<AnwserRadioProps> = ({ typeIndex, keyIndex }) => {
   const [questionAnswers, setQuestionAnswers] =
     useRecoilState(_questionAnswers);
   const [currentQuestion, setCurrentQuestion] =
@@ -28,16 +23,10 @@ const AnswerRadio: FC<AnwserRadioProps> = ({
   const questions = useRecoilValue(_questions);
   const [isChekced, setIsChekced] = useState(false);
 
-  // useEffect(() => {
-  //   setCurrentQuestion(prev =>
-  //     limitAddNum(questions.length - 1, 1, prev === undefined ? 0 : prev)
-  //   );
-  // }, [questionAnswers]);
-
   useEffect(() => {
     setIsChekced(() => {
       const questionAnswer = questionAnswers.filter(
-        ({ index }) => questionInfo.index === index
+        ({ index }) => questions[keyIndex].index === index
       );
 
       return questionAnswer.length === 0
@@ -58,25 +47,51 @@ const AnswerRadio: FC<AnwserRadioProps> = ({
       )}
       onClick={() => {
         setQuestionAnswers(prev => {
-          if (prev.some(({ index }) => questionInfo.index === index)) {
+          if (prev.some(({ index }) => questions[keyIndex].index === index)) {
             const nonDuplicateItems = prev.filter(
-              ({ index }) => questionInfo.index !== index
+              ({ index }) => questions[keyIndex].index !== index
             );
-            console.log(
-              "🚀 ~ file: AnswerRadio.tsx:66 ~ indexByAnswerInfo[typeIndex].value:",
-              indexByAnswerInfo[typeIndex].value
+
+            const duplicateItems = prev.find(
+              ({ index }) => questions[keyIndex].index === index
             );
-            return [
-              { answer: indexByAnswerInfo[typeIndex].value, ...questionInfo },
-              ...nonDuplicateItems,
-            ];
+
+            if (duplicateItems?.answer === indexByAnswerInfo[typeIndex].value) {
+              // 같은 답을 누를 경우 취소
+              return [...nonDuplicateItems];
+            } else {
+              // 수정
+              return [
+                {
+                  answer: indexByAnswerInfo[typeIndex].value,
+                  ...questions[keyIndex],
+                },
+                ...nonDuplicateItems,
+              ];
+            }
           } else {
+            // 새로 질문에 답한 경우
             return [
-              { answer: indexByAnswerInfo[typeIndex].value, ...questionInfo },
+              {
+                answer: indexByAnswerInfo[typeIndex].value,
+                ...questions[keyIndex],
+              },
               ...prev,
             ];
           }
         });
+
+        if (keyIndex === questions.length - 1) return; // 마지막 문제인 경우 종료
+
+        // 다음 문제가에 답변한 적이 있는 경우 종료
+        if (
+          questionAnswers.some(
+            ({ index }) => questions[keyIndex + 1].index === index
+          )
+        )
+          return;
+
+        setCurrentQuestion(prev => prev! + 1);
       }}
     >
       <div

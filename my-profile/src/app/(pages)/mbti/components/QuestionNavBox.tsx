@@ -12,9 +12,9 @@ import {
 import { limitAddNum, limitSubtractNum } from "hsh-utils-math";
 import { cls } from "hsh-utils-string";
 
-interface QuestionBoxProps {}
+interface QuestionNavBoxProps {}
 
-const QuestionBox: FC<QuestionBoxProps> = ({}) => {
+const QuestionNavBox: FC<QuestionNavBoxProps> = ({}) => {
   const red = useRecoilValue(_red);
   const green = useRecoilValue(_green);
   const blue = useRecoilValue(_blue);
@@ -78,16 +78,15 @@ const QuestionBox: FC<QuestionBoxProps> = ({}) => {
               key={`progressBar${idx}`}
               className={cls(
                 "h-full",
-                "transition-all",
+                "transition-all duration-300",
                 idx === 0 ? "rounded-l-full" : "",
-                idx === questions.length - 1 ? "rounded-r-full" : ""
+                idx === questions.length - 1 ? "rounded-r-full" : "",
+                idx < questionAnswers.length
+                  ? "bg-[rgb(177,224,163,.8)]"
+                  : "bg-[rgb(177,224,163,.1)]"
               )}
               style={{
                 width: `calc(100%/${questions.length})`,
-                backgroundColor:
-                  idx < questionAnswers.length
-                    ? `rgba(${red},${green},${blue},.9)`
-                    : `rgba(${red},${green},${blue},.5)`,
               }}
             />
           );
@@ -96,4 +95,4 @@ const QuestionBox: FC<QuestionBoxProps> = ({}) => {
     </div>
   );
 };
-export default QuestionBox;
+export default QuestionNavBox;

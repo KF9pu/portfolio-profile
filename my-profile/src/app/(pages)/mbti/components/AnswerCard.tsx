@@ -20,14 +20,14 @@ const AnswerCard: FC<AnswerCardProps> = ({ index, questionInfo, ...props }) => {
       className={cls(
         "flex flex-col gap-[24px]",
         "absolute",
+        "transition-all duration-500 ease-in-out",
         currentQuestion === index
           ? "opacity-100 translate-x-0"
           : currentQuestion === undefined
           ? "opacity-0 translate-x-[100vw]"
           : currentQuestion > index
           ? "opacity-0 translate-x-[-100vw]"
-          : "opacity-0 translate-x-[100vw]",
-        "transition-all duration-500 ease-in-out"
+          : "opacity-0 translate-x-[100vw]"
       )}
       {...props}
     >
@@ -48,7 +48,6 @@ const AnswerCard: FC<AnswerCardProps> = ({ index, questionInfo, ...props }) => {
             key={`AnswerRadio${idx}${index}`}
             typeIndex={idx}
             keyIndex={index}
-            questionInfo={questionInfo}
           />
         ))}
       </AnswerRadioBox>

@@ -14,7 +14,7 @@ import { E_testTypes, isValidTestType } from "@/enums/testTypes";
 import useMBTI from "@/hooks/useMBTI";
 import AnswerStartCard from "./AnswerStartCard";
 import AnswerCard from "./AnswerCard";
-import QuestionBox from "./QuestionBox";
+import QuestionNavBox from "./QuestionNavBox";
 import TestEndButton from "./TestEndButton";
 
 interface AnswerBoxBoxProps {}
@@ -70,7 +70,8 @@ const AnswerBox: FC<AnswerBoxBoxProps> = ({}) => {
           "flex flex-col justify-center items-start gap-[12px]",
           "w-full h-full",
           "min-h-[653px]",
-          "p-[12px]"
+          "p-[12px]",
+          "overflow-hidden"
         )}
       >
         <div
@@ -92,7 +93,7 @@ const AnswerBox: FC<AnswerBoxBoxProps> = ({}) => {
               />
             );
           })}
-          <QuestionBox />
+          <QuestionNavBox />
         </div>
         <TestEndButton />
       </div>
