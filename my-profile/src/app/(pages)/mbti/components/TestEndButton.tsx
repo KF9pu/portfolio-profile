@@ -1,13 +1,14 @@
 import {
   _currentQuestion,
+  _inspectionCompleted,
+  _isOpenTestEndModal,
   _questionAnswers,
   _questions,
 } from "@/app/recoilContextProvider";
-import { questions } from "@/constants/selfReportQuestions";
 import { cls } from "hsh-utils-string";
 import { useRouter } from "next/navigation";
 import type { FC } from "react";
-import { useRecoilValue, useResetRecoilState } from "recoil";
+import { useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
 
 interface TestEndButtonProps {}
 
@@ -15,7 +16,8 @@ const TestEndButton: FC<TestEndButtonProps> = ({}) => {
   const questions = useRecoilValue(_questions);
   const questionAnswers = useRecoilValue(_questionAnswers);
   const currentQuestion = useRecoilValue(_currentQuestion);
-  const resetQuestionAnswers = useResetRecoilState(_questionAnswers);
+  const setIsOpenTestEndModal = useSetRecoilState(_isOpenTestEndModal);
+  const setInspectionCompleted = useSetRecoilState(_inspectionCompleted);
   const router = useRouter();
   return (
     <button
@@ -31,10 +33,11 @@ const TestEndButton: FC<TestEndButtonProps> = ({}) => {
           : "bg-opacity-100"
       )}
       onClick={() => {
+        setIsOpenTestEndModal(true);
         if (questionAnswers.length !== questions.length) {
-          resetQuestionAnswers();
-          router.push("/mbti");
+          setInspectionCompleted(false);
         } else {
+          setInspectionCompleted(true);
         }
 
         const indexs = questionAnswers.map(({ index }) => index);

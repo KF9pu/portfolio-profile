@@ -98,3 +98,12 @@ export const _testResult = atom<I_testResult>({
   key: "_testResult",
   default: {},
 });
+
+export const _isOpenTestEndModal = atom<boolean>({
+  key: "_isOpenTestEndModal",
+  default: false,
+});
+export const _inspectionCompleted = atom<boolean>({
+  key: "_inspectionCompleted",
+  default: false,
+});

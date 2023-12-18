@@ -1,10 +1,10 @@
 import type { FC } from "react";
 import QuestionNav from "./QuestionNav";
-import TestEndButton from "./TestEndButton";
 import { cls } from "hsh-utils-string";
 import ProgressBar from "./ProgressBar";
 import { useRecoilValue } from "recoil";
 import { _currentQuestion } from "@/app/recoilContextProvider";
+import TestEndBox from "./TestEndBox";
 
 interface QuestionBoxProps {}
 
@@ -24,7 +24,7 @@ const QuestionBox: FC<QuestionBoxProps> = ({}) => {
       )}
     >
       <QuestionNav />
-      <TestEndButton />
+      <TestEndBox />
       <ProgressBar />
     </div>
   );
