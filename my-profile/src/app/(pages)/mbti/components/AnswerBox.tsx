@@ -57,17 +57,17 @@ const AnswerBox: FC<AnswerBoxBoxProps> = ({}) => {
         "w-screen h-screen",
         "z-[11]",
         "overflow-y-scroll",
-        "bg-[url('/images/mbti-background-m.jpg')] bg-cover bg-center bg-no-repeat"
+        "bg-[url('/images/mbti-background-m.jpg')] bg-cover bg-center bg-no-repeat",
+        "transition-all duration-500 ease-in-out",
+        searchParams.get("type") ? "" : "translate-x-[100vw]"
       )}
+      style={{
+        ...props,
+      }}
     >
       <animated.div
-        className={cls(
-          "w-full h-full",
-          "transition-all duration-500 ease-in-out",
-          searchParams.get("type") ? "" : "translate-x-[100vw]"
-        )}
+        className={cls("w-full h-full")}
         style={{
-          ...props,
           backgroundColor: `rgba(${red},${green},${blue},.8)`,
         }}
       >

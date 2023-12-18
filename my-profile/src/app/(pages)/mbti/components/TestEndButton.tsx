@@ -1,6 +1,7 @@
 import {
   _currentQuestion,
   _questionAnswers,
+  _questions,
 } from "@/app/recoilContextProvider";
 import { questions } from "@/constants/selfReportQuestions";
 import { cls } from "hsh-utils-string";
@@ -11,6 +12,7 @@ import { useRecoilValue } from "recoil";
 interface TestEndButtonProps {}
 
 const TestEndButton: FC<TestEndButtonProps> = ({}) => {
+  const questions = useRecoilValue(_questions);
   const questionAnswers = useRecoilValue(_questionAnswers);
   const currentQuestion = useRecoilValue(_currentQuestion);
   const router = useRouter();
@@ -28,13 +30,18 @@ const TestEndButton: FC<TestEndButtonProps> = ({}) => {
           : "bg-opacity-100"
       )}
       onClick={() => {
-        const indexs = questionAnswers.map(({ index }) => index);
-
-        const questionByIndex = indexs.map(idx => questions[idx]);
         console.log(
-          "🚀 ~ file: TestEndButton.tsx:22 ~ questionByIndex:",
-          questionByIndex
+          "🚀 ~ file: TestEndButton.tsx:34 ~ questionAnswers:",
+          questionAnswers
         );
+        if (questionAnswers.length !== questions.length) {
+          router.push("/mbti");
+        } else {
+        }
+
+        const indexs = questionAnswers.map(({ index }) => index);
+        console.log("🚀 ~ file: TestEndButton.tsx:38 ~ indexs:", indexs);
+        console.log("🚀 ~ file: TestEndButton.tsx:16 ~ questions:", questions);
 
         // TODO: 검사 결과 담을 변수 생성
         // TODO: 검사 종료시 점수 분석하기
