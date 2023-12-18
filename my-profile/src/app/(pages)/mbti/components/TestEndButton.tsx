@@ -7,7 +7,7 @@ import { questions } from "@/constants/selfReportQuestions";
 import { cls } from "hsh-utils-string";
 import { useRouter } from "next/navigation";
 import type { FC } from "react";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useResetRecoilState } from "recoil";
 
 interface TestEndButtonProps {}
 
@@ -15,6 +15,7 @@ const TestEndButton: FC<TestEndButtonProps> = ({}) => {
   const questions = useRecoilValue(_questions);
   const questionAnswers = useRecoilValue(_questionAnswers);
   const currentQuestion = useRecoilValue(_currentQuestion);
+  const resetQuestionAnswers = useResetRecoilState(_questionAnswers);
   const router = useRouter();
   return (
     <button
@@ -30,11 +31,8 @@ const TestEndButton: FC<TestEndButtonProps> = ({}) => {
           : "bg-opacity-100"
       )}
       onClick={() => {
-        console.log(
-          "🚀 ~ file: TestEndButton.tsx:34 ~ questionAnswers:",
-          questionAnswers
-        );
         if (questionAnswers.length !== questions.length) {
+          resetQuestionAnswers();
           router.push("/mbti");
         } else {
         }
