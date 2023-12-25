@@ -2,19 +2,33 @@ import {
   _inspectionCompleted,
   _isOpenTestEndModal,
   _questionAnswers,
+  _questions,
+  _testResult,
 } from "@/app/recoilContextProvider";
 import { SpotLoading } from "hsh-components-tailwind";
 import { cls } from "hsh-utils-string";
-import type { FC } from "react";
+import { useEffect, type FC, useState } from "react";
 import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
+import { useRouter } from "next/navigation";
 
 interface TestEndModalProps {}
 
 const TestEndModal: FC<TestEndModalProps> = ({}) => {
   const [isOpen, setIsOpen] = useRecoilState(_isOpenTestEndModal);
   const resetQuestionAnswers = useResetRecoilState(_questionAnswers);
-
   const inspectionCompleted = useRecoilValue(_inspectionCompleted);
+  const testResult = useRecoilValue(_testResult);
+  const router = useRouter();
+  const [isAnalysisCompleted, setIsAnalysisCompleted] = useState(false);
+
+  useEffect(() => {
+    if (inspectionCompleted) {
+      setTimeout(() => {
+        setIsAnalysisCompleted(true);
+      }, 2000);
+    }
+  }, [testResult]);
+
   return (
     <div
       className={cls(
@@ -29,14 +43,34 @@ const TestEndModal: FC<TestEndModalProps> = ({}) => {
       {inspectionCompleted ? (
         <div
           className={cls(
+            "flex flex-col gap-[12px]",
+            "w-[80%]",
             "bg-white",
             "px-[12px] py-[36px]",
             "rounded-[12px]",
             "text-black"
           )}
         >
-          <p>결과를 분석하고 있어요</p>
-          <SpotLoading />
+          {isAnalysisCompleted ? (
+            <div
+              className={cls(
+                "flex flex-col justify-center items-center",
+                "w-full h-full"
+              )}
+              onClick={() => {
+                window.location.href = "/mbti/result";
+              }}
+            >
+              <p>😀</p>
+              <p className="text-[18px]">결과 보기</p>
+              <p className="text-[20px]">Click</p>
+            </div>
+          ) : (
+            <>
+              <p>결과를 분석하고 있어요</p>
+              <SpotLoading />
+            </>
+          )}
         </div>
       ) : (
         <div
@@ -46,8 +80,7 @@ const TestEndModal: FC<TestEndModalProps> = ({}) => {
             "px-[12px] py-[36px]",
             "bg-white",
             "rounded-[12px]",
-            "transition-all duration-1000 delay-500 ease-in-out",
-            isOpen ? "translate-y-0" : "translate-y-[50vh]"
+            "transition-all duration-1000 ease-in-out"
           )}
         >
           <p>아직 답변을 완료하지 않았어요!</p>
@@ -63,6 +96,8 @@ const TestEndModal: FC<TestEndModalProps> = ({}) => {
             <button
               className={cls("shadow-bold", "p-[12px]", "rounded-[12px]")}
               onClick={() => {
+                router.push("/mbti");
+                setIsOpen(false);
                 resetQuestionAnswers();
               }}
             >

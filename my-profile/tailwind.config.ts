@@ -8,6 +8,12 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      transitionDelay: {
+        "400": "400ms",
+        "600": "600ms",
+        "800": "800ms",
+        "900": "900ms",
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -15,6 +21,26 @@ const config: Config = {
       },
       boxShadow: {
         bold: "4px 8px 12px 4px rgba(0,0,0,0.3)",
+      },
+      animation: {
+        wiggle1: "wiggle 1s ease-in-out infinite",
+        wiggle2: "wiggle 1.8s ease-in-out infinite",
+        wiggle3: "wiggle 1.2s ease-in-out infinite",
+        wiggle4: "wiggle 1.4s ease-in-out infinite",
+        wiggle5: "wiggle 1.6s ease-in-out infinite",
+        wiggle6: "wiggle 2s ease-in-out infinite",
+      },
+      keyframes: {
+        wiggle: {
+          "0%, 100%": {
+            transform: "rotate(-3deg) translateY(-25%)",
+            opacity: "0",
+          },
+          "50%": {
+            transform: "rotate(3deg) translateY(0)",
+            opacity: "50",
+          },
+        },
       },
     },
     fontFamily: {

@@ -94,7 +94,7 @@ export const _questionAnswers = atom<I_questionAnswer[]>({
   default: [],
 });
 
-export const _testResult = atom<I_testResult>({
+export const _testResult = atom<I_testResult | {}>({
   key: "_testResult",
   default: {},
 });

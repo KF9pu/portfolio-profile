@@ -10,6 +10,7 @@ import indexByAnswerInfo from "@/constants/indexByAnswerInfo";
 import personalityColorDatas from "@/constants/personalityColorDatas";
 import E_criterionOpposite from "@/enums/E_criterionOpposite";
 import useChangeBackgroundColor from "@/hooks/useChangeBackgroundColor";
+import I_questionAnswer from "@/interface/I_questionAnswer";
 import { limitAddNum } from "hsh-utils-math";
 import { cls } from "hsh-utils-string";
 import { FC, useEffect, useState } from "react";
@@ -54,23 +55,21 @@ const AnswerRadio: FC<AnwserRadioProps> = ({ typeIndex, keyIndex }) => {
       )}
       onClick={() => {
         const currentQuestionInfo = questions[keyIndex]; // 현재 질문 데이터
-        const { index: idx } = currentQuestionInfo;
 
-        const newAnswer = {
+        const { index: idx, criterion, question } = currentQuestionInfo;
+
+        const newAnswer: I_questionAnswer = {
           answer,
-          ...currentQuestionInfo,
+          index: idx,
+          criterion: answer > 0 ? criterion : E_criterionOpposite[criterion],
+          question,
         };
-        console.log("🚀 ~ file: AnswerRadio.tsx:119 ~ newAnswer:", newAnswer);
 
         const hasAnsweredPreviously = questionAnswers.some(
           ({ index }) => idx === index
         );
 
         if (hasAnsweredPreviously) {
-          console.log(
-            "🚀 ~ file: AnswerRadio.tsx:69 ~ hasAnsweredPreviously:",
-            hasAnsweredPreviously
-          );
           const duplicateItems = questionAnswers.find(
             ({ index }) => idx === index
           );
@@ -92,15 +91,6 @@ const AnswerRadio: FC<AnwserRadioProps> = ({ typeIndex, keyIndex }) => {
           ];
 
           const hasSameResponse = duplicateItems?.answer === answer;
-          console.log(
-            "🚀 ~ file: AnswerRadio.tsx:94 ~ hasSameResponse:",
-            hasSameResponse
-          );
-
-          console.log(
-            "🚀 ~ file: AnswerRadio.tsx:121 ~ nonDuplicateItems:",
-            nonDuplicateItems
-          );
 
           setQuestionAnswers(
             hasSameResponse
@@ -120,13 +110,7 @@ const AnswerRadio: FC<AnwserRadioProps> = ({ typeIndex, keyIndex }) => {
 
           // 답변에 대한 컬러값 추가
           plusBackgroundColor(appliedRed, appliedGreen, appliedBlue);
-          setQuestionAnswers(prev => {
-            console.log(
-              "🚀 ~ file: AnswerRadio.tsx:126 ~ [newAnswer, ...prev]:",
-              [newAnswer, ...prev]
-            );
-            return [newAnswer, ...prev];
-          });
+          setQuestionAnswers(prev => [newAnswer, ...prev]);
         }
 
         if (keyIndex === questions.length - 1) return; // 마지막 문제인 경우 종료

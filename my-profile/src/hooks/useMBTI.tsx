@@ -78,10 +78,10 @@ function getNumberOfQuestionsByType(testType: E_testTypes): number {
   }
 }
 
-const getQuestionsByCriterion = (
+function getQuestionsByCriterion(
   numberOfQuestions: number,
   criterion: E_criterion
-): I_questionWithIndex[] => {
+): I_questionWithIndex[] {
   return shuffleArray(
     questions
       .map((question, idx) => ({ index: idx, ...question }))
@@ -89,4 +89,4 @@ const getQuestionsByCriterion = (
         ({ criterion: questionCriterion }) => questionCriterion === criterion
       )
   ).slice(0, numberOfQuestions / 8);
-};
+}
