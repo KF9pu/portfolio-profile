@@ -3,7 +3,7 @@
 import { E_testTypes } from "@/enums/testTypes";
 import I_questionAnswer from "@/interface/I_questionAnswer";
 import I_questionWithIndex from "@/interface/I_questionWithIndex";
-import I_testResult from "@/interface/I_testResult";
+import I_AnalyzedResults from "@/interface/I_AnalyzedResults";
 import { RecoilRoot, atom } from "recoil";
 
 export default function RecoidContextProvider({
@@ -94,7 +94,7 @@ export const _questionAnswers = atom<I_questionAnswer[]>({
   default: [],
 });
 
-export const _testResult = atom<I_testResult | {}>({
+export const _testResult = atom<I_AnalyzedResults>({
   key: "_testResult",
   default: {},
 });

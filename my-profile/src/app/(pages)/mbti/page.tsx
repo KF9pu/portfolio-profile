@@ -15,9 +15,11 @@ import { E_testTypes } from "@/enums/testTypes";
 import TestCard from "./components/TestCard";
 import AnswerBox from "./components/AnswerBox";
 import TestBox from "./components/TestBox";
+import useResetMBTI from "@/hooks/useResetMBTI";
 
 const Page: NextPage = () => {
   useEndLoading();
+  useResetMBTI();
 
   return (
     <main

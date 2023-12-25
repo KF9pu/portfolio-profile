@@ -10,6 +10,7 @@ import { cls } from "hsh-utils-string";
 import { useEffect, type FC, useState } from "react";
 import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
 import { useRouter } from "next/navigation";
+import useLoadingRoute from "@/hooks/useLoadingRoute";
 
 interface TestEndModalProps {}
 
@@ -20,6 +21,7 @@ const TestEndModal: FC<TestEndModalProps> = ({}) => {
   const testResult = useRecoilValue(_testResult);
   const router = useRouter();
   const [isAnalysisCompleted, setIsAnalysisCompleted] = useState(false);
+  const { loadingRouter } = useLoadingRoute();
 
   useEffect(() => {
     if (inspectionCompleted) {
@@ -52,19 +54,17 @@ const TestEndModal: FC<TestEndModalProps> = ({}) => {
           )}
         >
           {isAnalysisCompleted ? (
-            <div
+            <button
               className={cls(
                 "flex flex-col justify-center items-center",
                 "w-full h-full"
               )}
-              onClick={() => {
-                window.location.href = "/mbti/result";
-              }}
+              onClick={() => loadingRouter("/mbti/result")}
             >
               <p>😀</p>
               <p className="text-[18px]">결과 보기</p>
               <p className="text-[20px]">Click</p>
-            </div>
+            </button>
           ) : (
             <>
               <p>결과를 분석하고 있어요</p>
