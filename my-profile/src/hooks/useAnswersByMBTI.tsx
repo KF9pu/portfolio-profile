@@ -15,9 +15,7 @@ const useAnswersByMBTI = () => {
 
     const analyzeCriterion = (myersBriggsType: E_MyersBriggsType) => {
       const { criterion, oppositeCriterion } = getCriterion(myersBriggsType);
-
       const criterionAnswer = getAnswersByCriterion(questionAnswers, criterion);
-
       const oppositeCriterionAnswer = getAnswersByCriterion(
         questionAnswers,
         oppositeCriterion
@@ -34,7 +32,10 @@ const useAnswersByMBTI = () => {
       const weakness = criterionAnswer < 1;
 
       results[myersBriggsType] = {
-        type: criterion,
+        type:
+          criterionAnswer > oppositeCriterionAnswer
+            ? criterion
+            : oppositeCriterion,
         per,
         weakness,
       };
@@ -45,10 +46,6 @@ const useAnswersByMBTI = () => {
     analyzeCriterion(E_MyersBriggsType.JudgmentCriteria);
     analyzeCriterion(E_MyersBriggsType.LifestylePattern);
 
-    console.log(
-      "🚀 ~ file: useAnswersByMBTI.tsx:54 ~ analyzeResults ~ results:",
-      results
-    );
     setTestResult(results);
   };
 

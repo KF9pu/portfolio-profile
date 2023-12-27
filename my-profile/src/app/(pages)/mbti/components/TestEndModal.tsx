@@ -21,7 +21,6 @@ const TestEndModal: FC<TestEndModalProps> = ({}) => {
   const testResult = useRecoilValue(_testResult);
   const router = useRouter();
   const [isAnalysisCompleted, setIsAnalysisCompleted] = useState(false);
-  const { loadingRouter } = useLoadingRoute();
 
   useEffect(() => {
     if (inspectionCompleted) {
@@ -59,7 +58,7 @@ const TestEndModal: FC<TestEndModalProps> = ({}) => {
                 "flex flex-col justify-center items-center",
                 "w-full h-full"
               )}
-              onClick={() => loadingRouter("/mbti/result")}
+              onClick={() => router.push("/mbti/result")}
             >
               <p>😀</p>
               <p className="text-[18px]">결과 보기</p>
