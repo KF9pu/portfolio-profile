@@ -8,7 +8,7 @@ const useEndLoading = () => {
   useLayoutEffect(() => {
     setTimeout(() => {
       endLoading(false);
-    }, 500);
+    }, 1000);
   }, []);
 };
 export default useEndLoading;

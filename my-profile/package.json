@@ -11,7 +11,7 @@
   "dependencies": {
     "@react-spring/web": "^9.7.3",
     "@use-gesture/react": "^10.3.0",
-    "hsh-components-tailwind": "^0.0.4",
+    "hsh-components-tailwind": "^0.0.5",
     "hsh-utils-math": "^0.0.2",
     "hsh-utils-string": "^1.0.1",
     "hsh-utils-useful": "^0.0.6",

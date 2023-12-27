@@ -33,12 +33,10 @@ const config: Config = {
       keyframes: {
         wiggle: {
           "0%, 100%": {
-            transform: "rotate(-3deg) translateY(-25%)",
-            opacity: "0",
+            transform: "rotate(-3deg) translateY(-10%)",
           },
           "50%": {
             transform: "rotate(3deg) translateY(0)",
-            opacity: "50",
           },
         },
       },

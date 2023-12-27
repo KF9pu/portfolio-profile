@@ -10,7 +10,6 @@ import { cls } from "hsh-utils-string";
 import { useEffect, type FC, useState } from "react";
 import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
 import { useRouter } from "next/navigation";
-import useLoadingRoute from "@/hooks/useLoadingRoute";
 
 interface TestEndModalProps {}
 
@@ -23,11 +22,11 @@ const TestEndModal: FC<TestEndModalProps> = ({}) => {
   const [isAnalysisCompleted, setIsAnalysisCompleted] = useState(false);
 
   useEffect(() => {
-    if (inspectionCompleted) {
-      setTimeout(() => {
-        setIsAnalysisCompleted(true);
-      }, 2000);
-    }
+    // if (inspectionCompleted) {
+    //   setTimeout(() => {
+    //     setIsAnalysisCompleted(true);
+    //   }, 2000);
+    // }
   }, [testResult]);
 
   return (
