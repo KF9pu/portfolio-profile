@@ -3,7 +3,6 @@ import {
   _isOpenTestEndModal,
   _questionAnswers,
   _questions,
-  _testResult,
 } from "@/app/recoilContextProvider";
 import { SpotLoading } from "hsh-components-tailwind";
 import { cls } from "hsh-utils-string";
@@ -17,17 +16,16 @@ const TestEndModal: FC<TestEndModalProps> = ({}) => {
   const [isOpen, setIsOpen] = useRecoilState(_isOpenTestEndModal);
   const resetQuestionAnswers = useResetRecoilState(_questionAnswers);
   const inspectionCompleted = useRecoilValue(_inspectionCompleted);
-  const testResult = useRecoilValue(_testResult);
   const router = useRouter();
   const [isAnalysisCompleted, setIsAnalysisCompleted] = useState(false);
 
   useEffect(() => {
-    // if (inspectionCompleted) {
-    //   setTimeout(() => {
-    //     setIsAnalysisCompleted(true);
-    //   }, 2000);
-    // }
-  }, [testResult]);
+    if (inspectionCompleted) {
+      setTimeout(() => {
+        setIsAnalysisCompleted(true);
+      }, 2000);
+    }
+  }, [inspectionCompleted]);
 
   return (
     <div
@@ -43,7 +41,7 @@ const TestEndModal: FC<TestEndModalProps> = ({}) => {
       {inspectionCompleted ? (
         <div
           className={cls(
-            "flex flex-col gap-[12px]",
+            "flex flex-col",
             "w-[80%]",
             "bg-white",
             "px-[12px] py-[36px]",
@@ -64,10 +62,14 @@ const TestEndModal: FC<TestEndModalProps> = ({}) => {
               <p className="text-[20px]">Click</p>
             </button>
           ) : (
-            <>
+            <div
+              className={cls(
+                "flex flex-col items-center justify-center gap-[12px]"
+              )}
+            >
               <p>결과를 분석하고 있어요</p>
               <SpotLoading />
-            </>
+            </div>
           )}
         </div>
       ) : (

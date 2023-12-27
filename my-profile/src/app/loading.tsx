@@ -1,7 +1,7 @@
 "use client";
 
 import { NoneProps } from "@/interface";
-import type { FC, HTMLProps } from "react";
+import { type FC } from "react";
 import { useRecoilValue } from "recoil";
 import { _isLoading } from "./recoilContextProvider";
 import { cls } from "hsh-utils-string";
@@ -9,6 +9,7 @@ import { SpotLoading } from "hsh-components-tailwind";
 
 const Loading: FC<NoneProps> = () => {
   const isLoading = useRecoilValue(_isLoading);
+
   return (
     <div
       className={cls(
