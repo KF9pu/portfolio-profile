@@ -1,4 +1,4 @@
-const floatingButtonCostans = [
+const floatingButtonConstans = [
   {
     front: { title: "Home", color: "#669EF2", routePath: "/" },
     back: { title: "준비중", color: "#000000", routePath: "/" },
@@ -17,4 +17,4 @@ const floatingButtonCostans = [
   },
 ];
 
-export default floatingButtonCostans;
+export default floatingButtonConstans;

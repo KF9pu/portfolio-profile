@@ -2,153 +2,56 @@
 
 import { cls } from "hsh-utils-string";
 import type { FC } from "react";
-import { useLayoutEffect, useRef, useState, useEffect } from "react";
-import { _isDropDown } from "./recoilContextProvider";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useGesture } from "@use-gesture/react";
 import { animated, useSpring, useSprings, a } from "@react-spring/web";
-import floatingButtonCostans from "@/constants/floatingButtonCostans";
+import floatingButtonConstans from "@/constants/floatingButtonConstans";
 import useLoadingRoute from "@/hooks/useLoadingRoute";
+import { useRecoilState, useRecoilValue } from "recoil";
+import {
+  _floatingFlipped,
+  _isVisible,
+  _menuFlipped,
+} from "./recoilContextProvider";
+import useNavigator from "@/hooks/useNavigator";
 
 interface navigatorProps {}
 
 const Navigator: FC<navigatorProps> = ({}) => {
-  const buttonRef = useRef<HTMLDivElement>(null!);
-  const avatarRefs = useRef<HTMLDivElement[]>([]);
-  const avatarRefInitialPositions = useRef<number[]>([]);
-  const containerRef = useRef<HTMLDivElement>(null!);
-  const isVisible = useRef(false);
-  const [floatingFlipped, setFloatingFlipped] = useState(false);
-  const [menuFlipped, setMenuFlipped] = useState(true);
-
-  const [{ x, y, opacity }, api] = useSpring(
-    () => ({
-      x: 0,
-      y: 0,
-      opacity: 0,
-    }),
-    []
-  );
-
-  const [avatarSprings, avatarApi] = useSprings(
-    floatingButtonCostans.length,
-    i => ({
-      y: 0,
-      opacity: 0,
-    }),
-    []
-  );
-
-  useLayoutEffect(() => {
-    if (avatarRefInitialPositions.current.length === 0) {
-      const { y: buttonY } = buttonRef.current.getBoundingClientRect();
-
-      avatarRefInitialPositions.current = avatarRefs.current.map(
-        node => buttonY - node.getBoundingClientRect().y
-      );
-    }
-
-    avatarApi.start(i => ({
-      y: avatarRefInitialPositions.current[i],
-      opacity: 1,
-      immediate: true,
-    }));
-  }, []);
-
-  const backgroundTimeoutRef = useRef<ReturnType<typeof setTimeout>>();
-  const avatarTimeoutRef = useRef<ReturnType<typeof setTimeout>>();
-
-  const bindGestures = useGesture({
-    onClick: () => {
-      if (!isVisible.current) {
-        if (backgroundTimeoutRef.current) {
-          clearTimeout(backgroundTimeoutRef.current);
-        }
-        if (avatarTimeoutRef.current) {
-          clearTimeout(avatarTimeoutRef.current);
-        }
-
-        isVisible.current = true;
-
-        api.start({
-          opacity: 1,
-        });
-
-        avatarApi.start({
-          y: 0,
-        });
-        setFloatingFlipped(true);
-      } else {
-        api.start({
-          opacity: 0,
-        });
-
-        avatarApi.start(i => ({
-          y: avatarRefInitialPositions.current[i],
-          onRest: () => {
-            isVisible.current = false;
-          },
-        }));
-        setFloatingFlipped(false);
-      }
-    },
-    onHover: ({ hovering }) => {
-      if (hovering) {
-        if (backgroundTimeoutRef.current) {
-          clearTimeout(backgroundTimeoutRef.current);
-        }
-        if (avatarTimeoutRef.current) {
-          clearTimeout(avatarTimeoutRef.current);
-        }
-
-        isVisible.current = true;
-
-        api.start({
-          opacity: 1,
-        });
-
-        avatarApi.start({
-          y: 0,
-        });
-
-        setFloatingFlipped(true);
-      } else {
-        backgroundTimeoutRef.current = setTimeout(() => {
-          api.start({
-            opacity: 0,
-          });
-        }, 500);
-
-        avatarTimeoutRef.current = setTimeout(() => {
-          avatarApi.start(i => ({
-            y: avatarRefInitialPositions.current[i],
-            onRest: () => {
-              isVisible.current = false;
-            },
-          }));
-          setFloatingFlipped(false);
-        }, 650);
-      }
-    },
-  });
+  const [menuFlipped, setMenuFlipped] = useRecoilState(_menuFlipped);
+  const floatingFlipped = useRecoilValue(_floatingFlipped);
 
   const {
-    onPointerEnter,
-    onPointerLeave,
+    buttonRef,
+    avatarRefs,
+    containerRef,
     onClick,
-    onPointerDown,
-    ...restGestures
-  } = bindGestures();
+    onPointerLeave,
+    onPointerEnter,
+    handlePointerDown,
+    restGestures,
+    opacity,
+    x,
+    y,
+    avatarSprings,
+    navCloseClick,
+  } = useNavigator();
 
-  const handlePointerDown =
-    (isBackground: boolean) => (e: React.PointerEvent<HTMLElement>) => {
-      if (isBackground && !isVisible.current) {
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (
+        containerRef.current &&
+        containerRef.current.contains(event.target as Node)
+      ) {
         return;
       }
-
-      if (onPointerDown) {
-        onPointerDown(e);
-      }
+      navCloseClick();
     };
+    document.addEventListener("click", handleOutsideClick);
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, []);
 
   return (
     <>
@@ -202,8 +105,17 @@ const Navigator: FC<navigatorProps> = ({}) => {
                 ...springs,
               }}
             >
-              <MenuReverseDiv flipped={menuFlipped} index={index} />
-              <MenuReverseDiv front flipped={menuFlipped} index={index} />
+              <MenuReverseDiv
+                flipped={menuFlipped}
+                index={index}
+                navCloseClick={navCloseClick}
+              />
+              <MenuReverseDiv
+                front
+                flipped={menuFlipped}
+                index={index}
+                navCloseClick={navCloseClick}
+              />
             </animated.div>
           );
         })}
@@ -273,14 +185,20 @@ interface MenuReverseDivProps {
   flipped: boolean;
   front?: true;
   index: number;
+  navCloseClick: () => void;
 }
 
-const MenuReverseDiv: FC<MenuReverseDivProps> = ({ flipped, front, index }) => {
+const MenuReverseDiv: FC<MenuReverseDivProps> = ({
+  flipped,
+  front,
+  index,
+  navCloseClick,
+}) => {
   const { loadingRouter } = useLoadingRoute();
 
   const { color, routePath, title } = front
-    ? floatingButtonCostans[index].front
-    : floatingButtonCostans[index].back;
+    ? floatingButtonConstans[index].front
+    : floatingButtonConstans[index].back;
 
   const { transform, opacity, backgroundColor } = useSpring({
     opacity: flipped ? 1 : 0,
@@ -307,7 +225,10 @@ const MenuReverseDiv: FC<MenuReverseDivProps> = ({ flipped, front, index }) => {
         backgroundColor,
         rotateX: front ? "180deg" : "0deg",
       }}
-      onClick={() => loadingRouter(routePath)}
+      onClick={() => {
+        navCloseClick();
+        loadingRouter(routePath);
+      }}
     >
       {title}
     </a.div>

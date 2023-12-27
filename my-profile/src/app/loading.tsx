@@ -1,6 +1,6 @@
 "use client";
 
-import { NoneProps, OnlyChildrenProps } from "@/interface";
+import { NoneProps } from "@/interface";
 import type { FC } from "react";
 import { useRecoilValue } from "recoil";
 import { _isLoading } from "./recoilContextProvider";
@@ -15,7 +15,8 @@ const Loading: FC<NoneProps> = () => {
         "w-screen h-screen",
         "bg-black",
         isLoading ? "translate-y-[0]" : "translate-y-[-100vh]",
-        "transition-all duration-1000 ease-in-out"
+        "transition-all duration-1000 ease-in-out",
+        "text-white"
       )}
     >
       Loading ....

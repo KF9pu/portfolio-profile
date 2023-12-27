@@ -29,44 +29,19 @@ export const _blue = atom<number>({
   default: 120,
 });
 
-export const _isDropDown = atom<boolean>({
-  key: `isDropDown${Math.random()}`,
-  default: undefined,
-});
-
-export const _sidevarTabStatus = atom<number>({
-  key: `sidevarTabStatus${Math.random()}`,
-  default: 0,
-});
-
-export const _sectionNum = atom<number>({
-  key: `_sectionNum${Math.random()}`,
-  default: 0,
-});
-
-export const _scrollSectionNum = atom<number>({
-  key: `_scrollSectionNum${Math.random()}`,
-  default: 0,
-});
-
-export const _sectionIsOpen = atom<boolean>({
-  key: `_sectionIsOpen${Math.random()}`,
+export const _isVisible = atom<boolean>({
+  key: `_isVisible${Math.random()}`,
   default: false,
 });
 
-export const _historyIsOpen = atom<boolean>({
-  key: `_historyIsOpen${Math.random()}`,
+export const _floatingFlipped = atom<boolean>({
+  key: `_floatingFlipped${Math.random()}`,
   default: false,
 });
 
-export const _selfIntroductionIsOpen = atom<boolean>({
-  key: `_selfIntroductionIsOpen${Math.random()}`,
-  default: false,
-});
-
-export const _careerIsOpen = atom<boolean>({
-  key: `_careerIsOpen${Math.random()}`,
-  default: false,
+export const _menuFlipped = atom<boolean>({
+  key: `_menuFlipped${Math.random()}`,
+  default: true,
 });
 
 export const _isLoading = atom<boolean>({
