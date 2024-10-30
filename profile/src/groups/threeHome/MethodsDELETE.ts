@@ -39,7 +39,7 @@ interface CreateMeshesProps {
   colors: IColor;
 }
 
-class Methods {
+class MethodsDELETE {
   public SetRenderer(canvas: HTMLCanvasElement) {
     const renderer = new WebGLRenderer({ canvas, antialias: true });
     renderer.setSize(innerWidth, innerHeight);
@@ -229,4 +229,4 @@ class Methods {
   }
 }
 
-export default Methods;
+export default MethodsDELETE;

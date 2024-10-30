@@ -37,8 +37,8 @@ export const SpotInfos: ISpotInfos = [
     },
     text: {
       name: "introText",
-      text: "Intro !",
-      position: { x: introSpotPosition.x, z: introSpotPosition.z },
+      text: "Product Info",
+      position: { x: introSpotPosition.x - 0.3, z: introSpotPosition.z },
       size: 1,
     },
     stand: {
@@ -55,8 +55,8 @@ export const SpotInfos: ISpotInfos = [
     },
     text: {
       name: "meText",
-      text: "Me !",
-      position: { x: meSpotPosition.x, z: meSpotPosition.z },
+      text: "Community",
+      position: { x: meSpotPosition.x - 0.1, z: meSpotPosition.z },
       size: 1,
     },
     stand: {
@@ -73,8 +73,8 @@ export const SpotInfos: ISpotInfos = [
     },
     text: {
       name: "boardText",
-      text: "Board !",
-      position: { x: boardSpotPosition.x, z: boardSpotPosition.z },
+      text: "How to Cook",
+      position: { x: boardSpotPosition.x - 0.2, z: boardSpotPosition.z },
       size: 1,
     },
     stand: {
@@ -91,8 +91,8 @@ export const SpotInfos: ISpotInfos = [
     },
     text: {
       name: "skillText",
-      text: "Skill !",
-      position: { x: skillSpotPosition.x, z: skillSpotPosition.z },
+      text: "Event",
+      position: { x: skillSpotPosition.x + 0.3, z: skillSpotPosition.z },
       size: 1,
     },
     stand: {
@@ -109,14 +109,18 @@ export const SpotInfos: ISpotInfos = [
     },
     text: {
       name: "adminText",
-      text: "Admin !",
-      position: { x: adminSpotPosition.x, z: adminSpotPosition.z },
+      text: "Oceanshalo.com",
+      position: { x: adminSpotPosition.x - 0.4, z: adminSpotPosition.z },
       size: 1,
     },
     stand: {
       name: "Admin",
       modelSrc: "/models/gears.glb",
-      position: { x: adminSpotPosition.x, y: -4, z: adminSpotPosition.z - 2 },
+      position: {
+        x: adminSpotPosition.x,
+        y: -4,
+        z: adminSpotPosition.z - 2,
+      },
       dec: "관리자 (준비중)",
     },
   },

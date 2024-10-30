@@ -1,8 +1,8 @@
 import { Clock, Raycaster, Scene, Vector2, Vector3 } from "three";
-import Methods from "./Methods";
 import { ThemeCodeType } from "../theme/Interfaces";
 import { Dispatch, SetStateAction } from "react";
 import { colorEnum, Colors } from "./constants";
+import MethodsDELETE from "./MethodsDELETE";
 
 interface MainProps {
   canvas: HTMLCanvasElement | null;
@@ -10,11 +10,11 @@ interface MainProps {
   spotEvent: { open: Dispatch<SetStateAction<number>>; close: () => void };
 }
 
-class Main {
+class MainDELETE {
   constructor({ canvas, ThemeCode, spotEvent }: MainProps) {
     const colors = Colors[colorEnum[ThemeCode]];
     const { MeshShowHide, SetRenderer, SetCamera, SetLight, CreateMeshes } =
-      new Methods();
+      new MethodsDELETE();
 
     try {
       if (!canvas) return;
@@ -250,4 +250,4 @@ class Main {
   }
 }
 
-export default Main;
+export default MainDELETE;

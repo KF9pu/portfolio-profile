@@ -16,6 +16,15 @@ module.exports = {
         quaternary: "var(--color-quaternary)",
         quinary: "var(--color-quinary)",
       },
+      animation: {
+        clipShrink: "clipShrink 1s ease-in-out forwards",
+      },
+      keyframes: {
+        clipShrink: {
+          "0%": { clipPath: "circle(0% at 100% 0)" },
+          "100%": { clipPath: "circle(105% at 100% 0)" },
+        },
+      },
     },
   },
   plugins: [],
