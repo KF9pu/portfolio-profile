@@ -5,5 +5,5 @@
 ## Getting Started
 
 ```bash
-pnpm dev
+npm run dev
 ```
