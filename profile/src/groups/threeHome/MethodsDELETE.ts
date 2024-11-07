@@ -22,7 +22,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { Dispatch, SetStateAction } from "react";
 import { TextMesh } from "./meshes/TextMesh";
 import { IColor } from "./constants";
-import { SpotInfos } from "@/common/constants";
+import { SpotInfos } from "@/common/constants/indexDELETE";
 
 interface MeshInOutprops {
   mesh: Stand;
